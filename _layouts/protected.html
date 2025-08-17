@@ -120,7 +120,7 @@ layout: single
   border: 1px solid #dee2e6;
   border-radius: 0.5rem;
   padding: 3rem 2rem;
-  max-width: 500px;
+  max-width: 800px;
   width: 100%;
   text-align: center;
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
@@ -162,7 +162,7 @@ layout: single
 
 .input-group {
   display: flex;
-  max-width: 300px;
+  max-width: 500px;
   margin: 0 auto;
   border-radius: 0.25rem;
   overflow: hidden;
@@ -270,14 +270,26 @@ layout: single
   to { opacity: 1; transform: translateY(0); }
 }
 
+@media (max-width: 768px) {
+  .password-protection-box {
+    max-width: 600px;
+    padding: 2.5rem 1.5rem;
+  }
+  
+  .input-group {
+    max-width: 400px;
+  }
+}
+
 @media (max-width: 576px) {
   .password-protection-box {
+    max-width: 90%;
     padding: 2rem 1rem;
   }
   
   .input-group {
     flex-direction: column;
-    max-width: 250px;
+    max-width: 280px;
   }
   
   .password-input {
