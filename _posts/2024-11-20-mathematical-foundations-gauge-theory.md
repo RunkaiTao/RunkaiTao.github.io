@@ -8,6 +8,10 @@ tags:
   - differential geometry
   - mathematical physics
   - fiber bundles
+layout: protected
+protected: true
+password_hash: "300908b9d3815e2d3ba5f5534fda3bf44c8d3baaed7e7ca55fdf83a6ecad5854"
+password_hint: "Add a hint here (optional)"
 excerpt: "Exploring the deep mathematical structures underlying gauge theories, from fiber bundles to characteristic classes."
 ---
 
