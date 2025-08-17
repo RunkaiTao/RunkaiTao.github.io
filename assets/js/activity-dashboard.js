@@ -66,7 +66,7 @@ class ActivityDashboard {
     async loadPomodoroData() {
         try {
             // Load the actual history.csv file
-            const response = await fetch('/_data/history.csv');
+            const response = await fetch('/assets/data/history.csv');
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
