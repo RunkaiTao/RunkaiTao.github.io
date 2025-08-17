@@ -10,7 +10,7 @@ tags:
   - fiber bundles
 layout: protected
 protected: true
-password_hash: "300908b9d3815e2d3ba5f5534fda3bf44c8d3baaed7e7ca55fdf83a6ecad5854"
+password_hash: "622122c5bf09a70e648c839d2140b4b0224d38ca5878af7f3e0c89edf33aa8d3"
 password_hint: "Add a hint here (optional)"
 excerpt: "Exploring the deep mathematical structures underlying gauge theories, from fiber bundles to characteristic classes."
 ---
