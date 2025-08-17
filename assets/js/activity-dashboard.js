@@ -60,15 +60,15 @@ class ActivityDashboard {
 
     async loadPomodoroData() {
         try {
-            // Load the actual history.csv file
-            const response = await fetch('/assets/data/history.csv');
+            // Load the activity.yml file
+            const response = await fetch('/assets/data/activity.yml');
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
-            const csvText = await response.text();
+            const yamlText = await response.text();
             
-            // Parse CSV data
-            const pomodoroData = this.parsePomodoroCSV(csvText);
+            // Parse YAML data
+            const pomodoroData = this.parsePomodoroYAML(yamlText);
             
             // Set the parsed data
             Object.entries(pomodoroData).forEach(([date, count]) => {
@@ -76,29 +76,38 @@ class ActivityDashboard {
             });
             
         } catch (error) {
-            console.error('Error loading Pomodoro data from CSV:', error);
-            // Fall back to empty data if CSV loading fails
-            console.log('Falling back to empty data - check that _data/history.csv is accessible');
+            console.error('Error loading Pomodoro data from YAML:', error);
+            console.log('Falling back to empty data - check that assets/data/activity.yml is accessible');
         }
     }
 
-    parsePomodoroCSV(csvText) {
-        const lines = csvText.trim().split('\n');
+    parsePomodoroYAML(yamlText) {
         const pomodoroData = {};
+        const lines = yamlText.split('\n');
+        let inPomodoroSection = false;
         
-        // Skip header line
-        for (let i = 1; i < lines.length; i++) {
-            const line = lines[i].trim();
-            if (!line) continue;
+        for (const line of lines) {
+            const trimmed = line.trim();
             
-            // Parse CSV line: End (ISO 8601),End Date,End Time (24 Hour),End Timestamp (Unix),End Timezone (UTC Offset Minutes),Duration (Seconds)
-            const columns = line.split(',');
-            if (columns.length >= 2) {
-                const endDate = columns[1]; // End Date column (YYYY-MM-DD format)
-                
-                if (endDate && endDate.match(/^\d{4}-\d{2}-\d{2}$/)) {
-                    // Each row represents one completed Pomodoro session
-                    pomodoroData[endDate] = (pomodoroData[endDate] || 0) + 1;
+            // Check if we're in the pomodoro section
+            if (trimmed === 'pomodoro:') {
+                inPomodoroSection = true;
+                continue;
+            }
+            
+            // Stop if we hit another top-level section
+            if (trimmed.endsWith(':') && !trimmed.startsWith(' ') && trimmed !== 'pomodoro:') {
+                inPomodoroSection = false;
+                continue;
+            }
+            
+            // Parse pomodoro entries
+            if (inPomodoroSection && trimmed.includes(':')) {
+                const match = trimmed.match(/^(\d{4}-\d{2}-\d{2}):\s*(\d+)/);
+                if (match) {
+                    const date = match[1];
+                    const count = parseInt(match[2]);
+                    pomodoroData[date] = count;
                 }
             }
         }
