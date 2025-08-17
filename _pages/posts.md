@@ -37,11 +37,11 @@ Welcome to my blog! Here I share thoughts on research, tutorials, and insights f
 
 {% if posts_in_category.size > 5 %}
   <p class="view-all-link">
-    <a href="{{ '/blogs/' | append: category_slug | append: '/' | relative_url }}" class="btn btn-primary">View All {{ category[0] }} Posts ({{ posts_in_category.size }})</a>
+    <a href="{{ '/blogs/' | append: category_slug | append: '/' | relative_url }}" class="view-all-btn">View All {{ category[0] }} Posts ({{ posts_in_category.size }})</a>
   </p>
 {% elsif posts_in_category.size > 1 %}
   <p class="view-all-link">
-    <a href="{{ '/blogs/' | append: category_slug | append: '/' | relative_url }}" class="btn btn-primary">View All {{ category[0] }} Posts ({{ posts_in_category.size }})</a>
+    <a href="{{ '/blogs/' | append: category_slug | append: '/' | relative_url }}" class="view-all-btn">View All {{ category[0] }} Posts ({{ posts_in_category.size }})</a>
   </p>
 {% endif %}
 
@@ -82,24 +82,25 @@ Welcome to my blog! Here I share thoughts on research, tutorials, and insights f
   margin: 2em 0;
 }
 
-.btn {
+.view-all-btn {
   display: inline-block;
-  padding: 8px 16px;
-  background-color: #007bff;
-  color: white;
+  padding: 0.5em 1em;
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  color: #495057;
   text-decoration: none;
-  border-radius: 4px;
-  font-size: 0.9em;
-  transition: background-color 0.3s;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.15s ease-in-out;
 }
 
-.btn:hover {
-  background-color: #0056b3;
-  color: white;
+.view-all-btn:hover {
+  background-color: #e9ecef;
+  border-color: #adb5bd;
+  color: #212529;
   text-decoration: none;
-}
-
-.btn-primary {
-  background-color: #007bff;
+  transform: translateY(-1px);
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
 }
 </style>
