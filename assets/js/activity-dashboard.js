@@ -114,10 +114,20 @@ class ActivityDashboard {
 
 
     renderPomodoroGraph() {
+        console.log('🎨 Rendering Pomodoro graph...');
+        console.log('🎨 Data for graph:', this.data.pomodoro.size, 'entries');
+        
         const container = document.getElementById('pomodoro-graph');
+        if (!container) {
+            console.error('❌ Container pomodoro-graph not found!');
+            return;
+        }
+        
         const graph = this.createContributionGraph(this.data.pomodoro, 'pomodoro');
         container.innerHTML = '';
         container.appendChild(graph);
+        
+        console.log('✅ Graph rendered successfully');
     }
 
     createContributionGraph(data, type) {
@@ -291,8 +301,14 @@ class ActivityDashboard {
 
     updateStatistics() {
         // Calculate weekly totals and averages
+        console.log('📊 Current data size:', this.data.pomodoro.size);
+        console.log('📊 Data entries:', Array.from(this.data.pomodoro.entries()));
+        
         const weeklyPomodoros = this.calculateWeeklyPomodoros();
         const averageWeekly = this.calculateAverageWeeklyPomodoros();
+
+        console.log('📈 Weekly total:', weeklyPomodoros);
+        console.log('📈 Average weekly:', averageWeekly);
 
         // Update UI
         document.getElementById('total-pomodoros').textContent = weeklyPomodoros;
