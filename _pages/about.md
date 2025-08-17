@@ -11,10 +11,9 @@ I am a PhD student in Physics at Rutgers University, where I work on theoretical
 
 ## Research Interests
 
-- **Supersymmetric Gauge Theories**: Various aspects of supersymmetric gauge theories and their applications in string theory
-- **Conformal Field Theory**: Non-chiral CFT, vertex operator algebras (VOA), and modular tensor categories
-- **Mathematical Physics**: K-theoretic Donaldson invariants, representation theory of knots, N=(0,2) Landau-Ginzburg models
-- **String Theory**: Path integral methods, exact results, and connections to gauge theories
+- **Supersymmetric Gauge Theories**: K-theoretic Donaldson invariants, 
+superconformal index, representation theory of knots, N=(0,2) Landau-Ginzburg models
+- **Conformal Field Theory**: Non-chiral vertex operator algebras (VOA), and modular tensor categories
 - **Applied Computing**: Distributed systems for machine learning, efficient large language model inference, graph neural networks
 
 ## Education
@@ -47,6 +46,7 @@ Department of Physics, Rutgers University
 *Advisors: Prof. Greg Moore, Prof. Heeyeon Kim*
 
 - Research on various aspects of supersymmetric gauge theories and string theory
+- Research on superconformal index and its relation to number theory
 - Investigation of non-chiral conformal field theory and vertex operator algebras
 - Collaboration on K-theoretic Donaldson invariants using path integral methods
 
