@@ -11,10 +11,10 @@ I am a PhD student in Physics at Rutgers University, where I work on theoretical
 
 ## Research Interests
 
-- **Supersymmetric Gauge Theories**: K-theoretic Donaldson invariants, 
+**Supersymmetric Gauge Theories**: K-theoretic Donaldson invariants, 
 superconformal index, representation theory of knots, N=(0,2) Landau-Ginzburg models
-- **Conformal Field Theory**: Non-chiral vertex operator algebras (VOA), and modular tensor categories
-- **Applied Computing**: Distributed systems for machine learning, efficient large language model inference, graph neural networks
+**Conformal Field Theory**: Non-chiral vertex operator algebras (VOA), and modular tensor categories
+**Applied Computing**: Distributed systems for machine learning, efficient large language model inference, graph neural networks
 
 ## Education
 
