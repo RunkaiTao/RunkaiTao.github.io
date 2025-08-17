@@ -3,7 +3,6 @@ title: "Private Research Notes: Advanced Topics in String Theory"
 date: 2024-12-01
 categories:
   - Physics
-  - Private
 tags:
   - string theory
   - research notes

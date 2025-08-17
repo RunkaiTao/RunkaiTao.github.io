@@ -62,38 +62,8 @@ layout: single
     </div>
   </div>
 
-  <div id="protected-post-content" class="protected-post-content" style="display: none;">
-    <article class="page">
-      <header class="page-header">
-        <h1 class="page-title">{{ page.title }}</h1>
-        <div class="page-meta">
-          <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %d, %Y" }}</time>
-          {% if page.categories.size > 0 %}
-            • Categories: 
-            {% for category in page.categories %}
-              <span class="category">{{ category }}</span>{% unless forloop.last %}, {% endunless %}
-            {% endfor %}
-          {% endif %}
-          {% if page.tags.size > 0 %}
-            • Tags: 
-            {% for tag in page.tags %}
-              <span class="tag">{{ tag }}</span>{% unless forloop.last %}, {% endunless %}
-            {% endfor %}
-          {% endif %}
-        </div>
-      </header>
-      
-      <div class="page-content">
-        {{ content }}
-      </div>
-      
-      <footer class="page-footer">
-        <div class="protected-notice">
-          <i class="fas fa-shield-alt"></i>
-          This is a password-protected post. Please keep the content confidential.
-        </div>
-      </footer>
-    </article>
+  <div id="protected-post-content" style="display: none;">
+    {{ content }}
   </div>
 </div>
 
@@ -214,55 +184,8 @@ layout: single
   margin-top: 1.5rem;
 }
 
-.protected-post-content {
+#protected-post-content {
   animation: fadeIn 0.3s ease-in-out;
-}
-
-.page-header {
-  margin-bottom: 2rem;
-  border-bottom: 1px solid #dee2e6;
-  padding-bottom: 1rem;
-}
-
-.page-title {
-  margin-bottom: 0.5rem;
-  color: #333;
-}
-
-.page-meta {
-  color: #6c757d;
-  font-size: 0.9rem;
-}
-
-.category, .tag {
-  background-color: #f0f0f0;
-  padding: 2px 6px;
-  border-radius: 3px;
-  font-size: 0.8em;
-}
-
-.page-content {
-  line-height: 1.6;
-  color: #333;
-}
-
-.page-footer {
-  margin-top: 3rem;
-  padding-top: 1rem;
-  border-top: 1px solid #dee2e6;
-}
-
-.protected-notice {
-  background: #fff3cd;
-  border: 1px solid #ffeaa7;
-  color: #856404;
-  padding: 0.75rem 1rem;
-  border-radius: 0.25rem;
-  font-size: 0.875rem;
-}
-
-.protected-notice i {
-  margin-right: 0.5rem;
 }
 
 @keyframes fadeIn {
