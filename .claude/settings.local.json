@@ -3,7 +3,11 @@
     "allow": [
       "Bash(rm:*)",
       "Bash(mkdir:*)",
-      "WebFetch(domain:mmistakes.github.io)"
+      "WebFetch(domain:mmistakes.github.io)",
+      "Bash(bundle exec jekyll serve:*)",
+      "Bash(bundle install:*)",
+      "Bash(python3:*)",
+      "Bash(node:*)"
     ],
     "deny": []
   }

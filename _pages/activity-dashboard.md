@@ -12,14 +12,10 @@ toc_icon: "chart-line"
 <div class="activity-dashboard">
   <div class="dashboard-header">
     <h1><i class="fas fa-chart-line"></i> Research Activity Dashboard</h1>
-    <p class="dashboard-description">Track daily research productivity across multiple dimensions</p>
+    <p class="dashboard-description">Track daily research productivity through focused work sessions and content creation</p>
   </div>
 
   <div class="stats-overview">
-    <div class="stat-card">
-      <div class="stat-number" id="total-commits">--</div>
-      <div class="stat-label">Total Commits This Year</div>
-    </div>
     <div class="stat-card">
       <div class="stat-number" id="total-pomodoros">--</div>
       <div class="stat-label">Pomodoro Sessions</div>
@@ -32,30 +28,12 @@ toc_icon: "chart-line"
       <div class="stat-number" id="current-streak">--</div>
       <div class="stat-label">Current Streak</div>
     </div>
+    <div class="stat-card">
+      <div class="stat-number" id="total-activities">--</div>
+      <div class="stat-label">Total Activities</div>
+    </div>
   </div>
 
-  <section class="tracker-section">
-    <div class="section-header">
-      <h3><i class="fab fa-github"></i> GitHub Contributions</h3>
-      <div class="section-description">Daily commits and code contributions</div>
-    </div>
-    <div class="graph-container">
-      <div id="github-graph" class="contribution-graph">
-        <div class="loading">Loading GitHub data...</div>
-      </div>
-      <div class="graph-legend">
-        <span class="legend-label">Less</span>
-        <div class="legend-scale">
-          <div class="legend-day level-0"></div>
-          <div class="legend-day level-1"></div>
-          <div class="legend-day level-2"></div>
-          <div class="legend-day level-3"></div>
-          <div class="legend-day level-4"></div>
-        </div>
-        <span class="legend-label">More</span>
-      </div>
-    </div>
-  </section>
 
   <section class="tracker-section">
     <div class="section-header">
@@ -103,46 +81,6 @@ toc_icon: "chart-line"
     </div>
   </section>
 
-  <section class="tracker-section">
-    <div class="section-header">
-      <h3><i class="fas fa-chart-bar"></i> Activity Summary</h3>
-      <div class="section-description">Combined productivity metrics and trends</div>
-    </div>
-    <div class="summary-grid">
-      <div class="summary-card">
-        <h4>This Week</h4>
-        <div class="week-stats" id="week-stats">
-          <div class="week-stat">
-            <span class="week-number" id="week-commits">0</span>
-            <span class="week-label">Commits</span>
-          </div>
-          <div class="week-stat">
-            <span class="week-number" id="week-pomodoros">0</span>
-            <span class="week-label">Pomodoros</span>
-          </div>
-          <div class="week-stat">
-            <span class="week-number" id="week-posts">0</span>
-            <span class="week-label">Updates</span>
-          </div>
-        </div>
-      </div>
-      <div class="summary-card">
-        <h4>Best Streak</h4>
-        <div class="streak-info" id="best-streak">
-          <div class="streak-number">0</div>
-          <div class="streak-label">days</div>
-          <div class="streak-period">No streak yet</div>
-        </div>
-      </div>
-      <div class="summary-card">
-        <h4>Most Productive Day</h4>
-        <div class="productive-day" id="most-productive">
-          <div class="day-name">--</div>
-          <div class="day-stats">-- activities</div>
-        </div>
-      </div>
-    </div>
-  </section>
 </div>
 
 <!-- Tooltip for hover information -->
@@ -273,12 +211,6 @@ toc_icon: "chart-line"
   border-radius: 2px;
 }
 
-/* GitHub-style color scheme */
-.level-0 { background-color: #ebedf0; }
-.level-1 { background-color: #9be9a8; }
-.level-2 { background-color: #40c463; }
-.level-3 { background-color: #30a14e; }
-.level-4 { background-color: #216e39; }
 
 /* Pomodoro color scheme */
 .pomodoro-level-0 { background-color: #ebedf0; }
@@ -294,82 +226,6 @@ toc_icon: "chart-line"
 .blog-level-3 { background-color: #239a3b; }
 .blog-level-4 { background-color: #196127; }
 
-.summary-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-}
-
-.summary-card {
-  background: #f8f9fa;
-  border: 1px solid #e1e4e8;
-  border-radius: 6px;
-  padding: 1.5rem;
-}
-
-.summary-card h4 {
-  margin: 0 0 1rem 0;
-  color: #2c3e50;
-}
-
-.week-stats {
-  display: flex;
-  justify-content: space-between;
-}
-
-.week-stat {
-  text-align: center;
-}
-
-.week-number {
-  display: block;
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-.week-label {
-  font-size: 0.8rem;
-  color: #7f8c8d;
-  text-transform: uppercase;
-}
-
-.streak-info {
-  text-align: center;
-}
-
-.streak-number {
-  font-size: 2rem;
-  font-weight: bold;
-  color: #e67e22;
-}
-
-.streak-label {
-  color: #7f8c8d;
-  font-size: 0.9rem;
-}
-
-.streak-period {
-  color: #95a5a6;
-  font-size: 0.8rem;
-  margin-top: 0.5rem;
-}
-
-.productive-day {
-  text-align: center;
-}
-
-.day-name {
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-.day-stats {
-  color: #7f8c8d;
-  font-size: 0.9rem;
-  margin-top: 0.5rem;
-}
 
 .activity-tooltip {
   position: absolute;
@@ -409,11 +265,6 @@ toc_icon: "chart-line"
   
   .contribution-graph {
     overflow-x: scroll;
-  }
-  
-  .summary-grid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
   }
 }
 </style>

@@ -1,14 +1,12 @@
 /**
  * Activity Dashboard - Multi-tracker system for research productivity
- * Tracks GitHub commits, Pomodoro sessions, and blog updates
+ * Tracks Pomodoro sessions and blog updates
  */
 
 class ActivityDashboard {
     constructor() {
         this.currentYear = new Date().getFullYear();
-        this.githubUsername = 'RunkaiTao'; // Your GitHub username
         this.data = {
-            github: new Map(),
             pomodoro: new Map(),
             blog: new Map()
         };
@@ -48,13 +46,11 @@ class ActivityDashboard {
         try {
             // Load data from different sources
             await Promise.all([
-                this.loadGitHubData(),
                 this.loadPomodoroData(),
                 this.loadBlogData()
             ]);
 
             // Render all graphs
-            this.renderGitHubGraph();
             this.renderPomodoroGraph();
             this.renderBlogGraph();
             
@@ -66,153 +62,66 @@ class ActivityDashboard {
         }
     }
 
-    async loadGitHubData() {
-        try {
-            // Try to fetch from GitHub API
-            const response = await fetch(`https://api.github.com/users/${this.githubUsername}/events?per_page=100`);
-            
-            if (response.ok) {
-                const events = await response.json();
-                this.processGitHubEvents(events);
-            } else {
-                // Fallback to sample data if API fails
-                this.loadSampleGitHubData();
-            }
-        } catch (error) {
-            console.warn('GitHub API unavailable, using sample data');
-            this.loadSampleGitHubData();
-        }
-    }
-
-    loadSampleGitHubData() {
-        // Generate sample GitHub contribution data
-        const today = new Date();
-        const startDate = new Date(today.getFullYear(), 0, 1);
-        
-        for (let d = new Date(startDate); d <= today; d.setDate(d.getDate() + 1)) {
-            const dateStr = d.toISOString().split('T')[0];
-            // Random commits with realistic patterns (more on weekdays, occasional high-activity days)
-            const isWeekend = d.getDay() === 0 || d.getDay() === 6;
-            const baseActivity = isWeekend ? 0.3 : 0.7;
-            const commits = Math.random() < baseActivity ? Math.floor(Math.random() * 8) + 1 : 0;
-            
-            if (commits > 0) {
-                this.data.github.set(dateStr, commits);
-            }
-        }
-    }
-
-    processGitHubEvents(events) {
-        const commitCounts = new Map();
-        
-        events.forEach(event => {
-            if (event.type === 'PushEvent') {
-                const date = event.created_at.split('T')[0];
-                const commits = event.payload.commits ? event.payload.commits.length : 1;
-                commitCounts.set(date, (commitCounts.get(date) || 0) + commits);
-            }
-        });
-
-        this.data.github = commitCounts;
-    }
 
     async loadPomodoroData() {
-        // For now, use sample data. In practice, this would load from a data file or API
-        // You can manually update this or integrate with your Pomodoro extension
-        const samplePomodoroData = {
-            '2024-12-16': 8,
-            '2024-12-15': 6,
-            '2024-12-14': 4,
-            '2024-12-13': 7,
-            '2024-12-12': 5,
-            '2024-12-11': 3,
-            '2024-12-10': 9,
-            '2024-12-09': 2,
-            '2024-12-08': 6,
-            '2024-12-07': 8,
-            '2024-12-06': 4,
-            '2024-12-05': 7,
-            '2024-12-04': 5,
-            '2024-12-03': 3,
-            '2024-12-02': 8,
-            '2024-12-01': 6
-        };
-
-        // Generate more sample data for the year
-        this.generateSamplePomodoroData(samplePomodoroData);
+        try {
+            // Load the actual history.csv file
+            const response = await fetch('/_data/history.csv');
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const csvText = await response.text();
+            
+            // Parse CSV data
+            const pomodoroData = this.parsePomodoroCSV(csvText);
+            
+            // Set the parsed data
+            Object.entries(pomodoroData).forEach(([date, count]) => {
+                this.data.pomodoro.set(date, count);
+            });
+            
+        } catch (error) {
+            console.error('Error loading Pomodoro data from CSV:', error);
+            // Fall back to empty data if CSV loading fails
+            console.log('Falling back to empty data - check that _data/history.csv is accessible');
+        }
     }
 
-    generateSamplePomodoroData(recent) {
-        // Start with recent data
-        Object.entries(recent).forEach(([date, count]) => {
-            this.data.pomodoro.set(date, count);
-        });
-
-        // Generate realistic pomodoro data for the rest of the year
-        const today = new Date();
-        const startDate = new Date(today.getFullYear(), 0, 1);
+    parsePomodoroCSV(csvText) {
+        const lines = csvText.trim().split('\n');
+        const pomodoroData = {};
         
-        for (let d = new Date(startDate); d <= today; d.setDate(d.getDate() + 1)) {
-            const dateStr = d.toISOString().split('T')[0];
+        // Skip header line
+        for (let i = 1; i < lines.length; i++) {
+            const line = lines[i].trim();
+            if (!line) continue;
             
-            if (!this.data.pomodoro.has(dateStr)) {
-                const isWeekend = d.getDay() === 0 || d.getDay() === 6;
-                const baseActivity = isWeekend ? 0.4 : 0.8;
+            // Parse CSV line: End (ISO 8601),End Date,End Time (24 Hour),End Timestamp (Unix),End Timezone (UTC Offset Minutes),Duration (Seconds)
+            const columns = line.split(',');
+            if (columns.length >= 2) {
+                const endDate = columns[1]; // End Date column (YYYY-MM-DD format)
                 
-                if (Math.random() < baseActivity) {
-                    const sessions = Math.floor(Math.random() * 8) + 1;
-                    this.data.pomodoro.set(dateStr, sessions);
+                if (endDate && endDate.match(/^\d{4}-\d{2}-\d{2}$/)) {
+                    // Each row represents one completed Pomodoro session
+                    pomodoroData[endDate] = (pomodoroData[endDate] || 0) + 1;
                 }
             }
         }
+        
+        return pomodoroData;
     }
+
 
     async loadBlogData() {
-        // This would analyze git commits to _posts/ directory
-        // For now, using sample data based on your actual posts
-        const blogActivity = {
-            '2024-12-15': 2, // Research update
-            '2024-12-01': 3, // Private research notes
-            '2024-11-20': 4, // Mathematical foundations
-            '2024-11-10': 3, // KV cache optimization
-            '2024-10-15': 4, // Vertex operator algebras
-            '2024-09-25': 5, // Scaling GNNs
-            '2024-08-20': 3, // Data parallelism
-            '2024-08-15': 2, // Research methodology
-            '2024-07-30': 4  // Distributed training
-        };
-
-        Object.entries(blogActivity).forEach(([date, activity]) => {
-            this.data.blog.set(date, activity);
-        });
-
-        // Add some additional content update days
-        this.generateSampleBlogActivity();
+        // Clear blog data - only show real activity when implemented
+        // To add real blog tracking, you could:
+        // - Parse git commits to _posts/ directory
+        // - Track file modification dates
+        // - Use a separate blog activity log
+        this.data.blog.clear();
     }
 
-    generateSampleBlogActivity() {
-        const today = new Date();
-        const startDate = new Date(today.getFullYear(), 0, 1);
-        
-        for (let d = new Date(startDate); d <= today; d.setDate(d.getDate() + 1)) {
-            const dateStr = d.toISOString().split('T')[0];
-            
-            if (!this.data.blog.has(dateStr)) {
-                // Simulate occasional content updates (drafts, revisions, etc.)
-                if (Math.random() < 0.15) { // 15% chance of activity
-                    const activity = Math.floor(Math.random() * 3) + 1;
-                    this.data.blog.set(dateStr, activity);
-                }
-            }
-        }
-    }
 
-    renderGitHubGraph() {
-        const container = document.getElementById('github-graph');
-        const graph = this.createContributionGraph(this.data.github, 'github');
-        container.innerHTML = '';
-        container.appendChild(graph);
-    }
 
     renderPomodoroGraph() {
         const container = document.getElementById('pomodoro-graph');
@@ -246,7 +155,7 @@ class ActivityDashboard {
         const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 
                        'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
         
-        months.forEach((month, index) => {
+        months.forEach((month) => {
             const label = document.createElement('span');
             label.textContent = month;
             label.className = 'month-label';
@@ -325,13 +234,6 @@ class ActivityDashboard {
 
     getContributionLevel(value, type) {
         switch (type) {
-            case 'github':
-                if (value === 0) return 0;
-                if (value <= 2) return 1;
-                if (value <= 4) return 2;
-                if (value <= 7) return 3;
-                return 4;
-            
             case 'pomodoro':
                 if (value === 0) return 0;
                 if (value <= 2) return 1;
@@ -366,7 +268,7 @@ class ActivityDashboard {
             year: 'numeric'
         });
 
-        const tooltipContent = this.getTooltipContent(value, type, formattedDate);
+        const tooltipContent = this.getTooltipContent(value, type);
         
         this.tooltip.querySelector('.tooltip-date').textContent = formattedDate;
         this.tooltip.querySelector('.tooltip-content').textContent = tooltipContent;
@@ -375,13 +277,8 @@ class ActivityDashboard {
         this.moveTooltip(event);
     }
 
-    getTooltipContent(value, type, date) {
+    getTooltipContent(value, type) {
         switch (type) {
-            case 'github':
-                return value === 0 ? 'No commits' : 
-                       value === 1 ? '1 commit' : 
-                       `${value} commits`;
-            
             case 'pomodoro':
                 return value === 0 ? 'No pomodoro sessions' :
                        value === 1 ? '1 pomodoro session' :
@@ -411,25 +308,19 @@ class ActivityDashboard {
 
     updateStatistics() {
         // Calculate totals for the year
-        const totalCommits = Array.from(this.data.github.values()).reduce((sum, val) => sum + val, 0);
         const totalPomodoros = Array.from(this.data.pomodoro.values()).reduce((sum, val) => sum + val, 0);
         const totalPosts = Array.from(this.data.blog.values()).reduce((sum, val) => sum + val, 0);
+        const totalActivities = totalPomodoros + totalPosts;
 
         // Calculate current streak
         const currentStreak = this.calculateCurrentStreak();
 
         // Update UI
-        document.getElementById('total-commits').textContent = totalCommits;
         document.getElementById('total-pomodoros').textContent = totalPomodoros;
         document.getElementById('total-posts').textContent = totalPosts;
+        document.getElementById('total-activities').textContent = totalActivities;
         document.getElementById('current-streak').textContent = currentStreak;
 
-        // Update week stats
-        this.updateWeekStats();
-        
-        // Update best streak and most productive day
-        this.updateBestStreak();
-        this.updateMostProductiveDay();
     }
 
     calculateCurrentStreak() {
@@ -441,8 +332,7 @@ class ActivityDashboard {
             date.setDate(today.getDate() - i);
             const dateStr = date.toISOString().split('T')[0];
             
-            const hasActivity = this.data.github.get(dateStr) > 0 || 
-                              this.data.pomodoro.get(dateStr) > 0 || 
+            const hasActivity = this.data.pomodoro.get(dateStr) > 0 || 
                               this.data.blog.get(dateStr) > 0;
             
             if (hasActivity) {
@@ -453,115 +343,6 @@ class ActivityDashboard {
         }
         
         return streak;
-    }
-
-    updateWeekStats() {
-        const today = new Date();
-        const weekStart = new Date(today);
-        weekStart.setDate(today.getDate() - today.getDay());
-
-        let weekCommits = 0;
-        let weekPomodoros = 0;
-        let weekPosts = 0;
-
-        for (let i = 0; i < 7; i++) {
-            const date = new Date(weekStart);
-            date.setDate(weekStart.getDate() + i);
-            const dateStr = date.toISOString().split('T')[0];
-
-            weekCommits += this.data.github.get(dateStr) || 0;
-            weekPomodoros += this.data.pomodoro.get(dateStr) || 0;
-            weekPosts += this.data.blog.get(dateStr) || 0;
-        }
-
-        document.getElementById('week-commits').textContent = weekCommits;
-        document.getElementById('week-pomodoros').textContent = weekPomodoros;
-        document.getElementById('week-posts').textContent = weekPosts;
-    }
-
-    updateBestStreak() {
-        // Calculate best streak
-        let bestStreak = 0;
-        let currentStreak = 0;
-        let streakStart = null;
-        let bestStreakStart = null;
-        let bestStreakEnd = null;
-
-        const today = new Date();
-        const startDate = new Date(today.getFullYear(), 0, 1);
-
-        for (let d = new Date(startDate); d <= today; d.setDate(d.getDate() + 1)) {
-            const dateStr = d.toISOString().split('T')[0];
-            const hasActivity = this.data.github.get(dateStr) > 0 || 
-                              this.data.pomodoro.get(dateStr) > 0 || 
-                              this.data.blog.get(dateStr) > 0;
-
-            if (hasActivity) {
-                if (currentStreak === 0) {
-                    streakStart = new Date(d);
-                }
-                currentStreak++;
-                
-                if (currentStreak > bestStreak) {
-                    bestStreak = currentStreak;
-                    bestStreakStart = new Date(streakStart);
-                    bestStreakEnd = new Date(d);
-                }
-            } else {
-                currentStreak = 0;
-                streakStart = null;
-            }
-        }
-
-        const streakElement = document.getElementById('best-streak');
-        streakElement.querySelector('.streak-number').textContent = bestStreak;
-        
-        if (bestStreak > 0 && bestStreakStart && bestStreakEnd) {
-            const startStr = bestStreakStart.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-            const endStr = bestStreakEnd.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-            streakElement.querySelector('.streak-period').textContent = `${startStr} - ${endStr}`;
-        } else {
-            streakElement.querySelector('.streak-period').textContent = 'No streak yet';
-        }
-    }
-
-    updateMostProductiveDay() {
-        let maxActivity = 0;
-        let mostProductiveDate = null;
-
-        const allDates = new Set([
-            ...this.data.github.keys(),
-            ...this.data.pomodoro.keys(),
-            ...this.data.blog.keys()
-        ]);
-
-        allDates.forEach(dateStr => {
-            const totalActivity = (this.data.github.get(dateStr) || 0) +
-                                (this.data.pomodoro.get(dateStr) || 0) +
-                                (this.data.blog.get(dateStr) || 0);
-
-            if (totalActivity > maxActivity) {
-                maxActivity = totalActivity;
-                mostProductiveDate = dateStr;
-            }
-        });
-
-        const productiveElement = document.getElementById('most-productive');
-        
-        if (mostProductiveDate) {
-            const date = new Date(mostProductiveDate);
-            const dayName = date.toLocaleDateString('en-US', { 
-                weekday: 'long', 
-                month: 'short', 
-                day: 'numeric' 
-            });
-            
-            productiveElement.querySelector('.day-name').textContent = dayName;
-            productiveElement.querySelector('.day-stats').textContent = `${maxActivity} total activities`;
-        } else {
-            productiveElement.querySelector('.day-name').textContent = '--';
-            productiveElement.querySelector('.day-stats').textContent = '-- activities';
-        }
     }
 
     updateNavigation() {
@@ -668,12 +449,6 @@ const additionalStyles = `
     stroke: none;
 }
 
-/* GitHub-style levels */
-.github-level-0 { background-color: #ebedf0; }
-.github-level-1 { background-color: #9be9a8; }
-.github-level-2 { background-color: #40c463; }
-.github-level-3 { background-color: #30a14e; }
-.github-level-4 { background-color: #216e39; }
 
 /* Pomodoro levels - warmer colors */
 .pomodoro-level-0 { background-color: #ebedf0; }
