@@ -2,7 +2,6 @@
 title: "Research Methodology in Theoretical Physics"
 date: 2024-08-15
 categories:
-  - Research
   - Physics
 tags:
   - methodology
