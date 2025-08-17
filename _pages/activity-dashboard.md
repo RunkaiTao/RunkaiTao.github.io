@@ -233,4 +233,20 @@ toc_icon: "chart-line"
 }
 </style>
 
+<script>
+// Embed pomodoro data directly from YAML
+window.pomodoroData = {
+  "2025-08-17": 10,
+  "2025-08-16": 6,
+  "2025-08-15": 6,
+  "2025-08-14": 5,
+  "2025-08-13": 11,
+  "2025-08-12": 14,
+  "2025-08-11": 11,
+  "2025-08-10": 4,
+  "2025-08-09": 2,
+  "2025-08-08": 12,
+  "2025-08-07": 12
+};
+</script>
 <script src="{{ '/assets/js/activity-dashboard.js' | relative_url }}"></script>

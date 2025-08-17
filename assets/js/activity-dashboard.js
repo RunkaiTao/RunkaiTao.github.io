@@ -17,7 +17,6 @@ class ActivityDashboard {
     init() {
         this.setupEventListeners();
         this.loadAllData();
-        this.updateNavigation();
     }
 
     setupEventListeners() {
@@ -60,24 +59,21 @@ class ActivityDashboard {
 
     async loadPomodoroData() {
         try {
-            // Load the activity.yml file
-            const response = await fetch('/assets/data/activity.yml');
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            const yamlText = await response.text();
+            console.log('🍅 Loading Pomodoro data...');
             
-            // Parse YAML data
-            const pomodoroData = this.parsePomodoroYAML(yamlText);
+            // Use embedded data from the page
+            const pomodoroData = window.pomodoroData || {};
+            console.log('📊 Loaded data:', pomodoroData);
             
             // Set the parsed data
             Object.entries(pomodoroData).forEach(([date, count]) => {
                 this.data.pomodoro.set(date, count);
             });
             
+            console.log(`🎯 Loaded ${Object.keys(pomodoroData).length} days of data`);
+            
         } catch (error) {
-            console.error('Error loading Pomodoro data from YAML:', error);
-            console.log('Falling back to empty data - check that assets/data/activity.yml is accessible');
+            console.error('❌ Error loading Pomodoro data:', error);
         }
     }
 
@@ -101,13 +97,14 @@ class ActivityDashboard {
                 continue;
             }
             
-            // Parse pomodoro entries
-            if (inPomodoroSection && trimmed.includes(':')) {
+            // Parse pomodoro entries (handle indented YAML)
+            if (inPomodoroSection && trimmed.includes(':') && !trimmed.startsWith('#')) {
                 const match = trimmed.match(/^(\d{4}-\d{2}-\d{2}):\s*(\d+)/);
                 if (match) {
                     const date = match[1];
                     const count = parseInt(match[2]);
                     pomodoroData[date] = count;
+                    console.log(`Parsed: ${date} = ${count} sessions`); // Debug log
                 }
             }
         }
@@ -366,17 +363,6 @@ class ActivityDashboard {
         return streak;
     }
 
-    updateNavigation() {
-        // Add to site navigation if needed
-        const navItem = document.createElement('li');
-        navItem.innerHTML = '<a href="/activity/"><i class="fas fa-chart-line"></i> Activity</a>';
-        
-        // Try to add to existing navigation
-        const nav = document.querySelector('.masthead__menu-item') || document.querySelector('.nav');
-        if (nav && nav.parentElement) {
-            nav.parentElement.insertBefore(navItem, nav.nextSibling);
-        }
-    }
 
     showError(message) {
         const errorDiv = document.createElement('div');
