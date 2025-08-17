@@ -7,8 +7,7 @@ class ActivityDashboard {
     constructor() {
         this.currentYear = new Date().getFullYear();
         this.data = {
-            pomodoro: new Map(),
-            blog: new Map()
+            pomodoro: new Map()
         };
         this.tooltip = document.getElementById('activity-tooltip');
         
@@ -44,15 +43,11 @@ class ActivityDashboard {
 
     async loadAllData() {
         try {
-            // Load data from different sources
-            await Promise.all([
-                this.loadPomodoroData(),
-                this.loadBlogData()
-            ]);
+            // Load pomodoro data
+            await this.loadPomodoroData();
 
-            // Render all graphs
+            // Render pomodoro graph
             this.renderPomodoroGraph();
-            this.renderBlogGraph();
             
             // Update statistics
             this.updateStatistics();
@@ -112,27 +107,9 @@ class ActivityDashboard {
     }
 
 
-    async loadBlogData() {
-        // Clear blog data - only show real activity when implemented
-        // To add real blog tracking, you could:
-        // - Parse git commits to _posts/ directory
-        // - Track file modification dates
-        // - Use a separate blog activity log
-        this.data.blog.clear();
-    }
-
-
-
     renderPomodoroGraph() {
         const container = document.getElementById('pomodoro-graph');
         const graph = this.createContributionGraph(this.data.pomodoro, 'pomodoro');
-        container.innerHTML = '';
-        container.appendChild(graph);
-    }
-
-    renderBlogGraph() {
-        const container = document.getElementById('blog-graph');
-        const graph = this.createContributionGraph(this.data.blog, 'blog');
         container.innerHTML = '';
         container.appendChild(graph);
     }
@@ -307,20 +284,55 @@ class ActivityDashboard {
     }
 
     updateStatistics() {
-        // Calculate totals for the year
-        const totalPomodoros = Array.from(this.data.pomodoro.values()).reduce((sum, val) => sum + val, 0);
-        const totalPosts = Array.from(this.data.blog.values()).reduce((sum, val) => sum + val, 0);
-        const totalActivities = totalPomodoros + totalPosts;
-
-        // Calculate current streak
-        const currentStreak = this.calculateCurrentStreak();
+        // Calculate weekly totals and averages
+        const weeklyPomodoros = this.calculateWeeklyPomodoros();
+        const averageWeekly = this.calculateAverageWeeklyPomodoros();
 
         // Update UI
-        document.getElementById('total-pomodoros').textContent = totalPomodoros;
-        document.getElementById('total-posts').textContent = totalPosts;
-        document.getElementById('total-activities').textContent = totalActivities;
-        document.getElementById('current-streak').textContent = currentStreak;
+        document.getElementById('total-pomodoros').textContent = weeklyPomodoros;
+        document.getElementById('average-weekly').textContent = averageWeekly;
 
+    }
+
+    calculateWeeklyPomodoros() {
+        const today = new Date();
+        const startOfWeek = new Date(today);
+        
+        // Set to start of week (Sunday)
+        startOfWeek.setDate(today.getDate() - today.getDay());
+        startOfWeek.setHours(0, 0, 0, 0);
+        
+        let weeklyTotal = 0;
+        
+        // Count pomodoros for each day of the current week
+        for (let i = 0; i < 7; i++) {
+            const date = new Date(startOfWeek);
+            date.setDate(startOfWeek.getDate() + i);
+            const dateStr = date.toISOString().split('T')[0];
+            
+            weeklyTotal += this.data.pomodoro.get(dateStr) || 0;
+        }
+        
+        return weeklyTotal;
+    }
+
+    calculateAverageWeeklyPomodoros() {
+        const allDates = Array.from(this.data.pomodoro.keys()).sort();
+        if (allDates.length === 0) return 0;
+
+        // Get first and last dates
+        const firstDate = new Date(allDates[0]);
+        const lastDate = new Date(allDates[allDates.length - 1]);
+        
+        // Calculate total weeks between first and last date
+        const millisecondsInWeek = 7 * 24 * 60 * 60 * 1000;
+        const totalWeeks = Math.max(1, Math.ceil((lastDate - firstDate) / millisecondsInWeek));
+        
+        // Calculate total pomodoros
+        const totalPomodoros = Array.from(this.data.pomodoro.values()).reduce((sum, val) => sum + val, 0);
+        
+        // Return average rounded to 1 decimal place
+        return Math.round((totalPomodoros / totalWeeks) * 10) / 10;
     }
 
     calculateCurrentStreak() {

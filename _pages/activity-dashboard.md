@@ -1,5 +1,5 @@
 ---
-title: "Research Activity Dashboard"
+title: "Activity Dashboard"
 permalink: /activity/
 layout: single
 classes: wide
@@ -18,19 +18,11 @@ toc_icon: "chart-line"
   <div class="stats-overview">
     <div class="stat-card">
       <div class="stat-number" id="total-pomodoros">--</div>
-      <div class="stat-label">Pomodoro Sessions</div>
+      <div class="stat-label">This Week</div>
     </div>
     <div class="stat-card">
-      <div class="stat-number" id="total-posts">--</div>
-      <div class="stat-label">Blog Updates</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-number" id="current-streak">--</div>
-      <div class="stat-label">Current Streak</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-number" id="total-activities">--</div>
-      <div class="stat-label">Total Activities</div>
+      <div class="stat-number" id="average-weekly">--</div>
+      <div class="stat-label">Avg Per Week</div>
     </div>
   </div>
 
@@ -58,28 +50,6 @@ toc_icon: "chart-line"
     </div>
   </section>
 
-  <section class="tracker-section">
-    <div class="section-header">
-      <h3><i class="fas fa-blog"></i> Blog & Research Updates</h3>
-      <div class="section-description">Daily blog posts, research notes, and content updates</div>
-    </div>
-    <div class="graph-container">
-      <div id="blog-graph" class="contribution-graph">
-        <div class="loading">Loading blog activity...</div>
-      </div>
-      <div class="graph-legend">
-        <span class="legend-label">None</span>
-        <div class="legend-scale">
-          <div class="legend-day blog-level-0"></div>
-          <div class="legend-day blog-level-1"></div>
-          <div class="legend-day blog-level-2"></div>
-          <div class="legend-day blog-level-3"></div>
-          <div class="legend-day blog-level-4"></div>
-        </div>
-        <span class="legend-label">High</span>
-      </div>
-    </div>
-  </section>
 
 </div>
 
@@ -219,12 +189,6 @@ toc_icon: "chart-line"
 .pomodoro-level-3 { background-color: #ff6347; }
 .pomodoro-level-4 { background-color: #dc143c; }
 
-/* Blog activity color scheme */
-.blog-level-0 { background-color: #ebedf0; }
-.blog-level-1 { background-color: #c6e48b; }
-.blog-level-2 { background-color: #7bc96f; }
-.blog-level-3 { background-color: #239a3b; }
-.blog-level-4 { background-color: #196127; }
 
 
 .activity-tooltip {
