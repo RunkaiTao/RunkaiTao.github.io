@@ -7,49 +7,58 @@ author_profile: true
 
 ## Welcome
 
-I am a PhD student in Computer Science at [University Name], where I work on machine learning and computer vision research under the supervision of [Advisor Name]. My research focuses on developing novel algorithms and theoretical frameworks for understanding complex data patterns.
+I am a PhD student in Physics at Rutgers University, where I work on theoretical physics research under the supervision of Prof. Greg Moore and Prof. Heeyeon Kim. My research focuses on supersymmetric gauge theories, string theory, conformal field theory, and vertex operator algebras.
 
 ## Research Interests
 
-- **Machine Learning**: Deep learning architectures, optimization methods, and theoretical analysis
-- **Computer Vision**: Image recognition, object detection, and visual representation learning  
-- **Data Science**: Statistical modeling, pattern recognition, and large-scale data analysis
-- **AI Ethics**: Fairness, interpretability, and responsible AI development
+- **Theoretical Physics**: Supersymmetric gauge theories, string theory, and mathematical physics
+- **Conformal Field Theory**: Non-chiral CFT, vertex operator algebras, and modular tensor categories  
+- **Mathematical Physics**: K-theoretic Donaldson invariants, representation theory of knots
+- **Applied Research**: Distributed systems for machine learning, efficient computing for large models
 
 ## Education
 
-**PhD in Computer Science** (Expected 2026)  
-*University Name*, City, State  
-Advisor: Prof. [Advisor Name]  
-Dissertation: *[Placeholder Dissertation Title]*
+**PhD in Physics** (Aug 2019 - Present)  
+*Rutgers University*, New Brunswick, NJ  
+Advisors: Prof. Greg Moore, Prof. Heeyeon Kim  
+Research Focus: Supersymmetric gauge theories and string theory
 
-**MS in Computer Science** (2022)  
-*University Name*, City, State  
-Thesis: *[Placeholder Master's Thesis Title]*
+**Bachelor of Science in Physics** (Sep 2014 - July 2019)  
+*Fudan University*, Shanghai, China  
+Advisor: Prof. Satoshi Nawata  
+Research Focus: Representation theory of knots, N=(0,2) Landau-Ginzburg models
 
-**BS in Computer Science** (2020)  
-*University Name*, City, State  
-Magna Cum Laude, Phi Beta Kappa
+## Current Positions
 
-## Current Position
+**PhD Research Assistant** (July 2019 - Present)  
+Department of Physics, Rutgers University  
+- Research on supersymmetric gauge theories and string theory
+- Research on non-chiral CFT and vertex operator algebras
 
-**Graduate Research Assistant** (2022 - Present)  
-[Lab Name], University Name  
-- Conducting research on [specific research area]
-- Mentoring undergraduate researchers
-- Publishing in top-tier conferences and journals
+**Applied Scientist Intern** (Fall 2025)  
+Amazon AWS  
 
-**Teaching Assistant** (Fall 2023)  
-Course: CS XXX - [Course Name]  
-University Name
+**Research Intern** (Spring 2025)  
+Efficient and Intelligent Computing Lab, Georgia Tech  
+- Distributed system design for Graph Neural Networks
+
+## Recent Projects
+
+**SGLang Optimizations**:
+- Developed hybrid KV cache for LLaMA-4 achieving ~10% higher throughput
+- Implemented data parallelism attention for DeepSeek models
+
+**Distributed GNN Systems**:
+- Created RNS-GCN and MixGCN for scalable graph neural network training
+- Custom PyTorch layers and Triton kernels for improved performance
 
 ## Contact
 
 Feel free to reach out if you're interested in collaboration or have questions about my research.
 
-**Email**: your.email@university.edu  
-**Office**: [Building Name], Room XXX  
-**Address**: [Department Address]
+**Email**: rt572@physics.rutgers.edu  
+**Phone**: 732-668-6861  
+**Office**: Department of Physics, Rutgers University
 
 ---
 

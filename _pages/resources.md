@@ -9,143 +9,170 @@ toc_label: "Contents"
 
 ## Lecture Notes
 
-### Machine Learning Fundamentals
+### Theoretical Physics
 
-**Introduction to Deep Learning**  
-*Course: CS 7XX - Advanced Machine Learning*  
+**Fudan Lectures on 2d Conformal Field Theory**  
+*Co-authored with Satoshi Nawata and Daisuke Yokoyama*  
+*Published: August 2022*  
+Comprehensive lecture notes covering the fundamentals of two-dimensional conformal field theory, including symmetries, correlation functions, and applications to string theory.  
+[[arXiv]](https://arxiv.org/abs/2208.05180) [[PDF]]({{ site.url }}/assets/resources/cft_lectures.pdf)
+
+**Fudan Lectures on String Theory**  
+*Co-authored with Satoshi Nawata and Daisuke Yokoyama*  
+*Published: August 2022*  
+Detailed lecture notes on string theory fundamentals, covering the bosonic string, superstring theory, and connections to conformal field theory.  
+[[arXiv]](https://arxiv.org/abs/2208.05179) [[PDF]]({{ site.url }}/assets/resources/string_theory_lectures.pdf)
+
+**Supersymmetric Gauge Theories**  
+*Course: Physics 7XX - Advanced Topics*  
 *Last Updated: Fall 2024*  
-Comprehensive notes covering neural network architectures, optimization techniques, and regularization methods.  
-[[PDF]]({{ site.url }}/assets/resources/deep_learning_notes.pdf) [[LaTeX Source]](https://github.com/RunkaiTao/lecture-notes/tree/main/deep-learning)
+Notes on supersymmetric gauge theories, including N=1 and N=2 SUSY, holomorphy, and exact results.  
+[[PDF]]({{ site.url }}/assets/resources/susy_gauge_notes.pdf)
 
-**Statistical Learning Theory**  
-*Course: CS 6XX - Statistical Learning*  
+### Mathematical Physics
+
+**Representation Theory and Knot Invariants**  
+*Research Notes*  
 *Last Updated: Spring 2024*  
-Mathematical foundations of machine learning including PAC learning, VC dimension, and generalization bounds.  
-[[PDF]]({{ site.url }}/assets/resources/statistical_learning_notes.pdf)
+Notes on representation theory of knots, HOMFLY-PT polynomials, and connections to quantum groups.  
+[[PDF]]({{ site.url }}/assets/resources/knot_theory_notes.pdf)
 
-**Optimization for Machine Learning**  
-*Course: CS 8XX - Convex Optimization*  
+**Vertex Operator Algebras and CFT**  
+*Seminar Notes*  
 *Last Updated: Fall 2023*  
-Notes on convex optimization, gradient methods, and their applications in machine learning.  
-[[PDF]]({{ site.url }}/assets/resources/optimization_notes.pdf)
-
-### Computer Vision
-
-**Digital Image Processing**  
-*Course: CS 5XX - Computer Vision*  
-*Last Updated: Spring 2024*  
-Fundamentals of image processing, feature extraction, and classical computer vision techniques.  
-[[PDF]]({{ site.url }}/assets/resources/image_processing_notes.pdf)
-
-**Deep Learning for Computer Vision**  
-*Advanced Topics Seminar*  
-*Last Updated: Fall 2024*  
-Modern approaches to computer vision including CNNs, attention mechanisms, and transformer architectures.  
-[[PDF]]({{ site.url }}/assets/resources/dl_vision_notes.pdf)
+Introduction to vertex operator algebras and their role in conformal field theory.  
+[[PDF]]({{ site.url }}/assets/resources/voa_notes.pdf)
 
 ## Research Notes & Preprints
 
-### Working Papers
+### Current Research
 
-**Theoretical Foundations of Meta-Learning**  
-*Draft Version 2.1*  
-*Last Updated: August 2024*  
-Ongoing work on the theoretical understanding of meta-learning algorithms and their convergence properties.  
-[[PDF]]({{ site.url }}/assets/preprints/meta_learning_theory.pdf) *[Under Review]*
+**K-Theoretic Donaldson Invariants**  
+*Work with Heeyeon Kim, Jan Manschot, Gregory W. Moore, Xinyu Zhang*  
+*Status: In Preparation*  
+Path integral approach to K-theoretic Donaldson invariants and their geometric interpretations.  
+[[Notes]]({{ site.url }}/assets/preprints/donaldson_invariants.pdf) *[Manuscript in preparation]*
 
-**Efficient Neural Architecture Search via Bayesian Optimization**  
-*Draft Version 1.3*  
-*Last Updated: July 2024*  
-Novel approach to neural architecture search using Bayesian optimization techniques.  
-[[PDF]]({{ site.url }}/assets/preprints/efficient_nas.pdf) *[In Preparation]*
+**Argyres-Douglas Theories and Zhu Algebra**  
+*Work with Anindya Banerjee, Ranveer Kumar Singh*  
+*Status: Submitted*  
+Investigation of Argyres-Douglas theories through Macdonald indices and arc space of Zhu algebra.  
+[[arXiv]](https://arxiv.org/abs/2507.06294) *[Under Review]*
 
-### Technical Reports
+### Technical Notes
 
-**Benchmarking Large Language Models on Scientific Tasks**  
-*Technical Report TR-2024-001*  
-*University Research Lab*  
-Comprehensive evaluation of LLMs on various scientific reasoning tasks.  
-[[PDF]]({{ site.url }}/assets/reports/llm_scientific_benchmark.pdf)
+**SGLang Performance Optimizations**  
+*Technical Documentation*  
+*Last Updated: Fall 2025*  
+Documentation of hybrid KV cache implementations and data parallelism optimizations for large language models.  
+[[GitHub]](https://github.com/sgl-project/sglang) [[Notes]]({{ site.url }}/assets/technical/sglang_optimizations.pdf)
 
-**Survey: Recent Advances in Few-Shot Learning**  
-*Technical Report TR-2023-003*  
-*University Research Lab*  
-Comprehensive survey of recent developments in few-shot learning methodologies.  
-[[PDF]]({{ site.url }}/assets/reports/few_shot_survey.pdf)
+**Distributed GNN Training Systems**  
+*Research Documentation*  
+*Work with Georgia Tech EIC Lab*  
+Technical notes on RNS-GCN and MixGCN implementations for scalable graph neural network training.  
+[[PDF]]({{ site.url }}/assets/technical/distributed_gnn.pdf)
 
 ## Tutorials & Guides
 
-### Programming Tutorials
+### Computational Physics
 
-**Deep Learning with PyTorch: A Practical Guide**  
-*Last Updated: September 2024*  
-Step-by-step tutorial covering PyTorch fundamentals, model training, and deployment.  
-[[Jupyter Notebook]]({{ site.url }}/assets/tutorials/pytorch_guide.ipynb) [[GitHub]](https://github.com/RunkaiTao/pytorch-tutorial)
+**Distributed Computing for Large-Scale Simulations**  
+*Last Updated: Spring 2025*  
+Guide to implementing distributed computing solutions for physics simulations and large model training.  
+[[Jupyter Notebook]]({{ site.url }}/assets/tutorials/distributed_computing.ipynb) [[GitHub]](https://github.com/RunkaiTao/distributed-physics)
 
-**Implementing Attention Mechanisms from Scratch**  
-*Last Updated: June 2024*  
-Detailed implementation of various attention mechanisms with code examples.  
-[[Jupyter Notebook]]({{ site.url }}/assets/tutorials/attention_tutorial.ipynb)
+**PyTorch for Scientific Computing**  
+*Last Updated: Fall 2024*  
+Practical guide covering PyTorch applications in scientific computing, with examples from graph neural networks.  
+[[Jupyter Notebook]]({{ site.url }}/assets/tutorials/pytorch_scientific.ipynb)
 
 ### Mathematical Foundations
 
-**Linear Algebra for Machine Learning**  
+**Conformal Field Theory Primer**  
 *Study Guide*  
-*Last Updated: March 2024*  
-Essential linear algebra concepts with applications to machine learning.  
-[[PDF]]({{ site.url }}/assets/guides/linear_algebra_ml.pdf)
+*Last Updated: Summer 2024*  
+Essential concepts in 2D conformal field theory with computational examples.  
+[[PDF]]({{ site.url }}/assets/guides/cft_primer.pdf)
 
-**Probability Theory Refresher**  
+**Group Theory for Physicists**  
 *Study Guide*  
-*Last Updated: January 2024*  
-Key probability concepts used in machine learning and statistics.  
-[[PDF]]({{ site.url }}/assets/guides/probability_refresher.pdf)
+*Last Updated: Spring 2024*  
+Key group theory concepts with applications to gauge theories and string theory.  
+[[PDF]]({{ site.url }}/assets/guides/group_theory_physics.pdf)
 
 ## Course Materials
 
-### Teaching Assistant Materials
+### Teaching Assistant Experience
 
-**CS 4XX - Introduction to Machine Learning**  
-*Fall 2024*  
-- Problem sets with solutions
-- Lab exercises and starter code
-- Supplementary reading materials
+**Physics 203, 204 - General Physics**  
+*Spring 2025*  
+Teaching materials and problem sets for general physics courses.  
+[[Materials]]({{ site.url }}/assets/courses/general_physics_2025/)
 
-[[Course Website]]({{ site.url }}/courses/cs4xx-fall2024/) [[GitHub Repository]](https://github.com/RunkaiTao/cs4xx-materials)
+**Physics 229 - Analytical Physics II Laboratory**  
+*Fall 2020*  
+Laboratory exercises and experimental procedures for analytical physics.  
+[[Lab Manual]]({{ site.url }}/assets/courses/analytical_physics_lab.pdf)
 
-### Seminar Presentations
+**Physics 381, 382 - Advanced Physics**  
+*Fall 2019, Spring 2020*  
+*Lecturer: Prof. Weida Wu*  
+Problem sets and supplementary materials for advanced undergraduate physics.  
+[[Problem Sets]]({{ site.url }}/assets/courses/advanced_physics_problems.pdf)
 
-**Recent Advances in Transformer Architectures**  
-*Research Seminar Presentation*  
-*Date: October 2024*  
-[[Slides]]({{ site.url }}/assets/presentations/transformer_advances.pdf) [[Recording]](https://youtu.be/placeholder)
+### Fudan University Materials
 
-**Federated Learning: Challenges and Opportunities**  
-*PhD Colloquium*  
-*Date: September 2024*  
-[[Slides]]({{ site.url }}/assets/presentations/federated_learning.pdf)
+**Gauge Field Theory**  
+*Spring 2019, Lecturer: Prof. Yang Zhou*  
+Teaching assistant materials and problem sets.  
+[[Materials]]({{ site.url }}/assets/courses/gauge_field_theory.pdf)
 
-## Software & Tools
+**Particle Physics and String Theory**  
+*Fall 2018, Lecturer: Prof. Satoshi Nawata*  
+Problem sets and supplementary reading materials.  
+[[Materials]]({{ site.url }}/assets/courses/particle_string_theory.pdf)
 
-### Research Code
+### Recent Presentations
 
-**MLToolbox**  
-*Personal Machine Learning Library*  
-Collection of commonly used machine learning utilities and implementations.  
-[[GitHub]](https://github.com/RunkaiTao/MLToolbox) [[Documentation]](https://runkai-mltoolbox.readthedocs.io/)
+**Efficient Large Model Inference Systems**  
+*Research Seminar - Amazon AWS*  
+*Date: Fall 2025*  
+Presentation on SGLang optimizations and distributed inference systems.  
+[[Slides]]({{ site.url }}/assets/presentations/efficient_llm_inference.pdf)
 
-**DataViz Utils**  
-*Data Visualization Utilities*  
-Tools for creating publication-quality plots and visualizations.  
-[[GitHub]](https://github.com/RunkaiTao/dataviz-utils)
+**K-Theoretic Donaldson Invariants**  
+*Physics Colloquium - Rutgers*  
+*Date: Summer 2024*  
+Overview of ongoing research on path integral approaches to Donaldson invariants.  
+[[Slides]]({{ site.url }}/assets/presentations/donaldson_invariants.pdf)
 
-### Datasets
+**Conformal Field Theory and String Compactification**  
+*Graduate Student Seminar*  
+*Date: Spring 2024*  
+Introduction to CFT techniques in string theory compactification.  
+[[Slides]]({{ site.url }}/assets/presentations/cft_string_compactification.pdf)
 
-**Synthetic Vision Dataset**  
-*Computer Vision Benchmark*  
-*Size: 50K images*  
-Synthetic dataset for evaluating computer vision algorithms under controlled conditions.  
-[[Download]]({{ site.url }}/datasets/synthetic-vision/) [[Paper]]({{ site.url }}/assets/papers/synthetic_dataset.pdf)
+## Software & Research Tools
+
+### Open Source Contributions
+
+**SGLang**  
+*Structured Generation Language for Large Language Models*  
+Major contributions to hybrid KV cache and data parallelism optimizations.  
+[[GitHub]](https://github.com/sgl-project/sglang) [[Documentation]](https://sgl-project.github.io/docs)
+
+**MixGCN**  
+*Scalable Graph Convolutional Network Training*  
+Implementation of mixture parallelism for large-scale GNN training.  
+[[GitHub]](https://github.com/RunkaiTao/MixGCN) [[arXiv]](https://arxiv.org/abs/2501.01951)
+
+### Physics Computing Tools
+
+**CFT-Toolkit**  
+*Computational Tools for Conformal Field Theory*  
+Collection of utilities for CFT calculations and vertex operator algebra computations.  
+[[GitHub]](https://github.com/RunkaiTao/cft-toolkit) [[Documentation]](https://cft-toolkit.readthedocs.io/)
 
 ---
 

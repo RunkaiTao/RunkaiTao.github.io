@@ -5,87 +5,92 @@ layout: single
 author_profile: true
 ---
 
-## Machine Learning
+## Recent Publications & Preprints
+
+### 2025
+
+**Argyres-Douglas Theories, Macdonald Indices And Arc Space Of Zhu Algebra**  
+Anindya Banerjee, *Runkai Tao*, Ranveer Kumar Singh  
+*arXiv preprint arXiv:2507.06294* (2025)  
+[[arXiv]](https://arxiv.org/abs/2507.06294)
+
+**MixGCN: Scalable GCN Training by Mixture of Parallelism and Mixture of Accelerators**  
+Wan Cheng, Zheng Du, *Runkai Tao*, Yang Katie Zhao, Yingyan Celine Lin  
+*arXiv preprint arXiv:2501.01951* (2025)  
+<details>
+<summary>Abstract</summary>
+We present MixGCN, a scalable approach for training Graph Convolutional Networks using a mixture of parallelism strategies and accelerators. Our method significantly improves training efficiency while maintaining model accuracy.
+</details>
+[[arXiv]](https://arxiv.org/abs/2501.01951)
 
 ### 2024
 
-**Deep Neural Networks for Pattern Recognition in Complex Data**  
-*Runkai Tao*, J. Smith, A. Johnson  
-*International Conference on Machine Learning (ICML)*, 2024  
+**Rationality of Lorentzian Lattice CFTs and the Associated Modular Tensor Category**  
+Ranveer Kumar Singh, *Runkai Tao*, Madhav Sinha  
+*arXiv preprint arXiv:2408.02744* (2024)  
 <details>
 <summary>Abstract</summary>
-This paper presents a novel approach to pattern recognition using deep neural networks. We demonstrate significant improvements over existing methods on several benchmark datasets. Our approach leverages advanced optimization techniques and novel architectural designs to achieve state-of-the-art performance.
+We investigate the rationality properties of Lorentzian lattice conformal field theories and characterize their associated modular tensor categories. Our results provide new insights into the structure of these theories.
 </details>
-[[PDF]]({{ site.url }}/assets/papers/tao2024deep.pdf) [[Code]](https://github.com/RunkaiTao/deep-pattern-recognition) [[DOI]](https://doi.org/10.1000/placeholder)
+[[arXiv]](https://arxiv.org/abs/2408.02744)
 
-**Theoretical Analysis of Gradient Descent in High-Dimensional Spaces**  
-*Runkai Tao*, M. Chen  
-*Advances in Neural Information Processing Systems (NeurIPS)*, 2024  
+### 2022
+
+**Fudan Lectures on 2d Conformal Field Theory**  
+Satoshi Nawata, *Runkai Tao*, Daisuke Yokoyama  
+*arXiv preprint arXiv:2208.05180* (2022)  
 <details>
 <summary>Abstract</summary>
-We provide theoretical guarantees for gradient descent optimization in high-dimensional parameter spaces. Our analysis reveals new insights into convergence properties and establishes improved bounds for various loss functions commonly used in machine learning.
+Comprehensive lecture notes covering the fundamentals of two-dimensional conformal field theory, including symmetries, correlation functions, and applications to string theory.
 </details>
-[[PDF]]({{ site.url }}/assets/papers/tao2024theoretical.pdf) [[arXiv]](https://arxiv.org/abs/placeholder)
+[[arXiv]](https://arxiv.org/abs/2208.05180)
 
-### 2023
-
-**Efficient Training of Large-Scale Neural Networks**  
-*Runkai Tao*, L. Wang, K. Davis  
-*International Conference on Learning Representations (ICLR)*, 2023  
+**Fudan Lectures on String Theory**  
+Satoshi Nawata, *Runkai Tao*, Daisuke Yokoyama  
+*arXiv preprint arXiv:2208.05179* (2022)  
 <details>
 <summary>Abstract</summary>
-We propose new techniques for efficiently training large-scale neural networks, reducing computational costs while maintaining model performance. Our method demonstrates significant speedups on various architectures and datasets.
+Detailed lecture notes on string theory fundamentals, covering the bosonic string, superstring theory, and connections to conformal field theory.
 </details>
-[[PDF]]({{ site.url }}/assets/papers/tao2023efficient.pdf) [[Code]](https://github.com/RunkaiTao/efficient-training)
+[[arXiv]](https://arxiv.org/abs/2208.05179)
 
-## Computer Vision
+## Published Papers
 
-### 2024
+### 2020
 
-**Visual Representation Learning with Self-Supervised Methods**  
-*Runkai Tao*, S. Brown, R. Wilson  
-*Computer Vision and Pattern Recognition (CVPR)*, 2024  
+**New Conformal Field Theory from N=(0,2) Landau-Ginzburg Model**  
+Jirui Guo, Satoshi Nawata, *Runkai Tao*, Derrick Zhang Hao  
+*Physical Review D* 101, no. 4 (2020): 046008  
 <details>
 <summary>Abstract</summary>
-This work explores self-supervised learning methods for visual representation learning. We introduce a new pretext task that significantly improves downstream task performance while requiring minimal labeled data.
+We construct new conformal field theories arising from N=(0,2) Landau-Ginzburg models and study their properties, including their spectrum and correlation functions.
 </details>
-[[PDF]]({{ site.url }}/assets/papers/tao2024visual.pdf) [[Project Page]](https://runkai-visual-ssl.github.io/)
+[[DOI]](https://doi.org/10.1103/PhysRevD.101.046008)
 
-### 2023
-
-**Multi-Modal Learning for Scene Understanding**  
-P. Lee, *Runkai Tao*, T. Anderson  
-*European Conference on Computer Vision (ECCV)*, 2023  
+**Cyclotomic Expansions of HOMFLY-PT Colored by Rectangular Young Diagrams**  
+Masaya Kameyama, Satoshi Nawata, *Runkai Tao*, Derrick Zhang Hao  
+*Letters in Mathematical Physics* 110 (2020): 2573-2583  
 <details>
 <summary>Abstract</summary>
-We present a multi-modal approach to scene understanding that combines visual and textual information. Our method achieves superior performance on several challenging benchmarks for scene classification and object detection.
+We study cyclotomic expansions of HOMFLY-PT polynomials colored by rectangular Young diagrams and establish new relationships in knot theory and representation theory.
 </details>
-[[PDF]]({{ site.url }}/assets/papers/lee2023multimodal.pdf)
+[[DOI]](https://doi.org/10.1007/s11005-020-01321-y)
 
-## Data Science & Applications
+## Manuscripts in Preparation
 
-### 2023
+**Path Integral Derivations of K-Theoretic Donaldson Invariants**  
+Heeyeon Kim, Jan Manschot, Gregory W. Moore, *Runkai Tao*, Xinyu Zhang  
+*(to appear)*
 
-**Large-Scale Data Analysis with Distributed Computing**  
-*Runkai Tao*, H. Kim, N. Patel  
-*IEEE Transactions on Big Data*, 2023  
-<details>
-<summary>Abstract</summary>
-We develop new algorithms for large-scale data analysis using distributed computing frameworks. Our approach scales efficiently to datasets with billions of samples while maintaining statistical accuracy.
-</details>
-[[PDF]]({{ site.url }}/assets/papers/tao2023largescale.pdf) [[DOI]](https://doi.org/10.1109/placeholder)
+---
 
-## Workshop Papers & Preprints
+## Research Areas
 
-**Emerging Trends in Neural Architecture Search**  
-*Runkai Tao*  
-*arXiv preprint*, 2024  
-[[arXiv]](https://arxiv.org/abs/placeholder)
+My research spans both theoretical physics and applied computational methods:
 
-**Fair Machine Learning: Challenges and Opportunities**  
-*Runkai Tao*, M. Rodriguez  
-*Workshop on Fairness in AI (ICML Workshop)*, 2023  
-[[PDF]]({{ site.url }}/assets/papers/tao2023fair.pdf)
+- **Mathematical Physics**: Supersymmetric gauge theories, string theory, conformal field theory
+- **Applied Computing**: Distributed systems for machine learning, optimization of large language models
+- **Knot Theory**: Representation theory applications and polynomial invariants
 
 ---
 

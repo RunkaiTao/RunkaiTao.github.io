@@ -14,11 +14,11 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 title: "Runkai Tao"
-email: your.email@university.edu
+email: rt572@physics.rutgers.edu
 description: >- # this means to ignore newlines until "baseurl:"
-  Academic website of Runkai Tao. Research in Machine Learning, Computer Vision,
-  and related areas. Publications, resources, and academic materials.
-twitter_username: your_twitter
+  Academic website of Runkai Tao. PhD student in Physics at Rutgers University.
+  Research in theoretical physics, string theory, conformal field theory, and applied computing.
+twitter_username: 
 github_username: RunkaiTao
 minimal_mistakes_skin: default
 search: true
@@ -71,39 +71,31 @@ social:
   name: Runkai Tao
   links:
     - "https://github.com/RunkaiTao"
-    - "https://scholar.google.com/citations?user=YOUR_ID"
-    - "https://linkedin.com/in/your-profile"
 
 author:
   name   : "Runkai Tao"
   avatar : "/assets/images/bio-photo.jpg"
-  bio    : "PhD Student | Machine Learning Researcher"
-  location : "University, City"
+  bio    : "PhD Student in Physics | Theoretical Physics & Applied Computing"
+  location : "Rutgers University, NJ"
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
-      url: "mailto:your.email@university.edu"
+      url: "mailto:rt572@physics.rutgers.edu"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/RunkaiTao"
-    - label: "Google Scholar"
-      icon: "fas fa-fw fa-graduation-cap"
-      url: "https://scholar.google.com/citations?user=YOUR_ID"
-    - label: "LinkedIn"
-      icon: "fab fa-fw fa-linkedin"
-      url: "https://linkedin.com/in/your-profile"
+    - label: "Phone"
+      icon: "fas fa-fw fa-phone"
+      url: "tel:732-668-6861"
 
 footer:
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
-      url: "mailto:your.email@university.edu"
+      url: "mailto:rt572@physics.rutgers.edu"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/RunkaiTao"
-    - label: "Google Scholar"
-      icon: "fas fa-fw fa-graduation-cap"
-      url: "https://scholar.google.com/citations?user=YOUR_ID"
 
 defaults:
   # _posts
