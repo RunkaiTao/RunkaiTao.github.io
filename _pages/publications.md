@@ -11,7 +11,11 @@ author_profile: true
 
 **Argyres-Douglas Theories, Macdonald Indices And Arc Space Of Zhu Algebra**  
 Anindya Banerjee, *Runkai Tao*, Ranveer Kumar Singh  
-*arXiv preprint arXiv:2507.06294* (2025)  
+*arXiv preprint arXiv:2507.06294* (2025)
+<details>
+<summary>Abstract</summary>
+We relate the MacDonald index of a 4d N=2 SCFT with the Hilbert series of the arc space of the Zhu algebra of the corresponding Schur VOA. Using this, we conjecture a simple formula for the MacDonald index of (A1,D2n+1) Argyres-Douglas theory. We perform checks of the formula against the known Schur limits and RG flows. To match the Schur limit, we prove new q-series identities.
+</details>  
 [[arXiv]](https://arxiv.org/abs/2507.06294)
 
 **MixGCN: Scalable GCN Training by Mixture of Parallelism and Mixture of Accelerators**  

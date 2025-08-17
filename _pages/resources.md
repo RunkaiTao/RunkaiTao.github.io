@@ -11,11 +11,11 @@ toc_label: "Contents"
 
 ### Theoretical Physics
 
-**Modular Tensor Categories and Rational Conformal Field Theory**
-*Co-authored with Ranveer Kumar Singh, Madhav Sinha and F.S. Stubbs*
-*Work in progress*
-We discuss modular tensor categories (MTC) the formulation of rational con-
-formal field theory (RCFT) as an MTC. We explicitly check that the construction for the (?)Ising CFT.
+**Modular Tensor Categories and Rational Conformal Field Theory**  
+*Co-authored with Ranveer Kumar Singh, Madhav Sinha, and F.S. Stubbs*  
+*Work in progress*  
+We discuss modular tensor categories (MTC) and the formulation of rational conformal field theory (RCFT) as an MTC. We explicitly check the construction for the Ising CFT.  
+[[Notes]]({{ site.url }}/assets/resources/mtc_rcft_notes.pdf)
 
 **Fudan Lectures on 2d Conformal Field Theory**  
 *Co-authored with Satoshi Nawata and Daisuke Yokoyama*  
