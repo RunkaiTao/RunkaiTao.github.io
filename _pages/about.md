@@ -11,10 +11,11 @@ I am a PhD student in Physics at Rutgers University, where I work on theoretical
 
 ## Research Interests
 
-- **Theoretical Physics**: Supersymmetric gauge theories, string theory, and mathematical physics
-- **Conformal Field Theory**: Non-chiral CFT, vertex operator algebras, and modular tensor categories  
-- **Mathematical Physics**: K-theoretic Donaldson invariants, representation theory of knots
-- **Applied Research**: Distributed systems for machine learning, efficient computing for large models
+- **Supersymmetric Gauge Theories**: Various aspects of supersymmetric gauge theories and their applications in string theory
+- **Conformal Field Theory**: Non-chiral CFT, vertex operator algebras (VOA), and modular tensor categories
+- **Mathematical Physics**: K-theoretic Donaldson invariants, representation theory of knots, N=(0,2) Landau-Ginzburg models
+- **String Theory**: Path integral methods, exact results, and connections to gauge theories
+- **Applied Computing**: Distributed systems for machine learning, efficient large language model inference, graph neural networks
 
 ## Education
 
@@ -28,19 +29,29 @@ Research Focus: Supersymmetric gauge theories and string theory
 Advisor: Prof. Satoshi Nawata  
 Research Focus: Representation theory of knots, N=(0,2) Landau-Ginzburg models
 
-## Current Positions
-
-**PhD Research Assistant** (July 2019 - Present)  
-Department of Physics, Rutgers University  
-- Research on supersymmetric gauge theories and string theory
-- Research on non-chiral CFT and vertex operator algebras
+## Research Experience
 
 **Applied Scientist Intern** (Fall 2025)  
 Amazon AWS  
+- Advanced research in large language model optimization and deployment
 
 **Research Intern** (Spring 2025)  
 Efficient and Intelligent Computing Lab, Georgia Tech  
 - Distributed system design for Graph Neural Networks
+- Development of scalable GNN training frameworks
+
+**PhD Research Assistant** (July 2019 - Present)  
+Department of Physics, Rutgers University  
+*Advisors: Prof. Greg Moore, Prof. Heeyeon Kim*
+- Research on various aspects of supersymmetric gauge theories and string theory
+- Investigation of non-chiral conformal field theory and vertex operator algebras
+- Collaboration on K-theoretic Donaldson invariants using path integral methods
+
+**Undergraduate Research Assistant** (June 2018 - May 2019)  
+Department of Physics, Fudan University  
+*Advisor: Prof. Satoshi Nawata*
+- Research on representation theory of knots and HOMFLY-PT polynomials
+- Investigation of N=(0,2) Landau-Ginzburg models and their conformal field theory properties
 
 ## Recent Projects
 
