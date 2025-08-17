@@ -15,8 +15,16 @@ All blog posts in the **Physics** category, listed in chronological order (newes
 {% assign physics_posts = site.categories.Physics | sort: 'date' | reverse %}
 
 {% for post in physics_posts %}
-  <article class="post-item">
-    <h3><a href="{{ post.url | relative_url }}" rel="permalink">{{ post.title }}</a></h3>
+  <article class="post-item{% if post.protected %} protected-post{% endif %}">
+    <h3>
+      {% if post.protected %}
+        <i class="fas fa-lock protected-icon"></i>
+      {% endif %}
+      <a href="{{ post.url | relative_url }}" rel="permalink">{{ post.title }}</a>
+      {% if post.protected %}
+        <span class="protected-badge">Protected</span>
+      {% endif %}
+    </h3>
     <p class="post-meta">
       <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %d, %Y" }}</time>
       {% if post.tags.size > 0 %}
@@ -27,9 +35,24 @@ All blog posts in the **Physics** category, listed in chronological order (newes
       {% endif %}
     </p>
     {% if post.excerpt %}
-      <p class="post-excerpt">{{ post.excerpt | strip_html | truncate: 300 }}</p>
+      <p class="post-excerpt">
+        {% if post.protected %}
+          {{ post.excerpt | strip_html | truncate: 150 }}
+          <span class="protected-notice">This post requires a password to view.</span>
+        {% else %}
+          {{ post.excerpt | strip_html | truncate: 300 }}
+        {% endif %}
+      </p>
     {% endif %}
-    <p><a href="{{ post.url | relative_url }}" class="read-more">Read more &rarr;</a></p>
+    <p>
+      <a href="{{ post.url | relative_url }}" class="read-more">
+        {% if post.protected %}
+          Enter password to read &rarr;
+        {% else %}
+          Read more &rarr;
+        {% endif %}
+      </a>
+    </p>
   </article>
 {% endfor %}
 
@@ -112,5 +135,44 @@ All blog posts in the **Physics** category, listed in chronological order (newes
   color: #666;
   font-style: italic;
   margin: 2em 0;
+}
+
+/* Protected post styles */
+.protected-post {
+  background: linear-gradient(135deg, #fff 0%, #fff8e1 100%);
+  border-left: 4px solid #ffb300;
+}
+
+.protected-icon {
+  color: #ff8f00;
+  margin-right: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.protected-badge {
+  display: inline-block;
+  background: #fff3e0;
+  color: #e65100;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  margin-left: 0.5rem;
+  border: 1px solid #ffcc02;
+}
+
+.protected-notice {
+  color: #bf360c;
+  font-style: italic;
+  font-weight: 500;
+  margin-left: 0.5rem;
+}
+
+.protected-post h3 a {
+  color: #5d4037;
+}
+
+.protected-post h3 a:hover {
+  color: #3e2723;
 }
 </style>

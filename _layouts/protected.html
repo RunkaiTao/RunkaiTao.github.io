@@ -1,0 +1,293 @@
+---
+layout: single
+---
+
+<div id="protected-content">
+  <div id="password-prompt" class="protected-post-container">
+    <div class="password-protection-box">
+      <div class="lock-icon">
+        <i class="fas fa-lock"></i>
+      </div>
+      
+      <h2 class="protected-title">{{ page.title }}</h2>
+      
+      <div class="post-meta">
+        <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %d, %Y" }}</time>
+        {% if page.categories.size > 0 %}
+          • Categories: 
+          {% for category in page.categories %}
+            <span class="category">{{ category }}</span>{% unless forloop.last %}, {% endunless %}
+          {% endfor %}
+        {% endif %}
+      </div>
+      
+      {% if page.excerpt %}
+        <p class="protected-excerpt">{{ page.excerpt | strip_html }}</p>
+      {% endif %}
+      
+      <div class="password-form-container">
+        <p class="password-instruction">This post is password protected. Please enter the password to view the content.</p>
+        
+        <form id="password-form" class="password-form">
+          <div class="input-group">
+            <input 
+              type="password" 
+              id="password-input" 
+              class="password-input" 
+              placeholder="Enter password" 
+              required
+            >
+            <button type="submit" class="password-submit">
+              <span class="submit-text">Unlock</span>
+              <span class="loading-spinner" style="display: none;">
+                <i class="fas fa-spinner fa-spin"></i>
+              </span>
+            </button>
+          </div>
+          <div id="password-error" class="password-error" style="display: none;">
+            Incorrect password. Please try again.
+          </div>
+        </form>
+        
+        <div class="password-hints">
+          <small class="text-muted">
+            {% if page.password_hint %}
+              Hint: {{ page.password_hint }}
+            {% else %}
+              Contact me if you need access to this content.
+            {% endif %}
+          </small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="protected-post-content" class="protected-post-content" style="display: none;">
+    <article class="page">
+      <header class="page-header">
+        <h1 class="page-title">{{ page.title }}</h1>
+        <div class="page-meta">
+          <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %d, %Y" }}</time>
+          {% if page.categories.size > 0 %}
+            • Categories: 
+            {% for category in page.categories %}
+              <span class="category">{{ category }}</span>{% unless forloop.last %}, {% endunless %}
+            {% endfor %}
+          {% endif %}
+          {% if page.tags.size > 0 %}
+            • Tags: 
+            {% for tag in page.tags %}
+              <span class="tag">{{ tag }}</span>{% unless forloop.last %}, {% endunless %}
+            {% endfor %}
+          {% endif %}
+        </div>
+      </header>
+      
+      <div class="page-content">
+        {{ content }}
+      </div>
+      
+      <footer class="page-footer">
+        <div class="protected-notice">
+          <i class="fas fa-shield-alt"></i>
+          This is a password-protected post. Please keep the content confidential.
+        </div>
+      </footer>
+    </article>
+  </div>
+</div>
+
+<!-- Password protection data -->
+<script type="application/json" id="protection-data">
+{
+  "passwordHash": "{{ page.password_hash | default: '' }}",
+  "encryptedContent": {{ page.encrypted_content | default: 'false' | jsonify }},
+  "sessionKey": "protected-post-{{ page.slug | default: page.title | slugify }}"
+}
+</script>
+
+<style>
+.protected-post-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+  padding: 2rem 1rem;
+}
+
+.password-protection-box {
+  background: #fff;
+  border: 1px solid #dee2e6;
+  border-radius: 0.5rem;
+  padding: 3rem 2rem;
+  max-width: 500px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.lock-icon {
+  font-size: 3rem;
+  color: #6c757d;
+  margin-bottom: 1.5rem;
+}
+
+.protected-title {
+  color: #333;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.post-meta {
+  color: #6c757d;
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+}
+
+.protected-excerpt {
+  color: #555;
+  font-style: italic;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.password-instruction {
+  color: #495057;
+  margin-bottom: 1.5rem;
+}
+
+.password-form {
+  margin-bottom: 1rem;
+}
+
+.input-group {
+  display: flex;
+  max-width: 300px;
+  margin: 0 auto;
+  border-radius: 0.25rem;
+  overflow: hidden;
+  border: 1px solid #ced4da;
+}
+
+.password-input {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border: none;
+  font-size: 1rem;
+  outline: none;
+}
+
+.password-input:focus {
+  box-shadow: inset 0 0 0 1px #007bff;
+}
+
+.password-submit {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.15s ease-in-out;
+}
+
+.password-submit:hover {
+  background: #0056b3;
+}
+
+.password-submit:disabled {
+  background: #6c757d;
+  cursor: not-allowed;
+}
+
+.password-error {
+  color: #dc3545;
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  background: #f8d7da;
+  border: 1px solid #f5c6cb;
+  border-radius: 0.25rem;
+}
+
+.password-hints {
+  margin-top: 1.5rem;
+}
+
+.protected-post-content {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.page-header {
+  margin-bottom: 2rem;
+  border-bottom: 1px solid #dee2e6;
+  padding-bottom: 1rem;
+}
+
+.page-title {
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.page-meta {
+  color: #6c757d;
+  font-size: 0.9rem;
+}
+
+.category, .tag {
+  background-color: #f0f0f0;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 0.8em;
+}
+
+.page-content {
+  line-height: 1.6;
+  color: #333;
+}
+
+.page-footer {
+  margin-top: 3rem;
+  padding-top: 1rem;
+  border-top: 1px solid #dee2e6;
+}
+
+.protected-notice {
+  background: #fff3cd;
+  border: 1px solid #ffeaa7;
+  color: #856404;
+  padding: 0.75rem 1rem;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+}
+
+.protected-notice i {
+  margin-right: 0.5rem;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 576px) {
+  .password-protection-box {
+    padding: 2rem 1rem;
+  }
+  
+  .input-group {
+    flex-direction: column;
+    max-width: 250px;
+  }
+  
+  .password-input {
+    border-radius: 0.25rem 0.25rem 0 0;
+  }
+  
+  .password-submit {
+    border-radius: 0 0 0.25rem 0.25rem;
+  }
+}
+</style>
+
+<script src="{{ '/assets/js/password-protection.js' | relative_url }}"></script>
