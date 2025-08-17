@@ -33,16 +33,19 @@ Research Focus: Representation theory of knots, N=(0,2) Landau-Ginzburg models
 
 **Applied Scientist Intern** (Fall 2025)  
 Amazon AWS  
+
 - Advanced research in large language model optimization and deployment
 
 **Research Intern** (Spring 2025)  
 Efficient and Intelligent Computing Lab, Georgia Tech  
+
 - Distributed system design for Graph Neural Networks
 - Development of scalable GNN training frameworks
 
 **PhD Research Assistant** (July 2019 - Present)  
 Department of Physics, Rutgers University  
 *Advisors: Prof. Greg Moore, Prof. Heeyeon Kim*
+
 - Research on various aspects of supersymmetric gauge theories and string theory
 - Investigation of non-chiral conformal field theory and vertex operator algebras
 - Collaboration on K-theoretic Donaldson invariants using path integral methods
@@ -50,16 +53,19 @@ Department of Physics, Rutgers University
 **Undergraduate Research Assistant** (June 2018 - May 2019)  
 Department of Physics, Fudan University  
 *Advisor: Prof. Satoshi Nawata*
+
 - Research on representation theory of knots and HOMFLY-PT polynomials
 - Investigation of N=(0,2) Landau-Ginzburg models and their conformal field theory properties
 
 ## Recent Projects
 
 **SGLang Optimizations**:
+
 - Developed hybrid KV cache for LLaMA-4 achieving ~10% higher throughput
 - Implemented data parallelism attention for DeepSeek models
 
 **Distributed GNN Systems**:
+
 - Created RNS-GCN and MixGCN for scalable graph neural network training
 - Custom PyTorch layers and Triton kernels for improved performance
 
@@ -73,4 +79,4 @@ Feel free to reach out if you're interested in collaboration or have questions a
 
 ---
 
-📄 **[Download CV/Resume]({{ site.url }}/assets/documents/cv.pdf)** *(placeholder link)*
+📄 **[Download CV/Resume](<{{ site.url }}/assets/documents/cv.pdf>)**
