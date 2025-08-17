@@ -1,0 +1,60 @@
+# Activity Dashboard Data
+# This file tracks daily research activities that can't be automatically detected
+
+# Pomodoro Sessions - Update this manually with your daily pomodoro counts
+# Format: YYYY-MM-DD: number_of_sessions
+pomodoro:
+  2024-12-16: 8
+  2024-12-15: 6
+  2024-12-14: 4
+  2024-12-13: 7
+  2024-12-12: 5
+  2024-12-11: 3
+  2024-12-10: 9
+  2024-12-09: 2
+  2024-12-08: 6
+  2024-12-07: 8
+  2024-12-06: 4
+  2024-12-05: 7
+  2024-12-04: 5
+  2024-12-03: 3
+  2024-12-02: 8
+  2024-12-01: 6
+
+# Research Hours - Optional: track daily research time
+research_hours:
+  2024-12-16: 6.5
+  2024-12-15: 5.0
+  2024-12-14: 4.5
+  2024-12-13: 7.0
+  2024-12-12: 5.5
+
+# Reading Sessions - Optional: track papers/books read
+papers_read:
+  2024-12-16: 2
+  2024-12-15: 1
+  2024-12-14: 3
+  2024-12-13: 2
+
+# Notes and Ideas - Optional: track daily note-taking
+notes_count:
+  2024-12-16: 12
+  2024-12-15: 8
+  2024-12-14: 15
+
+# Custom Research Goals - Track specific daily goals
+goals_completed:
+  2024-12-16: 4  # Number of daily goals completed
+  2024-12-15: 3
+  2024-12-14: 5
+
+# Instructions for updating this file:
+# 1. Add new dates in YYYY-MM-DD format
+# 2. Update pomodoro sessions daily from your Chrome extension
+# 3. Other metrics are optional but provide richer insights
+# 4. Commit changes to git to trigger dashboard updates
+
+# GitHub Integration Notes:
+# - GitHub commits are fetched automatically via API
+# - Blog updates are detected from git commits to _posts/
+# - This file supplements automated tracking

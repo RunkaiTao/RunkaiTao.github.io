@@ -5,5 +5,7 @@ main:
     url: /publications/
   - title: "Resources"
     url: /resources/
+  - title: "Activity"
+    url: /activity/
   - title: "Blogs"
     url: /blogs/
