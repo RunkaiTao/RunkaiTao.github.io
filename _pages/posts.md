@@ -13,10 +13,11 @@ Welcome to my blog! Here I share thoughts on research, tutorials, and insights f
 {% assign categories = site.categories | sort %}
 {% for category in categories %}
   {% assign posts_in_category = category[1] | sort: 'date' | reverse %}
+  {% assign category_slug = category[0] | downcase | replace: ' ', '-' %}
   
 ### {{ category[0] }}
 
-{% for post in posts_in_category %}
+{% for post in posts_in_category limit:5 %}
   <article class="post-item">
     <h4><a href="{{ post.url | relative_url }}" rel="permalink">{{ post.title }}</a></h4>
     <p class="post-meta">
@@ -34,34 +35,18 @@ Welcome to my blog! Here I share thoughts on research, tutorials, and insights f
   </article>
 {% endfor %}
 
+{% if posts_in_category.size > 5 %}
+  <p class="view-all-link">
+    <a href="{{ '/blogs/' | append: category_slug | append: '/' | relative_url }}" class="btn btn-primary">View All {{ category[0] }} Posts ({{ posts_in_category.size }})</a>
+  </p>
+{% elsif posts_in_category.size > 1 %}
+  <p class="view-all-link">
+    <a href="{{ '/blogs/' | append: category_slug | append: '/' | relative_url }}" class="btn btn-primary">View All {{ category[0] }} Posts ({{ posts_in_category.size }})</a>
+  </p>
+{% endif %}
+
 {% endfor %}
 
-## All Posts (Chronological)
-
-{% assign posts = site.posts | sort: 'date' | reverse %}
-{% for post in posts %}
-  <article class="post-item">
-    <h4><a href="{{ post.url | relative_url }}" rel="permalink">{{ post.title }}</a></h4>
-    <p class="post-meta">
-      <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %d, %Y" }}</time>
-      {% if post.categories.size > 0 %}
-        • Categories: 
-        {% for category in post.categories %}
-          <span class="category">{{ category }}</span>{% unless forloop.last %}, {% endunless %}
-        {% endfor %}
-      {% endif %}
-      {% if post.tags.size > 0 %}
-        • Tags: 
-        {% for tag in post.tags %}
-          <span class="tag">{{ tag }}</span>{% unless forloop.last %}, {% endunless %}
-        {% endfor %}
-      {% endif %}
-    </p>
-    {% if post.excerpt %}
-      <p class="post-excerpt">{{ post.excerpt | strip_html | truncate: 200 }}</p>
-    {% endif %}
-  </article>
-{% endfor %}
 
 <style>
 .post-item {
@@ -90,5 +75,31 @@ Welcome to my blog! Here I share thoughts on research, tutorials, and insights f
 .post-excerpt {
   color: #555;
   line-height: 1.5;
+}
+
+.view-all-link {
+  text-align: center;
+  margin: 2em 0;
+}
+
+.btn {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 0.9em;
+  transition: background-color 0.3s;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+  color: white;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background-color: #007bff;
 }
 </style>
