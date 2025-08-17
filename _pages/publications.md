@@ -84,14 +84,4 @@ Heeyeon Kim, Jan Manschot, Gregory W. Moore, *Runkai Tao*, Xinyu Zhang
 
 ---
 
-## Research Areas
-
-My research spans both theoretical physics and applied computational methods:
-
-- **Mathematical Physics**: Supersymmetric gauge theories, string theory, conformal field theory
-- **Applied Computing**: Distributed systems for machine learning, optimization of large language models
-- **Knot Theory**: Representation theory applications and polynomial invariants
-
----
-
 *Note: Some links are placeholders and will be updated with actual publication information.*
