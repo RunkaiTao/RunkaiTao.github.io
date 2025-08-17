@@ -1,6 +1,6 @@
 ---
 title: "Winter 2025 Research Update: Progress on K-Theoretic Donaldson Invariants"
-date: 2025-01-20
+date: 2024-12-15
 categories:
   - Research
   - Mathematical Physics
