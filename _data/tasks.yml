@@ -1,0 +1,44 @@
+# Daily Tasks Data
+# Simple format: date -> list of tasks with completion status
+
+"2025-08-18":
+  - task: "Complete research proposal for string theory project"
+    finished: false
+  - task: "Review paper submissions for conference"
+    finished: true
+  - task: "Prepare seminar slides on AdS/CFT correspondence"
+    finished: false
+  - task: "Reply to collaboration emails"
+    finished: true
+  - task: "Update personal website blog post"
+    finished: false
+
+"2025-08-17":
+  - task: "Team meeting with Prof. Moore"
+    finished: true
+  - task: "Code review for distributed GNN project"
+    finished: true
+  - task: "Read papers on K-theoretic Donaldson invariants"
+    finished: false
+  - task: "Grocery shopping"
+    finished: true
+
+"2025-08-16":
+  - task: "Write progress report"
+    finished: true
+  - task: "Implement SGLang optimizations"
+    finished: false
+  - task: "Attend physics department seminar"
+    finished: true
+  - task: "Exercise at gym"
+    finished: true
+  - task: "Plan next week's research activities"
+    finished: false
+
+"2025-08-15":
+  - task: "Debug MixGCN performance issues"
+    finished: true
+  - task: "Prepare presentation for Amazon internship"
+    finished: true
+  - task: "Call family"
+    finished: true
