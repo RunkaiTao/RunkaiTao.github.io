@@ -1,5 +1,5 @@
 ---
-title: "Winter 2025 Research Update: Progress on K-Theoretic Donaldson Invariants"
+title: "(test case by AI) Winter 2025 Research Update: Progress on K-Theoretic Donaldson Invariants"
 date: 2025-7-15
 categories:
   - Physics

@@ -1,5 +1,5 @@
 ---
-title: "Distributed Training Strategies for Large-Scale GNNs"
+title: "(test case by AI) Distributed Training Strategies for Large-Scale GNNs"
 date: 2024-07-30
 categories:
   - GNN

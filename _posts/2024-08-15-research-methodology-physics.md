@@ -1,5 +1,5 @@
 ---
-title: "Research Methodology in Theoretical Physics"
+title: "(test case by AI) Research Methodology in Theoretical Physics"
 date: 2024-08-15
 categories:
   - Physics

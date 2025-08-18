@@ -1,5 +1,5 @@
 ---
-title: "Scaling Graph Neural Networks: Lessons from MixGCN"
+title: "(test case by AI) Scaling Graph Neural Networks: Lessons from MixGCN"
 date: 2024-09-25
 categories:
   - GNN

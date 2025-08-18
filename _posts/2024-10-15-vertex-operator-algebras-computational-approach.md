@@ -1,5 +1,5 @@
 ---
-title: "Vertex Operator Algebras: A Computational Approach"
+title: "(test case by AI) Vertex Operator Algebras: A Computational Approach"
 date: 2024-10-15
 categories:
   - Math

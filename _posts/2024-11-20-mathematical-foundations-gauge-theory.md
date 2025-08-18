@@ -1,5 +1,5 @@
 ---
-title: "Mathematical Foundations of Gauge Theory"
+title: "(test case by AI) Mathematical Foundations of Gauge Theory"
 date: 2024-11-20
 categories:
   - Math

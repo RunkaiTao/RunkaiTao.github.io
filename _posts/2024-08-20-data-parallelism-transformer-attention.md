@@ -1,5 +1,5 @@
 ---
-title: "Data Parallelism in Transformer Attention Layers"
+title: "(test case by AI) Data Parallelism in Transformer Attention Layers"
 date: 2024-08-20
 categories:
   - LLM
