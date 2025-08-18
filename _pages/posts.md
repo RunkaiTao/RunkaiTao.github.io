@@ -10,11 +10,13 @@ Welcome to my blog! Here I share thoughts on research, tutorials, and insights f
 
 ## Posts by Category
 
+<!-- Filter out 'Hide' category from public blog display -->
 {% assign categories = site.categories | sort %}
 {% for category in categories %}
-  {% assign posts_in_category = category[1] | sort: 'date' | reverse %}
-  {% assign category_slug = category[0] | downcase | replace: ' ', '-' %}
-  
+  {% unless category[0] == 'Hide' %}
+    {% assign posts_in_category = category[1] | sort: 'date' | reverse %}
+    {% assign category_slug = category[0] | downcase | replace: ' ', '-' %}
+    
 ### {{ category[0] }}
 
 {% for post in posts_in_category limit:5 %}
@@ -49,6 +51,7 @@ Welcome to my blog! Here I share thoughts on research, tutorials, and insights f
   </p>
 {% endif %}
 
+  {% endunless %}
 {% endfor %}
 
 

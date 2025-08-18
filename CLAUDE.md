@@ -105,6 +105,7 @@ excerpt: "Public description"
 - **LLM**: Large Language Models research  
 - **Private**: Password-protected research notes
 - **General**: Other academic topics
+- **Hide**: Posts that should not appear on the public blog page (admin/draft posts)
 
 ### When Adding Protected Content
 1. Use the password generator tool first

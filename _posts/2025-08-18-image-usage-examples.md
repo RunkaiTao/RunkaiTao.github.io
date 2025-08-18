@@ -2,7 +2,7 @@
 title: "How to Include Images in Jekyll Blog Posts"
 date: 2025-08-18
 categories:
-  - General
+  - Hide
 tags:
   - jekyll
   - images
