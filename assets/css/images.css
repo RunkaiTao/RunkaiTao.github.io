@@ -1,0 +1,141 @@
+/* Image Styles for Blog Posts */
+
+/* Responsive images */
+.post-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin: 1rem 0;
+}
+
+/* Center images by default */
+.post-content p img {
+  display: block;
+  margin: 1.5rem auto;
+}
+
+/* Figure styling with captions */
+.post-content figure {
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.post-content figure img {
+  margin-bottom: 0.5rem;
+}
+
+.post-content figcaption {
+  font-style: italic;
+  color: #666;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  margin-top: 0.5rem;
+  padding: 0 1rem;
+}
+
+/* Small images (inline or small diagrams) */
+.post-content .img-small {
+  max-width: 300px;
+  display: inline-block;
+  margin: 0.5rem 1rem;
+}
+
+/* Medium images */
+.post-content .img-medium {
+  max-width: 500px;
+}
+
+/* Large images (full width) */
+.post-content .img-large {
+  width: 100%;
+  max-width: 800px;
+}
+
+/* Image alignment utilities */
+.post-content .img-left {
+  float: left;
+  margin: 0 1.5rem 1rem 0;
+}
+
+.post-content .img-right {
+  float: right;
+  margin: 0 0 1rem 1.5rem;
+}
+
+.post-content .img-center {
+  display: block;
+  margin: 1.5rem auto;
+}
+
+/* Clear floats after images */
+.post-content .clear {
+  clear: both;
+}
+
+/* Mathematical diagrams and equations */
+.post-content .math-diagram {
+  background: #f8f9fa;
+  padding: 1rem;
+  border: 1px solid #e9ecef;
+  border-radius: 4px;
+  margin: 1.5rem auto;
+  max-width: 600px;
+}
+
+/* Research images with special styling */
+.post-content .research-image {
+  border: 2px solid #e3f2fd;
+  background: #fafafa;
+  padding: 0.5rem;
+}
+
+/* Image gallery styling */
+.image-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.image-gallery img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 4px;
+  transition: transform 0.3s ease;
+}
+
+.image-gallery img:hover {
+  transform: scale(1.05);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .post-content .img-left,
+  .post-content .img-right {
+    float: none;
+    display: block;
+    margin: 1rem auto;
+  }
+  
+  .post-content figure {
+    margin: 1rem 0;
+  }
+  
+  .post-content figcaption {
+    padding: 0 0.5rem;
+  }
+  
+  .image-gallery {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* High DPI display support */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .post-content img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: optimize-contrast;
+  }
+}

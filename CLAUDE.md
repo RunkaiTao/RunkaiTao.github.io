@@ -112,3 +112,58 @@ excerpt: "Public description"
 3. Test password protection before publishing
 4. Consider using different passwords for different sensitivity levels
 5. Document password hints that authorized users will understand
+
+## Image Management
+
+### Image Organization
+Images are stored in `/assets/images/` with organized subdirectories:
+- `physics/` - Physics-related diagrams, equations, experimental setups
+- `math/` - Mathematical illustrations, proofs, diagrams
+- `research/` - Research-specific images, graphs, results, plots
+- `general/` - General blog post images, screenshots, photos
+
+### Adding Images to Posts
+
+#### Basic Image Inclusion
+```markdown
+![Alt text description](/assets/images/category/your-image.jpg)
+```
+
+#### HTML with Size Control
+```html
+<img src="/assets/images/category/your-image.jpg" alt="Description" width="600">
+```
+
+#### Images with Captions
+```html
+<figure>
+  <img src="/assets/images/math/proof-diagram.png" alt="Mathematical proof diagram" class="img-medium">
+  <figcaption>Figure 1: Visual proof of the Pythagorean theorem</figcaption>
+</figure>
+```
+
+#### Image Size Classes
+- `img-small` - Max width 300px (inline diagrams)
+- `img-medium` - Max width 500px (standard figures)
+- `img-large` - Max width 800px (detailed charts)
+
+#### Image Alignment
+- `img-left` - Float left with text wrap
+- `img-right` - Float right with text wrap  
+- `img-center` - Center-aligned (default for figures)
+
+### File Naming Conventions
+- Use lowercase with hyphens: `string-theory-diagram.png`
+- Be descriptive: `groebner-basis-example.jpg`
+- Include category if helpful: `physics-particle-collision.svg`
+
+### Recommended Formats
+- **PNG**: Diagrams, math expressions, screenshots
+- **JPG**: Photographs, complex images
+- **SVG**: Vector graphics, simple diagrams, mathematical plots
+- **GIF**: Small animations only
+
+### Size Guidelines
+- Keep images under 1MB when possible
+- Optimize for web display
+- Use appropriate resolution (usually 72-150 DPI for web)
