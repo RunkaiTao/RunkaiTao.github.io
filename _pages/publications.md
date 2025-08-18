@@ -5,7 +5,7 @@ layout: single
 author_profile: true
 ---
 
-## Recent Publications & Preprints
+## Preprints
 
 ### 2025
 

@@ -18,15 +18,9 @@ Welcome to my blog! Here I share thoughts on research, tutorials, and insights f
 ### {{ category[0] }}
 
 {% for post in posts_in_category limit:5 %}
-  <article class="post-item{% if post.protected %} protected-post{% endif %}">
+  <article class="post-item">
     <h4>
-      {% if post.protected %}
-        <i class="fas fa-lock protected-icon"></i>
-      {% endif %}
       <a href="{{ post.url | relative_url }}" rel="permalink">{{ post.title }}</a>
-      {% if post.protected %}
-        <span class="protected-badge">Protected</span>
-      {% endif %}
     </h4>
     <p class="post-meta">
       <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %d, %Y" }}</time>
@@ -39,12 +33,7 @@ Welcome to my blog! Here I share thoughts on research, tutorials, and insights f
     </p>
     {% if post.excerpt %}
       <p class="post-excerpt">
-        {% if post.protected %}
-          {{ post.excerpt | strip_html | truncate: 100 }}
-          <span class="protected-notice">This post is password protected.</span>
-        {% else %}
-          {{ post.excerpt | strip_html | truncate: 200 }}
-        {% endif %}
+        {{ post.excerpt | strip_html | truncate: 200 }}
       </p>
     {% endif %}
   </article>
@@ -119,42 +108,4 @@ Welcome to my blog! Here I share thoughts on research, tutorials, and insights f
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
 }
 
-/* Protected post styles */
-.protected-post {
-  background: linear-gradient(135deg, #fff 0%, #fff8e1 100%);
-  border-left: 4px solid #ffb300;
-}
-
-.protected-icon {
-  color: #ff8f00;
-  margin-right: 0.5rem;
-  font-size: 0.9rem;
-}
-
-.protected-badge {
-  display: inline-block;
-  background: #fff3e0;
-  color: #e65100;
-  padding: 2px 8px;
-  border-radius: 12px;
-  font-size: 0.75rem;
-  font-weight: 500;
-  margin-left: 0.5rem;
-  border: 1px solid #ffcc02;
-}
-
-.protected-notice {
-  color: #bf360c;
-  font-style: italic;
-  font-weight: 500;
-  margin-left: 0.5rem;
-}
-
-.protected-post h4 a {
-  color: #5d4037;
-}
-
-.protected-post h4 a:hover {
-  color: #3e2723;
-}
 </style>

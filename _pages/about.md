@@ -9,6 +9,9 @@ author_profile: true
 
 I am a PhD student in Physics at Rutgers University, where I work on theoretical physics research under the supervision of Prof. Greg Moore and Prof. Heeyeon Kim. My research focuses on supersymmetric gauge theories, string theory, conformal field theory, and vertex operator algebras.
 
+I currently also interested in LLM inference and distributed GNN learning. I will be
+an applied scientist in Amazon AWS, Fall 2025. 
+
 ## Research Interests
 
 **Supersymmetric Gauge Theories**: K-theoretic Donaldson invariants, 
