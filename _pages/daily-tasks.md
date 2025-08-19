@@ -63,15 +63,20 @@ excerpt: "Simple daily task tracking system."
     </div>
   </div>
 
-  <!-- Quick Help -->
-  <div class="quick-help">
-    <h4>How to Add Tasks</h4>
-    <p>Edit <code>_data/tasks.yml</code> and add tasks with pomodoro counts:</p>
-    <pre><code>"2025-08-20":
-  - task: "Your task description"
-    used_pomodoros: 0      # Pomodoros already used
-    expected_pomodoros: 3  # Pomodoros expected to complete</code></pre>
-    <p>Tasks are automatically marked finished when used ≥ expected pomodoros.</p>
+  <!-- Weekly Pomodoro Summary -->
+  <div class="weekly-summary">
+    <h4><i class="fas fa-chart-bar"></i> This Week's Pomodoros</h4>
+    <div class="week-navigation">
+      <button id="prev-week" class="week-nav-btn">← Previous Week</button>
+      <span id="week-range" class="week-range-text">Loading...</span>
+      <button id="next-week" class="week-nav-btn">Next Week →</button>
+    </div>
+    <div class="week-grid" id="week-pomodoro-grid">
+      <!-- Weekly pomodoro grid will be populated by JavaScript -->
+    </div>
+    <div class="week-total">
+      <span>Week Total: <strong id="week-total-count">0</strong> 🍅</span>
+    </div>
   </div>
 </div>
 
@@ -351,33 +356,121 @@ excerpt: "Simple daily task tracking system."
   margin-top: 1rem;
 }
 
-/* Quick Help */
-.quick-help {
+/* Weekly Summary */
+.weekly-summary {
   background: #f8f9fa;
   border-radius: 8px;
   padding: 1.5rem;
   border-left: 4px solid #4CAF50;
 }
 
-.quick-help h4 {
+.weekly-summary h4 {
   margin-top: 0;
   color: #4CAF50;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
-.quick-help pre {
-  background: white;
-  padding: 1rem;
-  border-radius: 4px;
-  border: 1px solid #e9ecef;
+.week-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin: 1rem 0;
-  font-size: 0.9rem;
 }
 
-.quick-help code {
-  background: #e9ecef;
-  padding: 0.2rem 0.4rem;
-  border-radius: 3px;
+.week-nav-btn {
+  background: #4CAF50;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
   font-size: 0.9rem;
+  transition: background 0.3s ease;
+}
+
+.week-nav-btn:hover {
+  background: #45a049;
+}
+
+.week-range-text {
+  font-weight: bold;
+  color: #333;
+}
+
+.week-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.week-day {
+  background: white;
+  border-radius: 6px;
+  padding: 0.75rem 0.5rem;
+  text-align: center;
+  border: 1px solid #e9ecef;
+  transition: all 0.3s ease;
+}
+
+.week-day:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.week-day.today {
+  border-color: #4CAF50;
+  background: #f1f8e9;
+}
+
+.day-name {
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: #666;
+  margin-bottom: 0.25rem;
+}
+
+.day-date {
+  font-size: 0.75rem;
+  color: #999;
+  margin-bottom: 0.5rem;
+}
+
+.day-pomodoros {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #4CAF50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+}
+
+.day-bar {
+  width: 100%;
+  height: 8px;
+  background: #e9ecef;
+  border-radius: 4px;
+  margin-top: 0.5rem;
+  overflow: hidden;
+}
+
+.day-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #4CAF50, #81C784);
+  transition: width 0.5s ease;
+}
+
+.week-total {
+  text-align: center;
+  margin-top: 1rem;
+  padding: 0.75rem;
+  background: white;
+  border-radius: 6px;
+  font-size: 1.1rem;
+  color: #333;
 }
 
 /* Responsive Design */
@@ -403,6 +496,75 @@ excerpt: "Simple daily task tracking system."
   
   .task-item {
     padding: 0.5rem;
+  }
+  
+  /* Weekly grid responsive */
+  .week-grid {
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.25rem;
+  }
+  
+  .week-day {
+    padding: 0.5rem 0.25rem;
+  }
+  
+  .day-name {
+    font-size: 0.7rem;
+  }
+  
+  .day-date {
+    font-size: 0.65rem;
+  }
+  
+  .day-pomodoros {
+    font-size: 1rem;
+  }
+  
+  .week-navigation {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .week-nav-btn {
+    width: 100%;
+    max-width: 150px;
+  }
+}
+
+@media (max-width: 480px) {
+  .week-grid {
+    grid-template-columns: repeat(7, minmax(40px, 1fr));
+    gap: 0.125rem;
+  }
+  
+  .week-day {
+    padding: 0.375rem 0.125rem;
+  }
+  
+  .day-name {
+    font-size: 0.6rem;
+  }
+  
+  .day-date {
+    font-size: 0.55rem;
+    margin-bottom: 0.25rem;
+  }
+  
+  .day-pomodoros {
+    font-size: 0.9rem;
+  }
+  
+  .day-bar {
+    height: 6px;
+    margin-top: 0.25rem;
+  }
+  
+  .weekly-summary {
+    padding: 1rem;
+  }
+  
+  .weekly-summary h4 {
+    font-size: 1rem;
   }
 }
 

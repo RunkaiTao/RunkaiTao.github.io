@@ -6,6 +6,7 @@
 class TaskManager {
     constructor() {
         this.currentDate = new Date();
+        this.currentWeekStart = this.getStartOfWeek(new Date());
         this.tasksData = {};
         this.init();
     }
@@ -15,6 +16,7 @@ class TaskManager {
         this.loadTasksData();
         this.initializeDatePicker();
         this.displayTasks();
+        this.displayWeeklySummary();
     }
 
     setupEventListeners() {
@@ -31,6 +33,10 @@ class TaskManager {
             this.updateDateDisplay();
             this.displayTasks();
         });
+        
+        // Weekly navigation
+        document.getElementById('prev-week').addEventListener('click', () => this.changeWeek(-1));
+        document.getElementById('next-week').addEventListener('click', () => this.changeWeek(1));
     }
 
     loadTasksData() {
@@ -42,7 +48,9 @@ class TaskManager {
             ],
             "2025-08-17": [
                 { task: "Team meeting with Prof. Moore", used_pomodoros: 2, expected_pomodoros: 2 },
-                { task: "Code review for distributed GNN project", used_pomodoros: 4, expected_pomodoros: 3 }
+                { task: "Code review for distributed GNN project", used_pomodoros: 4, expected_pomodoros: 3 },
+                { task: "Read papers on K-theoretic Donaldson invariants", used_pomodoros: 1, expected_pomodoros: 4 },
+                { task: "Grocery shopping", used_pomodoros: 1, expected_pomodoros: 1 }
             ],
             "2025-08-16": [
                 { task: "Write progress report", used_pomodoros: 3, expected_pomodoros: 3 },
@@ -202,6 +210,85 @@ class TaskManager {
     hideNoTasks() {
         document.querySelector('.tasks-columns').style.display = 'grid';
         document.getElementById('no-tasks').style.display = 'none';
+    }
+    
+    // Weekly Summary Methods
+    getStartOfWeek(date) {
+        const start = new Date(date);
+        const day = start.getDay();
+        const diff = start.getDate() - day + (day === 0 ? -6 : 1); // Monday as start
+        start.setDate(diff);
+        return start;
+    }
+    
+    changeWeek(weeks) {
+        this.currentWeekStart.setDate(this.currentWeekStart.getDate() + (weeks * 7));
+        this.displayWeeklySummary();
+    }
+    
+    displayWeeklySummary() {
+        const weekGrid = document.getElementById('week-pomodoro-grid');
+        const weekRange = document.getElementById('week-range');
+        const weekTotal = document.getElementById('week-total-count');
+        
+        if (!weekGrid || !weekRange || !weekTotal) return;
+        
+        // Calculate week range
+        const endOfWeek = new Date(this.currentWeekStart);
+        endOfWeek.setDate(this.currentWeekStart.getDate() + 6);
+        
+        const weekRangeText = `${this.currentWeekStart.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} - ${endOfWeek.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}`;
+        weekRange.textContent = weekRangeText;
+        
+        // Generate week grid
+        let weekHTML = '';
+        let totalWeekPomodoros = 0;
+        const today = new Date();
+        const maxPomodoros = this.getMaxPomodorosInWeek();
+        
+        for (let i = 0; i < 7; i++) {
+            const date = new Date(this.currentWeekStart);
+            date.setDate(this.currentWeekStart.getDate() + i);
+            
+            const dayName = date.toLocaleDateString('en-US', { weekday: 'short' });
+            const dayDate = date.getDate();
+            const dateKey = this.formatDateKey(date);
+            const tasks = this.tasksData[dateKey] || [];
+            const dayPomodoros = tasks.reduce((sum, task) => sum + task.used_pomodoros, 0);
+            const isToday = date.toDateString() === today.toDateString();
+            const barWidth = maxPomodoros > 0 ? (dayPomodoros / maxPomodoros) * 100 : 0;
+            
+            totalWeekPomodoros += dayPomodoros;
+            
+            weekHTML += `
+                <div class="week-day ${isToday ? 'today' : ''}">
+                    <div class="day-name">${dayName}</div>
+                    <div class="day-date">${dayDate}</div>
+                    <div class="day-pomodoros">
+                        ${dayPomodoros} <span style="font-size: 0.8em;">🍅</span>
+                    </div>
+                    <div class="day-bar">
+                        <div class="day-bar-fill" style="width: ${barWidth}%"></div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        weekGrid.innerHTML = weekHTML;
+        weekTotal.textContent = totalWeekPomodoros;
+    }
+    
+    getMaxPomodorosInWeek() {
+        let max = 0;
+        for (let i = 0; i < 7; i++) {
+            const date = new Date(this.currentWeekStart);
+            date.setDate(this.currentWeekStart.getDate() + i);
+            const dateKey = this.formatDateKey(date);
+            const tasks = this.tasksData[dateKey] || [];
+            const dayPomodoros = tasks.reduce((sum, task) => sum + task.used_pomodoros, 0);
+            max = Math.max(max, dayPomodoros);
+        }
+        return Math.max(max, 1); // Ensure at least 1 to avoid division by zero
     }
 }
 
