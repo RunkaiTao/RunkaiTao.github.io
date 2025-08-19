@@ -52,7 +52,9 @@ class TaskManager {
 
     loadTasksData() {
         // Load task data with expanded historical data for contribution chart
+        // Sample data spread across 2-3 weeks to demonstrate proper grid layout
         this.tasksData = {
+            // Current week (Week 3)
             "2025-08-18": [
                 { task: "build personal Website", used_pomodoros: 2, expected_pomodoros: 4 },
                 { task: "Groebner basis computation for A1A5 macdonald index", used_pomodoros: 0, expected_pomodoros: 4 }
@@ -60,41 +62,23 @@ class TaskManager {
             "2025-08-17": [
                 { task: "Team meeting with Prof. Moore", used_pomodoros: 2, expected_pomodoros: 2 },
                 { task: "Code review for distributed GNN project", used_pomodoros: 4, expected_pomodoros: 3 },
-                { task: "Read papers on K-theoretic Donaldson invariants", used_pomodoros: 1, expected_pomodoros: 4 },
-                { task: "Grocery shopping", used_pomodoros: 1, expected_pomodoros: 1 }
-            ],
-            "2025-08-16": [
-                { task: "Write progress report", used_pomodoros: 3, expected_pomodoros: 3 },
-                { task: "Implement SGLang optimizations", used_pomodoros: 2, expected_pomodoros: 5 },
-                { task: "Attend physics department seminar", used_pomodoros: 3, expected_pomodoros: 3 },
-                { task: "Exercise at gym", used_pomodoros: 2, expected_pomodoros: 2 },
-                { task: "Plan next week's research activities", used_pomodoros: 1, expected_pomodoros: 2 }
+                { task: "Read papers on K-theoretic Donaldson invariants", used_pomodoros: 1, expected_pomodoros: 4 }
             ],
             "2025-08-15": [
                 { task: "Debug MixGCN performance issues", used_pomodoros: 4, expected_pomodoros: 4 },
-                { task: "Prepare presentation for Amazon internship", used_pomodoros: 5, expected_pomodoros: 4 },
-                { task: "Call family", used_pomodoros: 1, expected_pomodoros: 1 }
+                { task: "Prepare presentation for Amazon internship", used_pomodoros: 5, expected_pomodoros: 4 }
             ],
-            // Add more historical data for contribution chart
             "2025-08-14": [
-                { task: "Research quantum computing applications", used_pomodoros: 6, expected_pomodoros: 6 },
-                { task: "Code refactoring", used_pomodoros: 3, expected_pomodoros: 3 }
+                { task: "Research quantum computing applications", used_pomodoros: 6, expected_pomodoros: 6 }
             ],
             "2025-08-13": [
-                { task: "Literature review", used_pomodoros: 4, expected_pomodoros: 4 },
-                { task: "Data analysis", used_pomodoros: 2, expected_pomodoros: 3 }
+                { task: "Literature review", used_pomodoros: 3, expected_pomodoros: 4 }
             ],
-            "2025-08-12": [
-                { task: "Write research paper", used_pomodoros: 8, expected_pomodoros: 8 },
-                { task: "Lab meeting", used_pomodoros: 2, expected_pomodoros: 2 }
-            ],
+            
+            // Previous week (Week 2)
             "2025-08-11": [
                 { task: "Algorithm implementation", used_pomodoros: 5, expected_pomodoros: 6 },
                 { task: "Documentation", used_pomodoros: 2, expected_pomodoros: 2 }
-            ],
-            "2025-08-10": [
-                { task: "Code review", used_pomodoros: 3, expected_pomodoros: 3 },
-                { task: "Testing", used_pomodoros: 1, expected_pomodoros: 2 }
             ],
             "2025-08-09": [
                 { task: "Conference preparation", used_pomodoros: 7, expected_pomodoros: 7 }
@@ -114,6 +98,8 @@ class TaskManager {
                 { task: "Code debugging", used_pomodoros: 4, expected_pomodoros: 4 },
                 { task: "Meeting preparation", used_pomodoros: 1, expected_pomodoros: 1 }
             ],
+            
+            // Week before (Week 1)
             "2025-08-04": [
                 { task: "Literature review", used_pomodoros: 3, expected_pomodoros: 4 }
             ],
@@ -123,6 +109,15 @@ class TaskManager {
             "2025-08-01": [
                 { task: "Monthly planning", used_pomodoros: 4, expected_pomodoros: 4 },
                 { task: "Code optimization", used_pomodoros: 3, expected_pomodoros: 3 }
+            ],
+            "2025-07-31": [
+                { task: "End of month review", used_pomodoros: 3, expected_pomodoros: 3 }
+            ],
+            "2025-07-30": [
+                { task: "Project presentation", used_pomodoros: 6, expected_pomodoros: 6 }
+            ],
+            "2025-07-29": [
+                { task: "Code testing", used_pomodoros: 4, expected_pomodoros: 4 }
             ]
         };
     }
@@ -420,10 +415,14 @@ class TaskManager {
         const totalDays = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24)) + 1;
         const weeks = Math.ceil(totalDays / 7);
         
-        // Update grid template
+        // Create GitHub-style grid: weeks as columns, days as rows
         chartContainer.style.gridTemplateColumns = `repeat(${weeks}, 1fr)`;
+        chartContainer.style.gridTemplateRows = `repeat(7, 1fr)`;
         
-        // Generate squares
+        // Create a grid array to position elements correctly
+        const grid = Array(7).fill(null).map(() => Array(weeks).fill(null));
+        
+        // Fill the grid week by week
         const currentDate = new Date(startDate);
         for (let week = 0; week < weeks; week++) {
             for (let day = 0; day < 7; day++) {
@@ -434,6 +433,8 @@ class TaskManager {
                 square.className = `contribution-day level-${dayData ? dayData.level : 0}`;
                 square.dataset.date = dateKey;
                 square.dataset.count = dayData ? dayData.count : 0;
+                square.style.gridColumn = week + 1;
+                square.style.gridRow = day + 1;
                 
                 // Add tooltip functionality
                 this.addContributionTooltip(square);

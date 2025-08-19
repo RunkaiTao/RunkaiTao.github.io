@@ -90,8 +90,19 @@ excerpt: "Simple daily task tracking system."
     </div>
     
     <div class="contribution-chart-container">
-      <div class="contribution-chart" id="contribution-chart">
-        <!-- Contribution chart will be populated by JavaScript -->
+      <div class="contribution-grid">
+        <div class="contribution-weekdays">
+          <div class="weekday-label">Sun</div>
+          <div class="weekday-label">Mon</div>
+          <div class="weekday-label">Tue</div>
+          <div class="weekday-label">Wed</div>
+          <div class="weekday-label">Thu</div>
+          <div class="weekday-label">Fri</div>
+          <div class="weekday-label">Sat</div>
+        </div>
+        <div class="contribution-chart" id="contribution-chart">
+          <!-- Contribution chart will be populated by JavaScript -->
+        </div>
       </div>
       
       <div class="contribution-legend">
@@ -699,18 +710,18 @@ excerpt: "Simple daily task tracking system."
 
 .contribution-chart {
   display: grid;
-  grid-template-columns: repeat(53, 1fr);
   gap: 3px;
   padding: 1rem;
   background: #f6f8fa;
   border-radius: 6px;
   margin-bottom: 1rem;
   overflow-x: auto;
+  min-height: 120px;
 }
 
 .contribution-day {
-  width: 11px;
-  height: 11px;
+  width: 14px;
+  height: 14px;
   border-radius: 2px;
   cursor: pointer;
   position: relative;
@@ -756,8 +767,8 @@ excerpt: "Simple daily task tracking system."
 }
 
 .legend-square {
-  width: 10px;
-  height: 10px;
+  width: 14px;
+  height: 14px;
   border-radius: 2px;
 }
 
@@ -824,18 +835,23 @@ excerpt: "Simple daily task tracking system."
 /* Weekday labels */
 .contribution-weekdays {
   display: grid;
-  grid-template-rows: repeat(7, 11px);
+  grid-template-rows: repeat(7, 14px);
   gap: 3px;
   margin-right: 0.5rem;
   padding: 1rem 0;
+  align-items: center;
 }
 
 .weekday-label {
   font-size: 0.75rem;
   color: #656d76;
   text-align: right;
-  line-height: 11px;
+  line-height: 14px;
   padding-right: 0.5rem;
+  height: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .contribution-grid {
@@ -893,13 +909,13 @@ excerpt: "Simple daily task tracking system."
   }
   
   .contribution-day {
-    width: 8px;
-    height: 8px;
+    width: 10px;
+    height: 10px;
   }
   
   .legend-square {
-    width: 8px;
-    height: 8px;
+    width: 10px;
+    height: 10px;
   }
 }
 </style>
