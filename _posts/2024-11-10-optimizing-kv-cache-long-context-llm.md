@@ -12,7 +12,11 @@ tags:
 excerpt: "Deep dive into KV cache optimization techniques for long-context language model inference, including hybrid caching strategies and memory management."
 ---
 
-As large language models (LLMs) increasingly handle longer contexts, efficient key-value (KV) cache management becomes critical for practical deployment. This post explores advanced optimization techniques, drawing from recent work on hybrid KV cache systems.
+As large language models (LLMs) increasingly handle longer contexts, efficient key-value (KV) cache management becomes critical for practical deployment. This post explores advanced optimization techniques, drawing from recent work on hybrid KV cache systems.$\mathcal{a}$ 
+
+$$
+\sum_{\sigma} \mathrm{L} \mathscr{R} \int\otimes
+$$
 
 ## Understanding KV Cache Fundamentals
 
