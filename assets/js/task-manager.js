@@ -145,7 +145,7 @@ class TaskManager {
             <div class="task-item ${className}">
                 <i class="fas ${icon} task-icon"></i>
                 <div class="task-content">
-                    <div class="task-text">${task.task.replace(/\\n/g, '<br>')}</div>
+                    <div class="task-text">${task.task.replace(/\n/g, '<br>')}</div>
                     <div class="pomodoro-info">
                         <span class="pomodoro-count">🍅 ${task.used_pomodoros}/${task.expected_pomodoros}</span>
                         <div class="pomodoro-progress">
