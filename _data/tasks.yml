@@ -10,7 +10,7 @@
     used_pomodoros: 0
     expected_pomodoros: 4
   - task: |
-      K-theoretic SQM calcuation revisit
+      K-theoretic SQM calculation revisit
     used_pomodoros: 0
     expected_pomodoros: 4
 
@@ -18,7 +18,7 @@
   - task: |
       build personal Website:
       1. include task page
-      2. link pomodoro data
+      2. link pomodoros data
       3. change protected style blog
     used_pomodoros: 5
     expected_pomodoros: 4
