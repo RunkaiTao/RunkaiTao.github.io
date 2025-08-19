@@ -297,32 +297,4 @@ document.addEventListener('DOMContentLoaded', () => {
     window.taskManager = new TaskManager();
 });
 
-// Function to sync pomodoro data with activity dashboard
-function syncWithActivityDashboard() {
-    if (!window.taskManager) return;
-    
-    // Calculate pomodoro totals for each date
-    const pomodoroData = {};
-    
-    Object.entries(window.taskManager.tasksData).forEach(([date, tasks]) => {
-        const totalUsed = tasks.reduce((sum, task) => sum + task.used_pomodoros, 0);
-        if (totalUsed > 0) {
-            pomodoroData[date] = totalUsed;
-        }
-    });
-    
-    // Make data available globally for activity dashboard
-    window.tasksPomodoroData = pomodoroData;
-    
-    // If activity dashboard exists, trigger update
-    if (window.activityDashboard && typeof window.activityDashboard.updatePomodoroData === 'function') {
-        window.activityDashboard.updatePomodoroData(pomodoroData);
-    }
-    
-    console.log('Synced pomodoro data from tasks:', pomodoroData);
-}
 
-// Auto-sync when task manager loads
-document.addEventListener('DOMContentLoaded', () => {
-    setTimeout(syncWithActivityDashboard, 1000); // Wait for task manager to initialize
-});
