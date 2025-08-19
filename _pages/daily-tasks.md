@@ -149,6 +149,11 @@ excerpt: "Simple daily task tracking system."
   </div>
 </div>
 
+<script>
+  // Inject Jekyll tasks data into JavaScript
+  window.tasksData = {{ site.data.tasks | jsonify }};
+</script>
+
 <script src="{{ '/assets/js/task-manager.js' | relative_url }}"></script>
 
 <style>

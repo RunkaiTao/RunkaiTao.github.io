@@ -51,116 +51,15 @@ class TaskManager {
     }
 
     loadTasksData() {
-        // Load task data with expanded historical data for contribution chart
-        // Sample data spread across 2-3 weeks to demonstrate proper grid layout
-        this.tasksData = {
-            // Current week (Week 3)
-            "2025-08-18": [
-                { task: "build personal Website", used_pomodoros: 2, expected_pomodoros: 4 },
-                { task: "Groebner basis computation for A1A5 macdonald index", used_pomodoros: 0, expected_pomodoros: 4 }
-            ],
-            "2025-08-17": [
-                { task: "Team meeting with Prof. Moore", used_pomodoros: 2, expected_pomodoros: 2 },
-                { task: "Code review for distributed GNN project", used_pomodoros: 4, expected_pomodoros: 3 },
-                { task: "Read papers on K-theoretic Donaldson invariants", used_pomodoros: 1, expected_pomodoros: 4 }
-            ],
-            "2025-08-15": [
-                { task: "Debug MixGCN performance issues", used_pomodoros: 4, expected_pomodoros: 4 },
-                { task: "Prepare presentation for Amazon internship", used_pomodoros: 5, expected_pomodoros: 4 }
-            ],
-            "2025-08-14": [
-                { task: "Research quantum computing applications", used_pomodoros: 6, expected_pomodoros: 6 }
-            ],
-            "2025-08-13": [
-                { task: "Literature review", used_pomodoros: 3, expected_pomodoros: 4 }
-            ],
-            
-            // Previous week (Week 2)
-            "2025-08-11": [
-                { task: "Algorithm implementation", used_pomodoros: 5, expected_pomodoros: 6 },
-                { task: "Documentation", used_pomodoros: 2, expected_pomodoros: 2 }
-            ],
-            "2025-08-09": [
-                { task: "Conference preparation", used_pomodoros: 7, expected_pomodoros: 7 }
-            ],
-            "2025-08-08": [
-                { task: "Research reading", used_pomodoros: 4, expected_pomodoros: 4 },
-                { task: "Experiment design", used_pomodoros: 3, expected_pomodoros: 3 }
-            ],
-            "2025-08-07": [
-                { task: "Data collection", used_pomodoros: 5, expected_pomodoros: 5 },
-                { task: "Analysis", used_pomodoros: 2, expected_pomodoros: 2 }
-            ],
-            "2025-08-06": [
-                { task: "Paper writing", used_pomodoros: 6, expected_pomodoros: 6 }
-            ],
-            "2025-08-05": [
-                { task: "Code debugging", used_pomodoros: 4, expected_pomodoros: 4 },
-                { task: "Meeting preparation", used_pomodoros: 1, expected_pomodoros: 1 }
-            ],
-            
-            // Week before (Week 1)
-            "2025-08-04": [
-                { task: "Literature review", used_pomodoros: 3, expected_pomodoros: 4 }
-            ],
-            "2025-08-02": [
-                { task: "Weekend research", used_pomodoros: 2, expected_pomodoros: 2 }
-            ],
-            "2025-08-01": [
-                { task: "Monthly planning", used_pomodoros: 4, expected_pomodoros: 4 },
-                { task: "Code optimization", used_pomodoros: 3, expected_pomodoros: 3 }
-            ],
-            "2025-07-31": [
-                { task: "End of month review", used_pomodoros: 3, expected_pomodoros: 3 }
-            ],
-            "2025-07-30": [
-                { task: "Project presentation", used_pomodoros: 6, expected_pomodoros: 6 }
-            ],
-            "2025-07-29": [
-                { task: "Code testing", used_pomodoros: 4, expected_pomodoros: 4 }
-            ],
-            
-            // Additional historical data for better chart visualization
-            "2025-07-25": [
-                { task: "Research documentation", used_pomodoros: 3, expected_pomodoros: 3 }
-            ],
-            "2025-07-22": [
-                { task: "Team collaboration", used_pomodoros: 2, expected_pomodoros: 2 }
-            ],
-            "2025-07-18": [
-                { task: "System testing", used_pomodoros: 5, expected_pomodoros: 5 }
-            ],
-            "2025-07-15": [
-                { task: "Data processing", used_pomodoros: 4, expected_pomodoros: 4 }
-            ],
-            "2025-07-10": [
-                { task: "Feature development", used_pomodoros: 6, expected_pomodoros: 6 }
-            ],
-            "2025-07-05": [
-                { task: "Bug fixes", used_pomodoros: 3, expected_pomodoros: 3 }
-            ],
-            "2025-07-01": [
-                { task: "Monthly kickoff", used_pomodoros: 2, expected_pomodoros: 2 }
-            ],
-            "2025-06-28": [
-                { task: "End of sprint", used_pomodoros: 4, expected_pomodoros: 4 }
-            ],
-            "2025-06-25": [
-                { task: "Code review", used_pomodoros: 3, expected_pomodoros: 3 }
-            ],
-            "2025-06-20": [
-                { task: "Architecture planning", used_pomodoros: 5, expected_pomodoros: 5 }
-            ],
-            "2025-06-15": [
-                { task: "Performance optimization", used_pomodoros: 7, expected_pomodoros: 7 }
-            ],
-            "2025-06-10": [
-                { task: "Database design", used_pomodoros: 4, expected_pomodoros: 4 }
-            ],
-            "2025-06-05": [
-                { task: "API development", used_pomodoros: 6, expected_pomodoros: 6 }
-            ]
-        };
+        // Load task data from Jekyll's _data/tasks.yml
+        if (window.tasksData) {
+            // Use Jekyll data if available
+            this.tasksData = window.tasksData;
+        } else {
+            // Fallback to empty data if Jekyll data is not available
+            console.warn('No tasks data found from Jekyll. Make sure _data/tasks.yml exists.');
+            this.tasksData = {};
+        }
     }
 
     initializeDatePicker() {
