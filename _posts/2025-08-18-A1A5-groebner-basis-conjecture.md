@@ -8,9 +8,6 @@ tags:
   - superconformal index
   - groebner basis
   - mathematica
-layout: protected
-protected: true
-password_hash: "efde1a862bf371c1778a71d1dd488800e262bb552a26523fa848f0f3b5dc1cdf"
 excerpt: "Exploring a generic formula for groebner basis of A1A5 Macdonald index."
 ---
 
