@@ -10,7 +10,7 @@ tags:
 excerpt: "Reflections on effective research practices in theoretical physics and mathematical physics."
 ---
 
-Conducting research in theoretical physics requires a unique blend of mathematical rigor, physical intuition, and computational skills. Here are some methodological insights I've gathered during my PhD journey.
+Conducting research in theoretical physics requires a unique blend of mathematical rigor, physical intuition, and computational skills. Here are some methodological insights I've gathered during my PhD journey. $a$
 
 ## Mathematical Foundations
 
