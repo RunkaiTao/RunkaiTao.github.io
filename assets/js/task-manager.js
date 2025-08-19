@@ -24,26 +24,25 @@ class TaskManager {
         
         // Date picker
         document.getElementById('date-picker').addEventListener('change', (e) => {
-            this.currentDate = new Date(e.target.value);
+            // Fix date parsing to avoid timezone issues
+            const dateValue = e.target.value; // YYYY-MM-DD format
+            const [year, month, day] = dateValue.split('-').map(Number);
+            this.currentDate = new Date(year, month - 1, day); // month is 0-indexed
+            this.updateDateDisplay();
             this.displayTasks();
         });
     }
 
     loadTasksData() {
-        // Load task data with pomodoro tracking
+        // Load task data matching current YAML content
         this.tasksData = {
             "2025-08-18": [
-                { task: "Complete research proposal for string theory project", used_pomodoros: 2, expected_pomodoros: 4 },
-                { task: "Review paper submissions for conference", used_pomodoros: 3, expected_pomodoros: 2 },
-                { task: "Prepare seminar slides on AdS/CFT correspondence", used_pomodoros: 1, expected_pomodoros: 3 },
-                { task: "Reply to collaboration emails", used_pomodoros: 1, expected_pomodoros: 1 },
-                { task: "Update personal website blog post", used_pomodoros: 0, expected_pomodoros: 2 }
+                { task: "build personal Website", used_pomodoros: 2, expected_pomodoros: 4 },
+                { task: "Groebner basis computation for A1A5 macdonald index", used_pomodoros: 0, expected_pomodoros: 4 }
             ],
             "2025-08-17": [
                 { task: "Team meeting with Prof. Moore", used_pomodoros: 2, expected_pomodoros: 2 },
-                { task: "Code review for distributed GNN project", used_pomodoros: 4, expected_pomodoros: 3 },
-                { task: "Read papers on K-theoretic Donaldson invariants", used_pomodoros: 1, expected_pomodoros: 4 },
-                { task: "Grocery shopping", used_pomodoros: 1, expected_pomodoros: 1 }
+                { task: "Code review for distributed GNN project", used_pomodoros: 4, expected_pomodoros: 3 }
             ],
             "2025-08-16": [
                 { task: "Write progress report", used_pomodoros: 3, expected_pomodoros: 3 },

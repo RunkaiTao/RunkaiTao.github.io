@@ -2,21 +2,12 @@
 # Format: used_pomodoros/expected_pomodoros (finished auto-calculated when used >= expected)
 
 "2025-08-18":
-  - task: "Complete research proposal for string theory project"
+  - task: "build personal Website "
     used_pomodoros: 2
     expected_pomodoros: 4
-  - task: "Review paper submissions for conference"
-    used_pomodoros: 3
-    expected_pomodoros: 2
-  - task: "Prepare seminar slides on AdS/CFT correspondence"
-    used_pomodoros: 1
-    expected_pomodoros: 3
-  - task: "Reply to collaboration emails"
-    used_pomodoros: 1
-    expected_pomodoros: 1
-  - task: "Update personal website blog post"
+  - task: "Groebner basis computation for A1A5 macdonald index"
     used_pomodoros: 0
-    expected_pomodoros: 2
+    expected_pomodoros: 4
 
 "2025-08-17":
   - task: "Team meeting with Prof. Moore"
