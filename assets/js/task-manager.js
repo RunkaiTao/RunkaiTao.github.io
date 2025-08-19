@@ -17,6 +17,7 @@ class TaskManager {
         this.initializeDatePicker();
         this.displayTasks();
         this.displayWeeklySummary();
+        this.initializeContributionChart();
     }
 
     setupEventListeners() {
@@ -37,10 +38,20 @@ class TaskManager {
         // Weekly navigation
         document.getElementById('prev-week').addEventListener('click', () => this.changeWeek(-1));
         document.getElementById('next-week').addEventListener('click', () => this.changeWeek(1));
+        
+        // Contribution chart period buttons
+        document.querySelectorAll('.period-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                document.querySelectorAll('.period-btn').forEach(b => b.classList.remove('active'));
+                e.target.classList.add('active');
+                const months = parseInt(e.target.dataset.months);
+                this.displayContributionChart(months);
+            });
+        });
     }
 
     loadTasksData() {
-        // Load task data matching current YAML content
+        // Load task data with expanded historical data for contribution chart
         this.tasksData = {
             "2025-08-18": [
                 { task: "build personal Website", used_pomodoros: 2, expected_pomodoros: 4 },
@@ -63,6 +74,55 @@ class TaskManager {
                 { task: "Debug MixGCN performance issues", used_pomodoros: 4, expected_pomodoros: 4 },
                 { task: "Prepare presentation for Amazon internship", used_pomodoros: 5, expected_pomodoros: 4 },
                 { task: "Call family", used_pomodoros: 1, expected_pomodoros: 1 }
+            ],
+            // Add more historical data for contribution chart
+            "2025-08-14": [
+                { task: "Research quantum computing applications", used_pomodoros: 6, expected_pomodoros: 6 },
+                { task: "Code refactoring", used_pomodoros: 3, expected_pomodoros: 3 }
+            ],
+            "2025-08-13": [
+                { task: "Literature review", used_pomodoros: 4, expected_pomodoros: 4 },
+                { task: "Data analysis", used_pomodoros: 2, expected_pomodoros: 3 }
+            ],
+            "2025-08-12": [
+                { task: "Write research paper", used_pomodoros: 8, expected_pomodoros: 8 },
+                { task: "Lab meeting", used_pomodoros: 2, expected_pomodoros: 2 }
+            ],
+            "2025-08-11": [
+                { task: "Algorithm implementation", used_pomodoros: 5, expected_pomodoros: 6 },
+                { task: "Documentation", used_pomodoros: 2, expected_pomodoros: 2 }
+            ],
+            "2025-08-10": [
+                { task: "Code review", used_pomodoros: 3, expected_pomodoros: 3 },
+                { task: "Testing", used_pomodoros: 1, expected_pomodoros: 2 }
+            ],
+            "2025-08-09": [
+                { task: "Conference preparation", used_pomodoros: 7, expected_pomodoros: 7 }
+            ],
+            "2025-08-08": [
+                { task: "Research reading", used_pomodoros: 4, expected_pomodoros: 4 },
+                { task: "Experiment design", used_pomodoros: 3, expected_pomodoros: 3 }
+            ],
+            "2025-08-07": [
+                { task: "Data collection", used_pomodoros: 5, expected_pomodoros: 5 },
+                { task: "Analysis", used_pomodoros: 2, expected_pomodoros: 2 }
+            ],
+            "2025-08-06": [
+                { task: "Paper writing", used_pomodoros: 6, expected_pomodoros: 6 }
+            ],
+            "2025-08-05": [
+                { task: "Code debugging", used_pomodoros: 4, expected_pomodoros: 4 },
+                { task: "Meeting preparation", used_pomodoros: 1, expected_pomodoros: 1 }
+            ],
+            "2025-08-04": [
+                { task: "Literature review", used_pomodoros: 3, expected_pomodoros: 4 }
+            ],
+            "2025-08-02": [
+                { task: "Weekend research", used_pomodoros: 2, expected_pomodoros: 2 }
+            ],
+            "2025-08-01": [
+                { task: "Monthly planning", used_pomodoros: 4, expected_pomodoros: 4 },
+                { task: "Code optimization", used_pomodoros: 3, expected_pomodoros: 3 }
             ]
         };
     }
@@ -289,6 +349,180 @@ class TaskManager {
             max = Math.max(max, dayPomodoros);
         }
         return Math.max(max, 1); // Ensure at least 1 to avoid division by zero
+    }
+    
+    // Contribution Chart Methods
+    initializeContributionChart() {
+        this.displayContributionChart(3); // Default to 3 months
+    }
+    
+    generateContributionData(months) {
+        const endDate = new Date();
+        const startDate = new Date();
+        startDate.setMonth(endDate.getMonth() - months);
+        
+        const data = {};
+        const currentDate = new Date(startDate);
+        
+        // Generate all dates in the range
+        while (currentDate <= endDate) {
+            const dateKey = this.formatDateKey(currentDate);
+            const tasks = this.tasksData[dateKey] || [];
+            const pomodoroCount = tasks.reduce((sum, task) => sum + task.used_pomodoros, 0);
+            
+            data[dateKey] = {
+                date: new Date(currentDate),
+                count: pomodoroCount,
+                level: this.getContributionLevel(pomodoroCount)
+            };
+            
+            currentDate.setDate(currentDate.getDate() + 1);
+        }
+        
+        return data;
+    }
+    
+    getContributionLevel(count) {
+        if (count === 0) return 0;
+        if (count <= 2) return 1;
+        if (count <= 5) return 2;
+        if (count <= 8) return 3;
+        return 4;
+    }
+    
+    displayContributionChart(months) {
+        const contributionData = this.generateContributionData(months);
+        this.renderContributionChart(contributionData);
+        this.updateContributionStats(contributionData);
+    }
+    
+    renderContributionChart(data) {
+        const chartContainer = document.getElementById('contribution-chart');
+        if (!chartContainer) return;
+        
+        // Clear existing content
+        chartContainer.innerHTML = '';
+        
+        // Create the grid structure
+        const dates = Object.keys(data).sort();
+        if (dates.length === 0) return;
+        
+        // Start from Sunday of the first week
+        const firstDate = new Date(dates[0]);
+        const startDate = new Date(firstDate);
+        startDate.setDate(firstDate.getDate() - firstDate.getDay());
+        
+        // Calculate number of weeks needed
+        const lastDate = new Date(dates[dates.length - 1]);
+        const endDate = new Date(lastDate);
+        endDate.setDate(lastDate.getDate() + (6 - lastDate.getDay()));
+        
+        const totalDays = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24)) + 1;
+        const weeks = Math.ceil(totalDays / 7);
+        
+        // Update grid template
+        chartContainer.style.gridTemplateColumns = `repeat(${weeks}, 1fr)`;
+        
+        // Generate squares
+        const currentDate = new Date(startDate);
+        for (let week = 0; week < weeks; week++) {
+            for (let day = 0; day < 7; day++) {
+                const dateKey = this.formatDateKey(currentDate);
+                const dayData = data[dateKey];
+                
+                const square = document.createElement('div');
+                square.className = `contribution-day level-${dayData ? dayData.level : 0}`;
+                square.dataset.date = dateKey;
+                square.dataset.count = dayData ? dayData.count : 0;
+                
+                // Add tooltip functionality
+                this.addContributionTooltip(square);
+                
+                chartContainer.appendChild(square);
+                currentDate.setDate(currentDate.getDate() + 1);
+            }
+        }
+    }
+    
+    addContributionTooltip(square) {
+        let tooltip = null;
+        
+        square.addEventListener('mouseenter', (e) => {
+            const date = new Date(e.target.dataset.date);
+            const count = parseInt(e.target.dataset.count);
+            const dateStr = date.toLocaleDateString('en-US', { 
+                weekday: 'short', 
+                month: 'short', 
+                day: 'numeric', 
+                year: 'numeric' 
+            });
+            
+            tooltip = document.createElement('div');
+            tooltip.className = 'contribution-tooltip';
+            tooltip.innerHTML = `
+                <div><strong>${count} pomodoro${count !== 1 ? 's' : ''}</strong></div>
+                <div>${dateStr}</div>
+            `;
+            
+            document.body.appendChild(tooltip);
+            
+            const rect = e.target.getBoundingClientRect();
+            tooltip.style.left = `${rect.left + rect.width / 2}px`;
+            tooltip.style.top = `${rect.top}px`;
+        });
+        
+        square.addEventListener('mouseleave', () => {
+            if (tooltip) {
+                tooltip.remove();
+                tooltip = null;
+            }
+        });
+        
+        square.addEventListener('click', (e) => {
+            const date = new Date(e.target.dataset.date);
+            this.currentDate = date;
+            this.initializeDatePicker();
+            this.displayTasks();
+        });
+    }
+    
+    updateContributionStats(data) {
+        const dates = Object.keys(data).sort();
+        const values = dates.map(date => data[date]);
+        
+        // Calculate total pomodoros
+        const totalPomodoros = values.reduce((sum, day) => sum + day.count, 0);
+        
+        // Calculate current streak
+        let currentStreak = 0;
+        const today = new Date();
+        for (let i = dates.length - 1; i >= 0; i--) {
+            const date = new Date(dates[i]);
+            if (date > today) continue; // Skip future dates
+            
+            if (data[dates[i]].count > 0) {
+                currentStreak++;
+            } else {
+                break;
+            }
+        }
+        
+        // Calculate longest streak
+        let longestStreak = 0;
+        let tempStreak = 0;
+        values.forEach(day => {
+            if (day.count > 0) {
+                tempStreak++;
+                longestStreak = Math.max(longestStreak, tempStreak);
+            } else {
+                tempStreak = 0;
+            }
+        });
+        
+        // Update display
+        document.getElementById('total-pomodoros').textContent = totalPomodoros;
+        document.getElementById('current-streak').textContent = currentStreak;
+        document.getElementById('longest-streak').textContent = longestStreak;
     }
 }
 

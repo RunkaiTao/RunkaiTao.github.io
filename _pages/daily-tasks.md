@@ -63,6 +63,51 @@ excerpt: "Simple daily task tracking system."
     </div>
   </div>
 
+  <!-- Pomodoro Contribution Chart -->
+  <div class="contribution-summary">
+    <div class="contribution-header">
+      <h4><i class="fas fa-calendar-alt"></i> Pomodoro Activity</h4>
+      <div class="contribution-controls">
+        <button id="period-3m" class="period-btn active" data-months="3">3 months</button>
+        <button id="period-6m" class="period-btn" data-months="6">6 months</button>
+        <button id="period-12m" class="period-btn" data-months="12">12 months</button>
+      </div>
+    </div>
+    
+    <div class="contribution-stats">
+      <div class="stat-item">
+        <span class="stat-number" id="total-pomodoros">0</span>
+        <span class="stat-label">total pomodoros</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number" id="current-streak">0</span>
+        <span class="stat-label">day current streak</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number" id="longest-streak">0</span>
+        <span class="stat-label">day longest streak</span>
+      </div>
+    </div>
+    
+    <div class="contribution-chart-container">
+      <div class="contribution-chart" id="contribution-chart">
+        <!-- Contribution chart will be populated by JavaScript -->
+      </div>
+      
+      <div class="contribution-legend">
+        <span class="legend-text">Less</span>
+        <div class="legend-squares">
+          <div class="legend-square level-0" title="0 pomodoros"></div>
+          <div class="legend-square level-1" title="1-2 pomodoros"></div>
+          <div class="legend-square level-2" title="3-5 pomodoros"></div>
+          <div class="legend-square level-3" title="6-8 pomodoros"></div>
+          <div class="legend-square level-4" title="9+ pomodoros"></div>
+        </div>
+        <span class="legend-text">More</span>
+      </div>
+    </div>
+  </div>
+
   <!-- Weekly Pomodoro Summary -->
   <div class="weekly-summary">
     <h4><i class="fas fa-chart-bar"></i> This Week's Pomodoros</h4>
@@ -568,6 +613,236 @@ excerpt: "Simple daily task tracking system."
   }
 }
 
+/* Contribution Chart Styles */
+.contribution-summary {
+  background: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  border: 1px solid #e1e4e8;
+}
+
+.contribution-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.contribution-header h4 {
+  margin: 0;
+  color: #24292e;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.contribution-controls {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.period-btn {
+  background: #f6f8fa;
+  border: 1px solid #d0d7de;
+  border-radius: 6px;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #656d76;
+}
+
+.period-btn:hover {
+  background: #f3f4f6;
+  border-color: #c4c9d0;
+}
+
+.period-btn.active {
+  background: #0969da;
+  border-color: #0969da;
+  color: white;
+}
+
+.contribution-stats {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: #f6f8fa;
+  border-radius: 6px;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.stat-number {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #24292e;
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  color: #656d76;
+  margin-top: 0.25rem;
+}
+
+.contribution-chart-container {
+  position: relative;
+}
+
+.contribution-chart {
+  display: grid;
+  grid-template-columns: repeat(53, 1fr);
+  gap: 3px;
+  padding: 1rem;
+  background: #f6f8fa;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  overflow-x: auto;
+}
+
+.contribution-day {
+  width: 11px;
+  height: 11px;
+  border-radius: 2px;
+  cursor: pointer;
+  position: relative;
+}
+
+/* Contribution levels with GitHub-style colors */
+.contribution-day.level-0 {
+  background-color: #ebedf0;
+}
+
+.contribution-day.level-1 {
+  background-color: #9be9a8;
+}
+
+.contribution-day.level-2 {
+  background-color: #40c463;
+}
+
+.contribution-day.level-3 {
+  background-color: #30a14e;
+}
+
+.contribution-day.level-4 {
+  background-color: #216e39;
+}
+
+.contribution-legend {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  color: #656d76;
+}
+
+.legend-text {
+  font-size: 0.75rem;
+}
+
+.legend-squares {
+  display: flex;
+  gap: 2px;
+}
+
+.legend-square {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+}
+
+.legend-square.level-0 {
+  background-color: #ebedf0;
+}
+
+.legend-square.level-1 {
+  background-color: #9be9a8;
+}
+
+.legend-square.level-2 {
+  background-color: #40c463;
+}
+
+.legend-square.level-3 {
+  background-color: #30a14e;
+}
+
+.legend-square.level-4 {
+  background-color: #216e39;
+}
+
+/* Tooltip for contribution chart */
+.contribution-tooltip {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  z-index: 1000;
+  pointer-events: none;
+  white-space: nowrap;
+  transform: translate(-50%, -100%);
+  margin-top: -8px;
+}
+
+.contribution-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 4px solid transparent;
+  border-top-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Month labels */
+.contribution-months {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 3px;
+  margin-bottom: 0.5rem;
+  padding: 0 1rem;
+}
+
+.month-label {
+  font-size: 0.75rem;
+  color: #656d76;
+  text-align: center;
+}
+
+/* Weekday labels */
+.contribution-weekdays {
+  display: grid;
+  grid-template-rows: repeat(7, 11px);
+  gap: 3px;
+  margin-right: 0.5rem;
+  padding: 1rem 0;
+}
+
+.weekday-label {
+  font-size: 0.75rem;
+  color: #656d76;
+  text-align: right;
+  line-height: 11px;
+  padding-right: 0.5rem;
+}
+
+.contribution-grid {
+  display: flex;
+  align-items: flex-start;
+}
+
 /* Loading State */
 .loading {
   text-align: center;
@@ -583,5 +858,48 @@ excerpt: "Simple daily task tracking system."
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+/* Responsive adjustments for contribution chart */
+@media (max-width: 768px) {
+  .contribution-header {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: stretch;
+  }
+  
+  .contribution-controls {
+    justify-content: center;
+  }
+  
+  .period-btn {
+    flex: 1;
+  }
+  
+  .contribution-stats {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+  
+  .stat-item {
+    align-items: center;
+  }
+  
+  .contribution-chart {
+    grid-template-columns: repeat(auto-fit, minmax(8px, 1fr));
+    gap: 2px;
+    padding: 0.75rem;
+  }
+  
+  .contribution-day {
+    width: 8px;
+    height: 8px;
+  }
+  
+  .legend-square {
+    width: 8px;
+    height: 8px;
+  }
 }
 </style>
