@@ -9,7 +9,8 @@
       "Bash(python3:*)",
       "Bash(node:*)",
       "Bash(ls:*)",
-      "Bash(cp:*)"
+      "Bash(cp:*)",
+      "Bash(open test-formula.html)"
     ],
     "deny": []
   }

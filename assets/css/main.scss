@@ -147,3 +147,168 @@
     image-rendering: optimize-contrast;
   }
 }
+
+/* Mathematical Formula Styling */
+
+/* MathJax formula container styling */
+mjx-container {
+  margin: 0.5rem 0;
+}
+
+/* Display math (block formulas) */
+mjx-container[display="true"] {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-left: 4px solid #007bff;
+  border-radius: 4px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-width: 100%;
+}
+
+/* Inline math styling */
+mjx-container[display="false"] {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 0.2rem;
+}
+
+/* Horizontal scrolling for long formulas */
+.formula-scroll {
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  max-width: 100% !important;
+  scrollbar-width: thin;
+  scrollbar-color: #007bff #f1f1f1;
+}
+
+.formula-scroll::-webkit-scrollbar {
+  height: 8px;
+}
+
+.formula-scroll::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.formula-scroll::-webkit-scrollbar-thumb {
+  background: #007bff;
+  border-radius: 4px;
+}
+
+.formula-scroll::-webkit-scrollbar-thumb:hover {
+  background: #0056b3;
+}
+
+/* Formula numbering for display equations */
+mjx-container[display="true"] mjx-assistive-mml {
+  position: relative;
+}
+
+/* Long equation styling with enhanced readability */
+.long-equation {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  padding: 1.25rem;
+  margin: 2rem 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.long-equation::before {
+  content: "📐";
+  position: absolute;
+  top: 0.5rem;
+  right: 0.75rem;
+  font-size: 1.2rem;
+  opacity: 0.6;
+}
+
+/* Multi-line equation alignment */
+.aligned-equations {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+/* Theorem and proof styling */
+.theorem, .proof, .definition, .lemma {
+  background: #fff;
+  border: 1px solid #dee2e6;
+  border-left: 4px solid #28a745;
+  border-radius: 4px;
+  padding: 1rem;
+  margin: 1.5rem 0;
+}
+
+.theorem::before {
+  content: "Theorem: ";
+  font-weight: bold;
+  color: #28a745;
+}
+
+.proof::before {
+  content: "Proof: ";
+  font-weight: bold;
+  color: #17a2b8;
+}
+
+.definition::before {
+  content: "Definition: ";
+  font-weight: bold;
+  color: #6f42c1;
+}
+
+.lemma::before {
+  content: "Lemma: ";
+  font-weight: bold;
+  color: #fd7e14;
+}
+
+/* Responsive formula handling */
+@media (max-width: 768px) {
+  mjx-container[display="true"] {
+    padding: 0.75rem 0.5rem;
+    margin: 1rem 0;
+    font-size: 0.9rem;
+  }
+  
+  .long-equation {
+    padding: 1rem 0.75rem;
+    margin: 1.5rem 0;
+  }
+  
+  .formula-scroll {
+    font-size: 0.85rem;
+  }
+}
+
+/* Dark mode support for formulas */
+@media (prefers-color-scheme: dark) {
+  mjx-container[display="true"] {
+    background: #2d3748;
+    border-left-color: #4299e1;
+    color: #e2e8f0;
+  }
+  
+  .long-equation {
+    background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+    border-color: #4a5568;
+    color: #e2e8f0;
+  }
+  
+  .theorem, .proof, .definition, .lemma {
+    background: #2d3748;
+    border-color: #4a5568;
+    color: #e2e8f0;
+  }
+  
+  .formula-scroll::-webkit-scrollbar-track {
+    background: #4a5568;
+  }
+  
+  .formula-scroll::-webkit-scrollbar-thumb {
+    background: #4299e1;
+  }
+}

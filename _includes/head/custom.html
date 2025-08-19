@@ -1,0 +1,56 @@
+<!-- MathJax Configuration for Mathematical Formula Rendering -->
+<script type="text/javascript">
+window.MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$', '$$'], ['\\[', '\\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    tags: 'ams',
+    packages: {'[+]': ['ams', 'newcommand', 'configmacros']}
+  },
+  svg: {
+    fontCache: 'global'
+  },
+  options: {
+    skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+    ignoreHtmlClass: 'no-mathjax'
+  },
+  startup: {
+    ready() {
+      MathJax.startup.defaultReady();
+      // Add overflow handling for long formulas after MathJax renders
+      MathJax.startup.document.state(80).promise.then(() => {
+        addFormulaScrolling();
+      });
+    }
+  }
+};
+
+// Function to add horizontal scrolling to long formulas
+function addFormulaScrolling() {
+  // Target both inline and display math elements
+  const mathElements = document.querySelectorAll('mjx-container[display="true"], .MathJax');
+  
+  mathElements.forEach(function(element) {
+    // Check if the formula is wider than its container
+    if (element.scrollWidth > element.offsetWidth) {
+      element.style.overflowX = 'auto';
+      element.style.overflowY = 'hidden';
+      element.style.maxWidth = '100%';
+      element.classList.add('formula-scroll');
+    }
+  });
+}
+
+// Also run the function after any dynamic content updates
+document.addEventListener('DOMContentLoaded', function() {
+  // Run after a delay to ensure MathJax has finished rendering
+  setTimeout(addFormulaScrolling, 1000);
+});
+</script>
+
+<!-- Load MathJax -->
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>

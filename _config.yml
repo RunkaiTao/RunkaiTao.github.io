@@ -26,6 +26,11 @@ search: true
 # Build settings
 markdown: kramdown
 remote_theme: mmistakes/minimal-mistakes
+
+# Math rendering
+kramdown:
+  math_engine: mathjax
+  syntax_highlighter: rouge
 # Outputting
 permalink: /:categories/:title/
 analytics:
