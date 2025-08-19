@@ -1,13 +1,26 @@
 # Daily Tasks Data
 # Format: used_pomodoros/expected_pomodoros (finished auto-calculated when used >= expected)
 
+"2025-08-19":
+  - task: |
+      Groebner basis conjecture for A1A5 macdonald index:
+    used_pomodoros: 0
+    expected_pomodoros: 4
+  - task: "group meeting"
+    used_pomodoros: 0
+    expected_pomodoros: 4
+  - task: |
+      K-theoretic SQM calcuation revisit
+    used_pomodoros: 0
+    expected_pomodoros: 4
+
 "2025-08-18":
   - task: |
       build personal Website:
-      include task page
-      link pomodoro data
-      change protected style blog
-    used_pomodoros: 6
+      1. include task page
+      2. link pomodoro data
+      3. change protected style blog
+    used_pomodoros: 5
     expected_pomodoros: 4
   - task: "Groebner basis computation for A1A5 macdonald index"
     used_pomodoros: 0
