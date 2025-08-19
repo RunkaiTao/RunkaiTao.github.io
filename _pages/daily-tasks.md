@@ -63,14 +63,30 @@ excerpt: "Simple daily task tracking system."
     </div>
   </div>
 
+  <!-- Weekly Pomodoro Summary -->
+  <div class="weekly-summary">
+    <h4><i class="fas fa-chart-bar"></i> This Week's Pomodoros</h4>
+    <div class="week-navigation">
+      <button id="prev-week" class="week-nav-btn">← Previous Week</button>
+      <span id="week-range" class="week-range-text">Loading...</span>
+      <button id="next-week" class="week-nav-btn">Next Week →</button>
+    </div>
+    <div class="week-grid" id="week-pomodoro-grid">
+      <!-- Weekly pomodoro grid will be populated by JavaScript -->
+    </div>
+    <div class="week-total">
+      <span>Week Total: <strong id="week-total-count">0</strong> 🍅</span>
+    </div>
+  </div>
+
   <!-- Pomodoro Contribution Chart -->
   <div class="contribution-summary">
     <div class="contribution-header">
       <h4><i class="fas fa-calendar-alt"></i> Pomodoro Activity</h4>
       <div class="contribution-controls">
-        <button id="period-3m" class="period-btn active" data-months="3">3 months</button>
+        <button id="period-3m" class="period-btn" data-months="3">3 months</button>
         <button id="period-6m" class="period-btn" data-months="6">6 months</button>
-        <button id="period-12m" class="period-btn" data-months="12">12 months</button>
+        <button id="period-9m" class="period-btn active" data-months="9">9 months</button>
       </div>
     </div>
     
@@ -90,9 +106,6 @@ excerpt: "Simple daily task tracking system."
     </div>
     
     <div class="contribution-chart-container">
-      <div class="contribution-header-info">
-        <span id="contribution-total-count" class="contribution-total">77 Pomodoros in the Last 9 Months</span>
-      </div>
       <div class="contribution-months" id="contribution-months">
         <!-- Month labels will be populated by JavaScript -->
       </div>
@@ -132,22 +145,6 @@ excerpt: "Simple daily task tracking system."
         </div>
         <span class="legend-text">More</span>
       </div>
-    </div>
-  </div>
-
-  <!-- Weekly Pomodoro Summary -->
-  <div class="weekly-summary">
-    <h4><i class="fas fa-chart-bar"></i> This Week's Pomodoros</h4>
-    <div class="week-navigation">
-      <button id="prev-week" class="week-nav-btn">← Previous Week</button>
-      <span id="week-range" class="week-range-text">Loading...</span>
-      <button id="next-week" class="week-nav-btn">Next Week →</button>
-    </div>
-    <div class="week-grid" id="week-pomodoro-grid">
-      <!-- Weekly pomodoro grid will be populated by JavaScript -->
-    </div>
-    <div class="week-total">
-      <span>Week Total: <strong id="week-total-count">0</strong> 🍅</span>
     </div>
   </div>
 </div>
@@ -819,8 +816,6 @@ excerpt: "Simple daily task tracking system."
   z-index: 1000;
   pointer-events: none;
   white-space: nowrap;
-  transform: translate(-50%, -100%);
-  margin-top: -8px;
   box-shadow: 0 8px 24px rgba(140, 149, 159, 0.2);
   border: 1px solid #30363d;
   line-height: 1.5;
@@ -836,23 +831,16 @@ excerpt: "Simple daily task tracking system."
   border-top-color: #24292f;
 }
 
-/* Contribution header info */
-.contribution-header-info {
-  margin-bottom: 1rem;
-  padding-left: 0;
+.contribution-tooltip.tooltip-below::after {
+  top: -10px;
+  border-top-color: transparent;
+  border-bottom-color: #24292f;
 }
 
-.contribution-total {
-  font-size: 0.875rem;
-  color: #24292f;
-  font-weight: 600;
-}
 
 /* Month labels */
 .contribution-months {
-  display: flex;
   margin-bottom: 0.5rem;
-  padding-left: 40px;
   font-size: 0.75rem;
   color: #656d76;
 }
@@ -861,9 +849,9 @@ excerpt: "Simple daily task tracking system."
   font-size: 0.75rem;
   color: #656d76;
   text-align: left;
-  padding-right: 1rem;
-  min-width: 0;
-  flex-shrink: 0;
+  height: 15px;
+  display: flex;
+  align-items: center;
 }
 
 /* Weekday labels */

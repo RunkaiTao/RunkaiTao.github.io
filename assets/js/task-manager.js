@@ -389,7 +389,7 @@ class TaskManager {
     
     // Contribution Chart Methods
     initializeContributionChart() {
-        this.displayContributionChart(3); // Default to 3 months
+        this.displayContributionChart(9); // Default to 9 months
     }
     
     generateContributionData(months) {
@@ -430,23 +430,6 @@ class TaskManager {
         const contributionData = this.generateContributionData(months);
         this.renderContributionChart(contributionData);
         this.updateContributionStats(contributionData);
-        this.updateContributionHeaderInfo(contributionData, months);
-    }
-    
-    updateContributionHeaderInfo(data, months) {
-        const totalElement = document.getElementById('contribution-total-count');
-        if (!totalElement) return;
-        
-        const values = Object.values(data);
-        const totalPomodoros = values.reduce((sum, day) => sum + day.count, 0);
-        
-        const periodText = months === 1 ? "Last Month" : 
-                          months === 3 ? "Last 3 Months" :
-                          months === 6 ? "Last 6 Months" :
-                          months === 12 ? "Last 12 Months" :
-                          `Last ${months} Months`;
-        
-        totalElement.textContent = `${totalPomodoros} Pomodoros in the ${periodText}`;
     }
     
     renderContributionChart(data) {
@@ -509,38 +492,53 @@ class TaskManager {
         
         monthsContainer.innerHTML = '';
         
-        const currentMonth = new Date(startDate);
-        const monthsShown = new Set();
+        // Set up the month container as a grid to match the chart
+        monthsContainer.style.display = 'grid';
+        monthsContainer.style.gridTemplateColumns = `repeat(${weeks}, 1fr)`;
+        monthsContainer.style.gap = '3px';
+        monthsContainer.style.paddingLeft = '40px';
+        monthsContainer.style.paddingRight = '40px';
         
-        // Calculate approximate width per week (assuming equal distribution)
-        const weekWidth = 100 / weeks;
+        let lastMonthDisplayed = null;
         
         for (let week = 0; week < weeks; week++) {
             const weekDate = new Date(startDate);
             weekDate.setDate(startDate.getDate() + (week * 7));
             
-            const monthKey = `${weekDate.getFullYear()}-${weekDate.getMonth()}`;
+            const currentMonth = weekDate.getMonth();
+            const currentYear = weekDate.getFullYear();
+            const monthKey = `${currentYear}-${currentMonth}`;
             
-            if (!monthsShown.has(monthKey)) {
-                monthsShown.add(monthKey);
-                
-                const monthLabel = document.createElement('div');
-                monthLabel.className = 'month-label';
+            const monthLabel = document.createElement('div');
+            monthLabel.className = 'month-label';
+            monthLabel.style.gridColumn = week + 1;
+            
+            // Only show month name at the start of each month or first week
+            if (week === 0 || lastMonthDisplayed !== monthKey) {
                 monthLabel.textContent = weekDate.toLocaleDateString('en-US', { month: 'short' });
-                monthLabel.style.left = `${week * weekWidth}%`;
-                monthLabel.style.position = 'relative';
-                
-                monthsContainer.appendChild(monthLabel);
+                lastMonthDisplayed = monthKey;
             }
+            
+            monthsContainer.appendChild(monthLabel);
         }
     }
     
     addContributionTooltip(square) {
-        let tooltip = null;
-        
         square.addEventListener('mouseenter', (e) => {
-            const date = new Date(e.target.dataset.date);
-            const count = parseInt(e.target.dataset.count);
+            // Remove any existing tooltip
+            const existingTooltip = document.querySelector('.contribution-tooltip');
+            if (existingTooltip) {
+                existingTooltip.remove();
+            }
+            
+            const dateString = e.target.dataset.date;
+            const count = parseInt(e.target.dataset.count) || 0;
+            
+            if (!dateString) return;
+            
+            // Parse date from YYYY-MM-DD format
+            const [year, month, day] = dateString.split('-').map(Number);
+            const date = new Date(year, month - 1, day);
             
             // Format date like "Friday, August 08, 2025"
             const dateStr = date.toLocaleDateString('en-US', { 
@@ -550,37 +548,43 @@ class TaskManager {
                 year: 'numeric' 
             });
             
-            tooltip = document.createElement('div');
+            const tooltip = document.createElement('div');
             tooltip.className = 'contribution-tooltip';
             
             if (count === 0) {
-                tooltip.innerHTML = `No contributions on ${dateStr}`;
+                tooltip.textContent = `No contributions on ${dateStr}`;
             } else {
                 tooltip.innerHTML = `<strong>${count} Pomodoro${count !== 1 ? 's' : ''}</strong> on ${dateStr}`;
             }
             
             document.body.appendChild(tooltip);
             
+            // Position tooltip
             const rect = e.target.getBoundingClientRect();
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+            const tooltipRect = tooltip.getBoundingClientRect();
             
-            tooltip.style.left = `${rect.left + scrollLeft + rect.width / 2}px`;
-            tooltip.style.top = `${rect.top + scrollTop}px`;
+            let left = rect.left + window.scrollX + (rect.width / 2) - (tooltipRect.width / 2);
+            let top = rect.top + window.scrollY - tooltipRect.height - 8;
+            
+            // Ensure tooltip stays within viewport
+            if (left < 10) left = 10;
+            if (left + tooltipRect.width > window.innerWidth - 10) {
+                left = window.innerWidth - tooltipRect.width - 10;
+            }
+            if (top < 10) {
+                top = rect.bottom + window.scrollY + 8;
+                tooltip.classList.add('tooltip-below');
+            }
+            
+            tooltip.style.left = `${left}px`;
+            tooltip.style.top = `${top}px`;
         });
         
         square.addEventListener('mouseleave', () => {
+            const tooltip = document.querySelector('.contribution-tooltip');
             if (tooltip) {
                 tooltip.remove();
-                tooltip = null;
             }
-        });
-        
-        square.addEventListener('click', (e) => {
-            const date = new Date(e.target.dataset.date);
-            this.currentDate = date;
-            this.initializeDatePicker();
-            this.displayTasks();
         });
     }
     
