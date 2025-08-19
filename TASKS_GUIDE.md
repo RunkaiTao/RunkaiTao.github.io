@@ -1,46 +1,65 @@
 # Daily Tasks Management Guide
 
-Simple guide for managing your daily tasks using the hidden tasks system.
+Simple guide for managing your daily tasks with pomodoro tracking.
 
 ## 📍 Access Your Tasks
 
 Your daily tasks page is hidden from public view:
 **URL: `yoursite.com/tasks/`**
 
+## 🍅 Pomodoro-Based Task System
+
+Tasks are now tracked using pomodoro counts instead of manual completion status:
+- **used_pomodoros**: How many pomodoros you've already spent on this task
+- **expected_pomodoros**: How many pomodoros you think the task will take
+- **Auto-completion**: Task is automatically marked finished when used ≥ expected
+
 ## 📝 How to Add Tasks
 
 ### 1. Edit the Tasks File
 Open `_data/tasks.yml` in your text editor.
 
-### 2. Add Tasks for Any Date
-Use this simple format:
+### 2. Add Tasks with Pomodoro Counts
+Use this format:
 
 ```yaml
 "2025-08-20":
   - task: "Complete research paper"
-    finished: false
-  - task: "Attend team meeting"
-    finished: true
-  - task: "Review code submissions"
-    finished: false
+    used_pomodoros: 2      # Already spent 2 pomodoros
+    expected_pomodoros: 5  # Think it will take 5 total
+  - task: "Team meeting"
+    used_pomodoros: 2      # Spent 2 pomodoros
+    expected_pomodoros: 2  # Expected 2 (finished: 2 ≥ 2)
+  - task: "Review code"
+    used_pomodoros: 0      # Haven't started
+    expected_pomodoros: 3  # Expect it to take 3
 ```
 
 ### 3. Key Points
 - **Date Format**: Always use `"YYYY-MM-DD"` in quotes
 - **Task Text**: Describe what you need to do
-- **Finished Status**: 
-  - `finished: false` = Unfinished task
-  - `finished: true` = Completed task
+- **Pomodoro Numbers**: Both must be non-negative integers
+- **Auto-Status**: No need to manually set finished status
 
-## ✅ Marking Tasks as Complete
+## ⏱️ Updating Pomodoro Progress
 
-To mark a task as finished, simply change:
+To update progress on a task, just change the `used_pomodoros` number:
+
 ```yaml
-finished: false
-```
-to:
-```yaml
-finished: true
+# Started task - used 1 pomodoro
+- task: "Write blog post"
+  used_pomodoros: 1      # Changed from 0 to 1
+  expected_pomodoros: 3
+
+# Made more progress - used 2 pomodoros  
+- task: "Write blog post"
+  used_pomodoros: 2      # Changed from 1 to 2
+  expected_pomodoros: 3
+
+# Finished task - used 3 pomodoros
+- task: "Write blog post"  
+  used_pomodoros: 3      # Now 3 ≥ 3, so task is finished
+  expected_pomodoros: 3
 ```
 
 ## 📅 Using the Interface
@@ -51,9 +70,11 @@ finished: true
 - **Two Columns**: Unfinished tasks on left, finished tasks on right
 
 ### What You'll See
-- **Unfinished Tasks**: Yellow icons, normal text
-- **Finished Tasks**: Green icons, crossed-out text
-- **Task Counts**: Number of tasks in each category
+- **Daily Summary**: Total pomodoros used/expected at the top
+- **Pomodoro Progress**: Each task shows "🍅 2/4" with progress bar
+- **Auto-Status**: Tasks automatically move to finished column when used ≥ expected
+- **Unfinished Tasks**: Yellow progress bars, clock icons
+- **Finished Tasks**: Green progress bars, check icons, crossed-out text
 
 ## 📋 Example Tasks File
 

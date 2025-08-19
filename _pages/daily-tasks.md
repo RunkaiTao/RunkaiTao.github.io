@@ -66,11 +66,12 @@ excerpt: "Simple daily task tracking system."
   <!-- Quick Help -->
   <div class="quick-help">
     <h4>How to Add Tasks</h4>
-    <p>Edit <code>_data/tasks.yml</code> and add tasks for any date:</p>
+    <p>Edit <code>_data/tasks.yml</code> and add tasks with pomodoro counts:</p>
     <pre><code>"2025-08-20":
   - task: "Your task description"
-    finished: false</code></pre>
-    <p>Set <code>finished: true</code> to mark a task as completed.</p>
+    used_pomodoros: 0      # Pomodoros already used
+    expected_pomodoros: 3  # Pomodoros expected to complete</code></pre>
+    <p>Tasks are automatically marked finished when used ≥ expected pomodoros.</p>
   </div>
 </div>
 
@@ -240,8 +241,14 @@ excerpt: "Simple daily task tracking system."
   color: #28a745;
 }
 
-.task-text {
+.task-content {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.task-text {
   font-size: 0.95rem;
   line-height: 1.4;
 }
@@ -249,6 +256,81 @@ excerpt: "Simple daily task tracking system."
 .finished-task .task-text {
   text-decoration: line-through;
   opacity: 0.7;
+}
+
+.pomodoro-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.pomodoro-count {
+  font-size: 0.85rem;
+  font-weight: bold;
+  color: #666;
+  min-width: 80px;
+}
+
+.pomodoro-progress {
+  flex: 1;
+  height: 8px;
+  background: #e9ecef;
+  border-radius: 4px;
+  overflow: hidden;
+  max-width: 150px;
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #28a745 0%, #20c997 100%);
+  transition: width 0.3s ease;
+}
+
+.unfinished-task .progress-bar {
+  background: linear-gradient(90deg, #ffc107 0%, #fd7e14 100%);
+}
+
+/* Daily Pomodoro Summary */
+.daily-pomodoro-summary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.daily-pomodoro-summary h3 {
+  margin: 0 0 1rem 0;
+  font-size: 1.2rem;
+}
+
+.daily-pomodoro-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.daily-count {
+  font-size: 1.1rem;
+  font-weight: bold;
+  min-width: 120px;
+}
+
+.daily-progress {
+  width: 200px;
+  height: 12px;
+  background: rgba(255,255,255,0.3);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.daily-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #28a745 0%, #20c997 100%);
+  transition: width 0.5s ease;
+  border-radius: 6px;
 }
 
 /* No Tasks State */

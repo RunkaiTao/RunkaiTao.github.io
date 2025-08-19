@@ -30,33 +30,32 @@ class TaskManager {
     }
 
     loadTasksData() {
-        // Since we can't directly load YAML in browser, we'll use sample data
-        // In a real Jekyll site, this would be loaded via a JSON endpoint
+        // Load task data with pomodoro tracking
         this.tasksData = {
             "2025-08-18": [
-                { task: "Complete research proposal for string theory project", finished: false },
-                { task: "Review paper submissions for conference", finished: true },
-                { task: "Prepare seminar slides on AdS/CFT correspondence", finished: false },
-                { task: "Reply to collaboration emails", finished: true },
-                { task: "Update personal website blog post", finished: false }
+                { task: "Complete research proposal for string theory project", used_pomodoros: 2, expected_pomodoros: 4 },
+                { task: "Review paper submissions for conference", used_pomodoros: 3, expected_pomodoros: 2 },
+                { task: "Prepare seminar slides on AdS/CFT correspondence", used_pomodoros: 1, expected_pomodoros: 3 },
+                { task: "Reply to collaboration emails", used_pomodoros: 1, expected_pomodoros: 1 },
+                { task: "Update personal website blog post", used_pomodoros: 0, expected_pomodoros: 2 }
             ],
             "2025-08-17": [
-                { task: "Team meeting with Prof. Moore", finished: true },
-                { task: "Code review for distributed GNN project", finished: true },
-                { task: "Read papers on K-theoretic Donaldson invariants", finished: false },
-                { task: "Grocery shopping", finished: true }
+                { task: "Team meeting with Prof. Moore", used_pomodoros: 2, expected_pomodoros: 2 },
+                { task: "Code review for distributed GNN project", used_pomodoros: 4, expected_pomodoros: 3 },
+                { task: "Read papers on K-theoretic Donaldson invariants", used_pomodoros: 1, expected_pomodoros: 4 },
+                { task: "Grocery shopping", used_pomodoros: 1, expected_pomodoros: 1 }
             ],
             "2025-08-16": [
-                { task: "Write progress report", finished: true },
-                { task: "Implement SGLang optimizations", finished: false },
-                { task: "Attend physics department seminar", finished: true },
-                { task: "Exercise at gym", finished: true },
-                { task: "Plan next week's research activities", finished: false }
+                { task: "Write progress report", used_pomodoros: 3, expected_pomodoros: 3 },
+                { task: "Implement SGLang optimizations", used_pomodoros: 2, expected_pomodoros: 5 },
+                { task: "Attend physics department seminar", used_pomodoros: 3, expected_pomodoros: 3 },
+                { task: "Exercise at gym", used_pomodoros: 2, expected_pomodoros: 2 },
+                { task: "Plan next week's research activities", used_pomodoros: 1, expected_pomodoros: 2 }
             ],
             "2025-08-15": [
-                { task: "Debug MixGCN performance issues", finished: true },
-                { task: "Prepare presentation for Amazon internship", finished: true },
-                { task: "Call family", finished: true }
+                { task: "Debug MixGCN performance issues", used_pomodoros: 4, expected_pomodoros: 4 },
+                { task: "Prepare presentation for Amazon internship", used_pomodoros: 5, expected_pomodoros: 4 },
+                { task: "Call family", used_pomodoros: 1, expected_pomodoros: 1 }
             ]
         };
     }
@@ -114,9 +113,9 @@ class TaskManager {
         const unfinishedContainer = document.getElementById('unfinished-tasks');
         const finishedContainer = document.getElementById('finished-tasks');
         
-        // Separate tasks by completion status
-        const unfinishedTasks = tasks.filter(task => !task.finished);
-        const finishedTasks = tasks.filter(task => task.finished);
+        // Auto-calculate finished status based on pomodoros
+        const unfinishedTasks = tasks.filter(task => task.used_pomodoros < task.expected_pomodoros);
+        const finishedTasks = tasks.filter(task => task.used_pomodoros >= task.expected_pomodoros);
         
         // Render unfinished tasks
         unfinishedContainer.innerHTML = unfinishedTasks.length > 0 
@@ -132,21 +131,62 @@ class TaskManager {
     createTaskHTML(task, isFinished) {
         const icon = isFinished ? 'fa-check-circle' : 'fa-clock';
         const className = isFinished ? 'finished-task' : 'unfinished-task';
+        const progressPercent = Math.min((task.used_pomodoros / task.expected_pomodoros) * 100, 100);
         
         return `
             <div class="task-item ${className}">
                 <i class="fas ${icon} task-icon"></i>
-                <div class="task-text">${task.task}</div>
+                <div class="task-content">
+                    <div class="task-text">${task.task}</div>
+                    <div class="pomodoro-info">
+                        <span class="pomodoro-count">🍅 ${task.used_pomodoros}/${task.expected_pomodoros}</span>
+                        <div class="pomodoro-progress">
+                            <div class="progress-bar" style="width: ${progressPercent}%"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         `;
     }
 
     updateTaskCounts(tasks) {
-        const unfinishedCount = tasks.filter(task => !task.finished).length;
-        const finishedCount = tasks.filter(task => task.finished).length;
+        const unfinishedCount = tasks.filter(task => task.used_pomodoros < task.expected_pomodoros).length;
+        const finishedCount = tasks.filter(task => task.used_pomodoros >= task.expected_pomodoros).length;
+        
+        // Calculate daily pomodoro totals
+        const totalUsedPomodoros = tasks.reduce((sum, task) => sum + task.used_pomodoros, 0);
+        const totalExpectedPomodoros = tasks.reduce((sum, task) => sum + task.expected_pomodoros, 0);
         
         document.getElementById('unfinished-count').textContent = unfinishedCount;
         document.getElementById('finished-count').textContent = finishedCount;
+        
+        // Update daily pomodoro display
+        this.updateDailyPomodoroDisplay(totalUsedPomodoros, totalExpectedPomodoros);
+    }
+    
+    updateDailyPomodoroDisplay(used, expected) {
+        // Add or update daily pomodoro summary
+        let dailySummary = document.getElementById('daily-pomodoro-summary');
+        if (!dailySummary) {
+            // Create the summary element if it doesn't exist
+            const tasksContent = document.querySelector('.tasks-content');
+            dailySummary = document.createElement('div');
+            dailySummary.id = 'daily-pomodoro-summary';
+            dailySummary.className = 'daily-pomodoro-summary';
+            tasksContent.insertBefore(dailySummary, tasksContent.firstChild);
+        }
+        
+        const progressPercent = expected > 0 ? Math.min((used / expected) * 100, 100) : 0;
+        
+        dailySummary.innerHTML = `
+            <h3>Daily Pomodoro Progress</h3>
+            <div class="daily-pomodoro-info">
+                <span class="daily-count">🍅 ${used}/${expected} pomodoros</span>
+                <div class="daily-progress">
+                    <div class="daily-progress-bar" style="width: ${progressPercent}%"></div>
+                </div>
+            </div>
+        `;
     }
 
     showNoTasks() {
@@ -163,4 +203,34 @@ class TaskManager {
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     window.taskManager = new TaskManager();
+});
+
+// Function to sync pomodoro data with activity dashboard
+function syncWithActivityDashboard() {
+    if (!window.taskManager) return;
+    
+    // Calculate pomodoro totals for each date
+    const pomodoroData = {};
+    
+    Object.entries(window.taskManager.tasksData).forEach(([date, tasks]) => {
+        const totalUsed = tasks.reduce((sum, task) => sum + task.used_pomodoros, 0);
+        if (totalUsed > 0) {
+            pomodoroData[date] = totalUsed;
+        }
+    });
+    
+    // Make data available globally for activity dashboard
+    window.tasksPomodoroData = pomodoroData;
+    
+    // If activity dashboard exists, trigger update
+    if (window.activityDashboard && typeof window.activityDashboard.updatePomodoroData === 'function') {
+        window.activityDashboard.updatePomodoroData(pomodoroData);
+    }
+    
+    console.log('Synced pomodoro data from tasks:', pomodoroData);
+}
+
+// Auto-sync when task manager loads
+document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(syncWithActivityDashboard, 1000); // Wait for task manager to initialize
 });
