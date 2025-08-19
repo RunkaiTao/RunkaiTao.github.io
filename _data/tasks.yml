@@ -4,13 +4,20 @@
 "2025-08-19":
   - task: |
       Groebner basis conjecture for A1A5 macdonald index:
-    used_pomodoros: 0
+    used_pomodoros: 1
     expected_pomodoros: 4
   - task: "group meeting"
-    used_pomodoros: 0
+    used_pomodoros: 3
+    expected_pomodoros: 3
+  - task: |
+      personal website build:
+      1. formula display for blogs
+    used_pomodoros: 4
     expected_pomodoros: 4
   - task: |
-      K-theoretic SQM calculation revisit
+      K-theoretic 
+      1. full perturbative partition function
+      2. SQM calculation revisit
     used_pomodoros: 0
     expected_pomodoros: 4
 
