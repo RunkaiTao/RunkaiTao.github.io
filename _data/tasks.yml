@@ -2,7 +2,7 @@
 # Format: used_pomodoros/expected_pomodoros (finished auto-calculated when used >= expected)
 
 "2025-08-18":
-  - task: "build personal Website: include task page, link pomodoro data, change protected style blog"
+  - task: "build personal Website:\ninclude task page\nlink pomodoro data\nchange protected style blog"
     used_pomodoros: 6
     expected_pomodoros: 4
   - task: "Groebner basis computation for A1A5 macdonald index"
