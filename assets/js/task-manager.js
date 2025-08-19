@@ -118,6 +118,47 @@ class TaskManager {
             ],
             "2025-07-29": [
                 { task: "Code testing", used_pomodoros: 4, expected_pomodoros: 4 }
+            ],
+            
+            // Additional historical data for better chart visualization
+            "2025-07-25": [
+                { task: "Research documentation", used_pomodoros: 3, expected_pomodoros: 3 }
+            ],
+            "2025-07-22": [
+                { task: "Team collaboration", used_pomodoros: 2, expected_pomodoros: 2 }
+            ],
+            "2025-07-18": [
+                { task: "System testing", used_pomodoros: 5, expected_pomodoros: 5 }
+            ],
+            "2025-07-15": [
+                { task: "Data processing", used_pomodoros: 4, expected_pomodoros: 4 }
+            ],
+            "2025-07-10": [
+                { task: "Feature development", used_pomodoros: 6, expected_pomodoros: 6 }
+            ],
+            "2025-07-05": [
+                { task: "Bug fixes", used_pomodoros: 3, expected_pomodoros: 3 }
+            ],
+            "2025-07-01": [
+                { task: "Monthly kickoff", used_pomodoros: 2, expected_pomodoros: 2 }
+            ],
+            "2025-06-28": [
+                { task: "End of sprint", used_pomodoros: 4, expected_pomodoros: 4 }
+            ],
+            "2025-06-25": [
+                { task: "Code review", used_pomodoros: 3, expected_pomodoros: 3 }
+            ],
+            "2025-06-20": [
+                { task: "Architecture planning", used_pomodoros: 5, expected_pomodoros: 5 }
+            ],
+            "2025-06-15": [
+                { task: "Performance optimization", used_pomodoros: 7, expected_pomodoros: 7 }
+            ],
+            "2025-06-10": [
+                { task: "Database design", used_pomodoros: 4, expected_pomodoros: 4 }
+            ],
+            "2025-06-05": [
+                { task: "API development", used_pomodoros: 6, expected_pomodoros: 6 }
             ]
         };
     }
@@ -389,6 +430,23 @@ class TaskManager {
         const contributionData = this.generateContributionData(months);
         this.renderContributionChart(contributionData);
         this.updateContributionStats(contributionData);
+        this.updateContributionHeaderInfo(contributionData, months);
+    }
+    
+    updateContributionHeaderInfo(data, months) {
+        const totalElement = document.getElementById('contribution-total-count');
+        if (!totalElement) return;
+        
+        const values = Object.values(data);
+        const totalPomodoros = values.reduce((sum, day) => sum + day.count, 0);
+        
+        const periodText = months === 1 ? "Last Month" : 
+                          months === 3 ? "Last 3 Months" :
+                          months === 6 ? "Last 6 Months" :
+                          months === 12 ? "Last 12 Months" :
+                          `Last ${months} Months`;
+        
+        totalElement.textContent = `${totalPomodoros} Pomodoros in the ${periodText}`;
     }
     
     renderContributionChart(data) {
@@ -415,12 +473,12 @@ class TaskManager {
         const totalDays = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24)) + 1;
         const weeks = Math.ceil(totalDays / 7);
         
+        // Generate month labels
+        this.renderMonthLabels(startDate, endDate, weeks);
+        
         // Create GitHub-style grid: weeks as columns, days as rows
         chartContainer.style.gridTemplateColumns = `repeat(${weeks}, 1fr)`;
         chartContainer.style.gridTemplateRows = `repeat(7, 1fr)`;
-        
-        // Create a grid array to position elements correctly
-        const grid = Array(7).fill(null).map(() => Array(weeks).fill(null));
         
         // Fill the grid week by week
         const currentDate = new Date(startDate);
@@ -445,31 +503,70 @@ class TaskManager {
         }
     }
     
+    renderMonthLabels(startDate, endDate, weeks) {
+        const monthsContainer = document.getElementById('contribution-months');
+        if (!monthsContainer) return;
+        
+        monthsContainer.innerHTML = '';
+        
+        const currentMonth = new Date(startDate);
+        const monthsShown = new Set();
+        
+        // Calculate approximate width per week (assuming equal distribution)
+        const weekWidth = 100 / weeks;
+        
+        for (let week = 0; week < weeks; week++) {
+            const weekDate = new Date(startDate);
+            weekDate.setDate(startDate.getDate() + (week * 7));
+            
+            const monthKey = `${weekDate.getFullYear()}-${weekDate.getMonth()}`;
+            
+            if (!monthsShown.has(monthKey)) {
+                monthsShown.add(monthKey);
+                
+                const monthLabel = document.createElement('div');
+                monthLabel.className = 'month-label';
+                monthLabel.textContent = weekDate.toLocaleDateString('en-US', { month: 'short' });
+                monthLabel.style.left = `${week * weekWidth}%`;
+                monthLabel.style.position = 'relative';
+                
+                monthsContainer.appendChild(monthLabel);
+            }
+        }
+    }
+    
     addContributionTooltip(square) {
         let tooltip = null;
         
         square.addEventListener('mouseenter', (e) => {
             const date = new Date(e.target.dataset.date);
             const count = parseInt(e.target.dataset.count);
+            
+            // Format date like "Friday, August 08, 2025"
             const dateStr = date.toLocaleDateString('en-US', { 
-                weekday: 'short', 
-                month: 'short', 
-                day: 'numeric', 
+                weekday: 'long', 
+                month: 'long', 
+                day: '2-digit', 
                 year: 'numeric' 
             });
             
             tooltip = document.createElement('div');
             tooltip.className = 'contribution-tooltip';
-            tooltip.innerHTML = `
-                <div><strong>${count} pomodoro${count !== 1 ? 's' : ''}</strong></div>
-                <div>${dateStr}</div>
-            `;
+            
+            if (count === 0) {
+                tooltip.innerHTML = `No contributions on ${dateStr}`;
+            } else {
+                tooltip.innerHTML = `<strong>${count} Pomodoro${count !== 1 ? 's' : ''}</strong> on ${dateStr}`;
+            }
             
             document.body.appendChild(tooltip);
             
             const rect = e.target.getBoundingClientRect();
-            tooltip.style.left = `${rect.left + rect.width / 2}px`;
-            tooltip.style.top = `${rect.top}px`;
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+            
+            tooltip.style.left = `${rect.left + scrollLeft + rect.width / 2}px`;
+            tooltip.style.top = `${rect.top + scrollTop}px`;
         });
         
         square.addEventListener('mouseleave', () => {

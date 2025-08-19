@@ -90,18 +90,34 @@ excerpt: "Simple daily task tracking system."
     </div>
     
     <div class="contribution-chart-container">
+      <div class="contribution-header-info">
+        <span id="contribution-total-count" class="contribution-total">77 Pomodoros in the Last 9 Months</span>
+      </div>
+      <div class="contribution-months" id="contribution-months">
+        <!-- Month labels will be populated by JavaScript -->
+      </div>
+      
       <div class="contribution-grid">
-        <div class="contribution-weekdays">
-          <div class="weekday-label">Sun</div>
+        <div class="contribution-weekdays-left">
+          <div class="weekday-label"></div>
           <div class="weekday-label">Mon</div>
-          <div class="weekday-label">Tue</div>
+          <div class="weekday-label"></div>
           <div class="weekday-label">Wed</div>
-          <div class="weekday-label">Thu</div>
+          <div class="weekday-label"></div>
           <div class="weekday-label">Fri</div>
-          <div class="weekday-label">Sat</div>
+          <div class="weekday-label"></div>
         </div>
         <div class="contribution-chart" id="contribution-chart">
           <!-- Contribution chart will be populated by JavaScript -->
+        </div>
+        <div class="contribution-weekdays-right">
+          <div class="weekday-label"></div>
+          <div class="weekday-label">Mon</div>
+          <div class="weekday-label"></div>
+          <div class="weekday-label">Wed</div>
+          <div class="weekday-label"></div>
+          <div class="weekday-label">Fri</div>
+          <div class="weekday-label"></div>
         </div>
       </div>
       
@@ -795,8 +811,8 @@ excerpt: "Simple daily task tracking system."
 /* Tooltip for contribution chart */
 .contribution-tooltip {
   position: absolute;
-  background: rgba(0, 0, 0, 0.8);
-  color: white;
+  background: #24292f;
+  color: #f0f6fc;
   padding: 0.5rem 0.75rem;
   border-radius: 6px;
   font-size: 0.75rem;
@@ -805,6 +821,9 @@ excerpt: "Simple daily task tracking system."
   white-space: nowrap;
   transform: translate(-50%, -100%);
   margin-top: -8px;
+  box-shadow: 0 8px 24px rgba(140, 149, 159, 0.2);
+  border: 1px solid #30363d;
+  line-height: 1.5;
 }
 
 .contribution-tooltip::after {
@@ -813,45 +832,78 @@ excerpt: "Simple daily task tracking system."
   top: 100%;
   left: 50%;
   transform: translateX(-50%);
-  border: 4px solid transparent;
-  border-top-color: rgba(0, 0, 0, 0.8);
+  border: 5px solid transparent;
+  border-top-color: #24292f;
+}
+
+/* Contribution header info */
+.contribution-header-info {
+  margin-bottom: 1rem;
+  padding-left: 0;
+}
+
+.contribution-total {
+  font-size: 0.875rem;
+  color: #24292f;
+  font-weight: 600;
 }
 
 /* Month labels */
 .contribution-months {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 3px;
+  display: flex;
   margin-bottom: 0.5rem;
-  padding: 0 1rem;
+  padding-left: 40px;
+  font-size: 0.75rem;
+  color: #656d76;
 }
 
 .month-label {
   font-size: 0.75rem;
   color: #656d76;
-  text-align: center;
+  text-align: left;
+  padding-right: 1rem;
+  min-width: 0;
+  flex-shrink: 0;
 }
 
 /* Weekday labels */
-.contribution-weekdays {
+.contribution-weekdays-left,
+.contribution-weekdays-right {
   display: grid;
   grid-template-rows: repeat(7, 14px);
   gap: 3px;
-  margin-right: 0.5rem;
-  padding: 1rem 0;
+  padding: 0;
   align-items: center;
+}
+
+.contribution-weekdays-left {
+  margin-right: 0.5rem;
+}
+
+.contribution-weekdays-right {
+  margin-left: 0.5rem;
 }
 
 .weekday-label {
   font-size: 0.75rem;
   color: #656d76;
-  text-align: right;
   line-height: 14px;
-  padding-right: 0.5rem;
   height: 14px;
   display: flex;
   align-items: center;
+  width: 30px;
+}
+
+.contribution-weekdays-left .weekday-label {
+  text-align: right;
   justify-content: flex-end;
+  padding-right: 0.5rem;
+}
+
+.contribution-weekdays-right .weekday-label {
+  text-align: left;
+  justify-content: flex-start;
+  padding-left: 0.5rem;
 }
 
 .contribution-grid {

@@ -3,7 +3,7 @@
 
 "2025-08-18":
   - task: "build personal Website "
-    used_pomodoros: 2
+    used_pomodoros: 4
     expected_pomodoros: 4
   - task: "Groebner basis computation for A1A5 macdonald index"
     used_pomodoros: 0
