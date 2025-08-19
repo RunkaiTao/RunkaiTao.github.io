@@ -153,18 +153,21 @@
 /* MathJax formula container styling */
 mjx-container {
   margin: 0.5rem 0;
+  font-size: 0.85rem;
 }
 
 /* Display math (block formulas) */
 mjx-container[display="true"] {
   margin: 1.5rem 0;
-  padding: 1rem;
-  background: #f8f9fa;
-  border-left: 4px solid #007bff;
+  padding: 0.8rem;
+  background: #ffffff;
+  border: 1px solid #e9ecef;
+  border-left: 3px solid #007bff;
   border-radius: 4px;
   overflow-x: auto;
   overflow-y: hidden;
   max-width: 100%;
+  font-size: 0.8rem;
 }
 
 /* Inline math styling */
@@ -172,6 +175,7 @@ mjx-container[display="false"] {
   display: inline-block;
   vertical-align: middle;
   margin: 0 0.2rem;
+  font-size: 0.9rem;
 }
 
 /* Horizontal scrolling for long formulas */
@@ -208,13 +212,14 @@ mjx-container[display="true"] mjx-assistive-mml {
 
 /* Long equation styling with enhanced readability */
 .long-equation {
-  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
   border: 1px solid #dee2e6;
   border-radius: 6px;
-  padding: 1.25rem;
+  padding: 1rem;
   margin: 2rem 0;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
   position: relative;
+  font-size: 0.8rem;
 }
 
 .long-equation::before {
@@ -268,34 +273,44 @@ mjx-container[display="true"] mjx-assistive-mml {
 
 /* Responsive formula handling */
 @media (max-width: 768px) {
+  mjx-container {
+    font-size: 0.75rem;
+  }
+  
   mjx-container[display="true"] {
-    padding: 0.75rem 0.5rem;
+    padding: 0.6rem 0.4rem;
     margin: 1rem 0;
-    font-size: 0.9rem;
+    font-size: 0.7rem;
+  }
+  
+  mjx-container[display="false"] {
+    font-size: 0.8rem;
   }
   
   .long-equation {
-    padding: 1rem 0.75rem;
+    padding: 0.8rem 0.6rem;
     margin: 1.5rem 0;
+    font-size: 0.7rem;
   }
   
   .formula-scroll {
-    font-size: 0.85rem;
+    font-size: 0.75rem;
   }
 }
 
 /* Dark mode support for formulas */
 @media (prefers-color-scheme: dark) {
   mjx-container[display="true"] {
-    background: #2d3748;
-    border-left-color: #4299e1;
-    color: #e2e8f0;
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-left-color: #007bff;
+    color: #212529;
   }
   
   .long-equation {
-    background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
-    border-color: #4a5568;
-    color: #e2e8f0;
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    border-color: #dee2e6;
+    color: #212529;
   }
   
   .theorem, .proof, .definition, .lemma {

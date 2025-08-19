@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formula Style Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            line-height: 1.6;
+        }
+        
+        /* Updated formula styles */
+        mjx-container {
+            margin: 0.5rem 0;
+            font-size: 0.85rem;
+        }
+        
+        mjx-container[display="true"] {
+            margin: 1.5rem 0;
+            padding: 0.8rem;
+            background: #ffffff;
+            border: 1px solid #e9ecef;
+            border-left: 3px solid #007bff;
+            border-radius: 4px;
+            overflow-x: auto;
+            overflow-y: hidden;
+            max-width: 100%;
+            font-size: 0.8rem;
+        }
+        
+        mjx-container[display="false"] {
+            display: inline-block;
+            vertical-align: middle;
+            margin: 0 0.2rem;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <h1>Formula Style Test</h1>
+    
+    <p>This is a test of inline math: $E = mc^2$ and $\alpha + \beta = \gamma$.</p>
+    
+    <p>Here's a display equation:</p>
+    $$\int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi}$$
+    
+    <p>And another complex formula:</p>
+    $$\frac{\partial}{\partial t} \psi(x,t) = -\frac{i}{\hbar} \hat{H} \psi(x,t)$$
+    
+    <p>Back to regular text with more inline math: $\sin^2(x) + \cos^2(x) = 1$.</p>
+
+    <!-- MathJax Configuration -->
+    <script type="text/javascript">
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true,
+        processEnvironments: true,
+        tags: 'ams'
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+    </script>
+    
+    <script type="text/javascript" id="MathJax-script" async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+    </script>
+</body>
+</html>

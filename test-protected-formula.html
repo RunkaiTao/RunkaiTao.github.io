@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protected Formula Style Test</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            line-height: 1.6;
+            background: #2d3748;
+            color: #e2e8f0;
+        }
+        
+        .content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        /* Test both light and dark mode styles */
+        .light-mode {
+            background: white;
+            color: #212529;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        /* Updated formula styles - light mode */
+        .light-mode mjx-container {
+            margin: 0.5rem 0;
+            font-size: 0.85rem;
+        }
+        
+        .light-mode mjx-container[display="true"] {
+            margin: 1.5rem 0;
+            padding: 0.8rem;
+            background: #ffffff;
+            border: 1px solid #e9ecef;
+            border-left: 3px solid #007bff;
+            border-radius: 4px;
+            overflow-x: auto;
+            overflow-y: hidden;
+            max-width: 100%;
+            font-size: 0.8rem;
+        }
+        
+        .light-mode mjx-container[display="false"] {
+            display: inline-block;
+            vertical-align: middle;
+            margin: 0 0.2rem;
+            font-size: 0.9rem;
+        }
+        
+        /* Dark mode override - keeping light background for formulas */
+        mjx-container {
+            margin: 0.5rem 0;
+            font-size: 0.85rem;
+        }
+        
+        mjx-container[display="true"] {
+            margin: 1.5rem 0;
+            padding: 0.8rem;
+            background: #f8f9fa !important;
+            border: 1px solid #dee2e6 !important;
+            border-left: 3px solid #007bff !important;
+            border-radius: 4px;
+            overflow-x: auto;
+            overflow-y: hidden;
+            max-width: 100%;
+            font-size: 0.8rem;
+            color: #212529 !important;
+        }
+        
+        mjx-container[display="false"] {
+            display: inline-block;
+            vertical-align: middle;
+            margin: 0 0.2rem;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h1>Formula Style Test - Dark Mode with Light Formulas</h1>
+        
+        <p>This tests formulas in dark mode but keeping light backgrounds for readability.</p>
+        
+        <p>Inline math: $E = mc^2$ and $\alpha + \beta = \gamma$.</p>
+        
+        <p>Display equation:</p>
+        $$\int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi}$$
+        
+        <p>Complex formula:</p>
+        $$\frac{\partial}{\partial t} \psi(x,t) = -\frac{i}{\hbar} \hat{H} \psi(x,t)$$
+        
+        <div class="light-mode">
+            <h2>Light Mode Section</h2>
+            <p>Same formulas in light mode context:</p>
+            <p>Inline: $\sin^2(x) + \cos^2(x) = 1$ and $\nabla \cdot \mathbf{E} = \frac{\rho}{\epsilon_0}$</p>
+            $$\sum_{n=1}^{\infty} \frac{1}{n^2} = \frac{\pi^2}{6}$$
+        </div>
+    </div>
+
+    <!-- MathJax Configuration -->
+    <script type="text/javascript">
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true,
+        processEnvironments: true,
+        tags: 'ams'
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+    </script>
+    
+    <script type="text/javascript" id="MathJax-script" async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+    </script>
+</body>
+</html>
