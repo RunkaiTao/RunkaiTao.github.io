@@ -67,42 +67,6 @@ excerpt: "Central hub for daily tracking and productivity tools."
 
   </div>
 
-  <!-- Quick Stats Section -->
-  <div class="quick-stats">
-    <div class="stats-header">
-      <h3><i class="fas fa-chart-bar"></i> Quick Overview</h3>
-    </div>
-    <div class="stats-grid">
-      <div class="stat-item">
-        <div class="stat-icon tasks-theme">
-          <i class="fas fa-check-circle"></i>
-        </div>
-        <div class="stat-info">
-          <div class="stat-label">Tasks Today</div>
-          <div class="stat-value">--</div>
-        </div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-icon exercise-theme">
-          <i class="fas fa-stopwatch"></i>
-        </div>
-        <div class="stat-info">
-          <div class="stat-label">Last Run</div>
-          <div class="stat-value">--</div>
-        </div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-icon workout-theme">
-          <i class="fas fa-trophy"></i>
-        </div>
-        <div class="stat-info">
-          <div class="stat-label">This Week</div>
-          <div class="stat-value">--</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
 </div>
 
 <style>
@@ -238,90 +202,6 @@ excerpt: "Central hub for daily tracking and productivity tools."
   transition: all 0.3s ease;
 }
 
-/* Quick Stats Section */
-.quick-stats {
-  background: white;
-  border-radius: 12px;
-  padding: 2rem;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-}
-
-.stats-header {
-  margin-bottom: 1.5rem;
-  text-align: center;
-}
-
-.stats-header h3 {
-  margin: 0;
-  color: #333;
-  font-size: 1.2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-}
-
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1.5rem;
-}
-
-.stat-item {
-  display: flex;
-  align-items: center;
-  padding: 1rem;
-  background: #f8f9fa;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-}
-
-.stat-item:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
-
-.stat-icon {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 1rem;
-  font-size: 1.2rem;
-  color: white;
-}
-
-.stat-icon.tasks-theme {
-  background: linear-gradient(135deg, #4CAF50, #45a049);
-}
-
-.stat-icon.exercise-theme {
-  background: linear-gradient(135deg, #FF6B6B, #4ECDC4);
-}
-
-.stat-icon.workout-theme {
-  background: linear-gradient(135deg, #667eea, #764ba2);
-}
-
-.stat-info {
-  flex: 1;
-}
-
-.stat-label {
-  font-size: 0.85rem;
-  color: #666;
-  margin-bottom: 0.25rem;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.stat-value {
-  font-size: 1.3rem;
-  font-weight: 600;
-  color: #333;
-}
 
 /* Responsive Design */
 @media (max-width: 768px) {
@@ -353,10 +233,6 @@ excerpt: "Central hub for daily tracking and productivity tools."
     font-size: 1.1rem;
   }
   
-  .stats-grid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
 }
 
 @media (max-width: 480px) {
