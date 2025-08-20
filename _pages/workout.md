@@ -57,6 +57,9 @@ excerpt: "Track workout progress with detailed exercise analytics."
     <button class="tab-btn" data-category="back">
       <i class="fas fa-shield-alt"></i> Back
     </button>
+    <button class="tab-btn" data-category="other">
+      <i class="fas fa-plus-circle"></i> Other
+    </button>
   </div>
 
   <!-- Exercise Charts Section -->
@@ -86,6 +89,7 @@ excerpt: "Track workout progress with detailed exercise analytics."
           <option value="leg">Legs</option>
           <option value="shoulder">Shoulders</option>
           <option value="back">Back</option>
+          <option value="other">Other</option>
         </select>
         <select id="sort-select" class="sort-select">
           <option value="date-desc">Date (Newest)</option>
@@ -262,6 +266,11 @@ excerpt: "Track workout progress with detailed exercise analytics."
   border-color: #27ae60;
 }
 
+.tab-btn[data-category="other"].active {
+  background: #8e44ad;
+  border-color: #8e44ad;
+}
+
 /* Charts Section */
 .charts-section {
   margin-bottom: 2rem;
@@ -295,6 +304,10 @@ excerpt: "Track workout progress with detailed exercise analytics."
 
 .exercise-chart-card.back {
   border-left-color: #27ae60;
+}
+
+.exercise-chart-card.other {
+  border-left-color: #8e44ad;
 }
 
 .chart-title {
@@ -360,6 +373,10 @@ excerpt: "Track workout progress with detailed exercise analytics."
   border-left-color: #27ae60;
 }
 
+.workout-entry.other {
+  border-left-color: #8e44ad;
+}
+
 .workout-date {
   font-weight: bold;
   color: #333;
@@ -398,6 +415,11 @@ excerpt: "Track workout progress with detailed exercise analytics."
 .exercise-tag.back {
   background: rgba(39, 174, 96, 0.1);
   color: #27ae60;
+}
+
+.exercise-tag.other {
+  background: rgba(142, 68, 173, 0.1);
+  color: #8e44ad;
 }
 
 /* Data Table */
@@ -495,6 +517,11 @@ excerpt: "Track workout progress with detailed exercise analytics."
 
 .category-badge.back {
   background: #27ae60;
+  color: white;
+}
+
+.category-badge.other {
+  background: #8e44ad;
   color: white;
 }
 

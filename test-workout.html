@@ -142,6 +142,11 @@
             border-color: #27ae60;
         }
 
+        .tab-btn[data-category="other"].active {
+            background: #8e44ad;
+            border-color: #8e44ad;
+        }
+
         /* Charts Section */
         .charts-section {
             margin-bottom: 2rem;
@@ -175,6 +180,10 @@
 
         .exercise-chart-card.back {
             border-left-color: #27ae60;
+        }
+
+        .exercise-chart-card.other {
+            border-left-color: #8e44ad;
         }
 
         .chart-title {
@@ -253,6 +262,9 @@
     </button>
     <button class="tab-btn" data-category="back">
       <i class="fas fa-shield-alt"></i> Back
+    </button>
+    <button class="tab-btn" data-category="other">
+      <i class="fas fa-plus-circle"></i> Other
     </button>
   </div>
 
@@ -341,6 +353,12 @@ window.workoutData = {
       "exercise": "Overhead Press",
       "weight": 130,
       "repetitions": 8
+    },
+    {
+      "category": "other",
+      "exercise": "Plank",
+      "weight": 0,
+      "repetitions": 60
     }
   ]
 };

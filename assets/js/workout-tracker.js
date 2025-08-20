@@ -298,7 +298,8 @@ class WorkoutTracker {
             chest: `rgba(231, 76, 60, ${alpha})`,
             leg: `rgba(52, 152, 219, ${alpha})`,
             shoulder: `rgba(243, 156, 18, ${alpha})`,
-            back: `rgba(39, 174, 96, ${alpha})`
+            back: `rgba(39, 174, 96, ${alpha})`,
+            other: `rgba(142, 68, 173, ${alpha})`
         };
         return colors[category] || `rgba(102, 126, 234, ${alpha})`;
     }
