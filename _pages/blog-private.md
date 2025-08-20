@@ -15,7 +15,7 @@ This page contains password-protected research notes and private academic conten
 {% assign protected_posts = site.posts | where: "protected", true | sort: 'date' | reverse %}
 
 {% for post in protected_posts %}
-  <article class="post-item protected-post">
+  <article class="post-item">
     <h3>
       <i class="fas fa-lock protected-icon"></i>
       <a href="{{ post.url | relative_url }}" rel="permalink">{{ post.title }}</a>
@@ -40,7 +40,7 @@ This page contains password-protected research notes and private academic conten
     </p>
     {% if post.excerpt %}
       <p class="post-excerpt">
-        {{ post.excerpt | strip_html | truncate: 150 }}
+        {{ post.excerpt | strip_html | truncate: 300 }}
         <span class="protected-notice">This post requires a password to view.</span>
       </p>
     {% endif %}
@@ -55,9 +55,11 @@ This page contains password-protected research notes and private academic conten
       </a>
     </p>
     <p class="license-info">
-      <i class="fab fa-creative-commons"></i>
-      <i class="fab fa-creative-commons-by"></i>
-      <i class="fab fa-creative-commons-sa"></i>
+      <span class="cc-icons">
+        <i class="fab fa-creative-commons" aria-hidden="true"></i>
+        <i class="fab fa-creative-commons-by" aria-hidden="true"></i>
+        <i class="fab fa-creative-commons-sa" aria-hidden="true"></i>
+      </span>
       Licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>
     </p>
   </article>
@@ -160,14 +162,7 @@ This page contains password-protected research notes and private academic conten
   margin: 2em 0;
 }
 
-/* Protected post styles */
-.protected-post {
-  background: linear-gradient(135deg, #fff 0%, #fff8e1 100%);
-  border-left: 4px solid #ffb300;
-  padding: 1.5em;
-  border-radius: 0 8px 8px 0;
-}
-
+/* Protected post indicators */
 .protected-icon {
   color: #ff8f00;
   margin-right: 0.5rem;
@@ -193,21 +188,13 @@ This page contains password-protected research notes and private academic conten
   margin-left: 0.5rem;
 }
 
-.protected-post h3 a {
-  color: #5d4037;
-}
-
-.protected-post h3 a:hover {
-  color: #3e2723;
-}
-
 .license-info {
-  color: #888;
+  color: #666;
   font-size: 0.8em;
   margin-top: 1em;
   margin-bottom: 0.5em;
   padding-top: 0.5em;
-  border-top: 1px solid #f0f0f0;
+  border-top: 1px solid #ddd;
 }
 
 .license-info i {
@@ -223,5 +210,15 @@ This page contains password-protected research notes and private academic conten
 .license-info a:hover {
   color: #007bff;
   text-decoration: underline;
+}
+
+.cc-icons {
+  margin-right: 0.5em;
+}
+
+/* Fallback for when Font Awesome icons don't load */
+.cc-icons:empty::before {
+  content: "🅭🅯🄎 ";
+  font-size: 1em;
 }
 </style>
