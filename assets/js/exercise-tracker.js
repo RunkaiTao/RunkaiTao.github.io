@@ -1,7 +1,7 @@
-// Exercise Tracker JavaScript
+// Running Tracker JavaScript
 // Handles data visualization and table management for running data
 
-class ExerciseTracker {
+class RunningTracker {
     constructor() {
         this.runningData = window.runningData || {};
         this.sortedData = [];
@@ -352,18 +352,18 @@ class ExerciseTracker {
 
 // Initialize the tracker when the page loads
 document.addEventListener('DOMContentLoaded', function() {
-    new ExerciseTracker();
+    window.runningTracker = new RunningTracker();
 });
 
 // Handle window resize for chart responsiveness
 window.addEventListener('resize', function() {
-    if (window.exerciseTracker && window.exerciseTracker.distanceChart) {
-        window.exerciseTracker.distanceChart.resize();
+    if (window.runningTracker && window.runningTracker.distanceChart) {
+        window.runningTracker.distanceChart.resize();
     }
-    if (window.exerciseTracker && window.exerciseTracker.paceChart) {
-        window.exerciseTracker.paceChart.resize();
+    if (window.runningTracker && window.runningTracker.paceChart) {
+        window.runningTracker.paceChart.resize();
     }
 });
 
 // Export for global access if needed
-window.ExerciseTracker = ExerciseTracker;
+window.RunningTracker = RunningTracker;

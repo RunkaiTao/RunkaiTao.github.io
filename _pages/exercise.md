@@ -1,5 +1,5 @@
 ---
-title: "Exercise Tracker"
+title: "Running Tracker"
 permalink: /exercise/
 layout: single
 classes: wide
@@ -16,7 +16,7 @@ excerpt: "Track running progress with data visualization."
 
 <div class="exercise-container">
   <div class="exercise-header">
-    <h1><i class="fas fa-running"></i> Exercise Tracker</h1>
+    <h1><i class="fas fa-running"></i> Running Tracker</h1>
     <p>Track your running progress and visualize performance over time</p>
   </div>
 
@@ -106,7 +106,7 @@ excerpt: "Track running progress with data visualization."
 <script src="{{ '/assets/js/exercise-tracker.js' | relative_url }}"></script>
 
 <style>
-/* Exercise Tracker Styles */
+/* Running Tracker Styles */
 .exercise-container {
   max-width: 1200px;
   margin: 0 auto;

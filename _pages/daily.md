@@ -43,7 +43,7 @@ excerpt: "Central hub for daily tracking and productivity tools."
         <i class="fas fa-running"></i>
       </div>
       <div class="card-content">
-        <h3 class="card-title">Exercise Tracker</h3>
+        <h3 class="card-title">Running Tracker</h3>
         <p class="card-description">Track running progress and performance metrics</p>
       </div>
       <div class="card-arrow">
