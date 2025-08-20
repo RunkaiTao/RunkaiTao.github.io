@@ -20,6 +20,10 @@
       2. SQM calculation revisit
     used_pomodoros: 0
     expected_pomodoros: 4
+  - task: |
+      Read: Cordova Shao's paper 
+    used_pomodoros: 2
+    expected_pomodoros: 2
 
 "2025-08-18":
   - task: |
