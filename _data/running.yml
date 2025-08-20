@@ -1,123 +1,28 @@
 # Daily Running Data
 # Format: distance in miles, time in min:sec format, pace in min:sec per mile
 
-"2025-08-20":
-  distance_miles: 3.2
-  time_duration: "28:00"
-  pace_per_mile: "8:45"
-  notes: "Morning run, good weather"
-
 "2025-08-19":
-  distance_miles: 2.4
-  time_duration: "22:00"
-  pace_per_mile: "9:10"
-  notes: "Easy recovery run"
-
-"2025-08-18":
-  distance_miles: 4.7
-  time_duration: "38:00"
-  pace_per_mile: "8:05"
-  notes: "Long run Sunday"
-
-"2025-08-17":
-  distance_miles: 2.6
-  time_duration: "24:00"
-  pace_per_mile: "9:14"
-  notes: "Interval training"
-
-"2025-08-16":
-  distance_miles: 3.8
-  time_duration: "32:00"
-  pace_per_mile: "8:25"
-  notes: "Tempo run"
+  distance_miles: 2.3
+  time_duration: "24:05"
+  pace_per_mile: "10:28"
+  notes: "good weather"
 
 "2025-08-15":
   distance_miles: 2.2
-  time_duration: "20:00"
-  pace_per_mile: "9:05"
-  notes: "Short run after work"
-
-"2025-08-14":
-  distance_miles: 5.1
-  time_duration: "42:00"
-  pace_per_mile: "8:14"
-  notes: "Weekend long run"
-
-"2025-08-13":
-  distance_miles: 3.0
-  time_duration: "26:00"
-  pace_per_mile: "8:40"
-  notes: "Steady pace"
+  time_duration: "24:19"
+  pace_per_mile: "11:00"
+  notes: "Easy recovery run"
 
 "2025-08-12":
-  distance_miles: 3.4
-  time_duration: "29:00"
-  pace_per_mile: "8:32"
-  notes: "Hill training"
-
-"2025-08-11":
-  distance_miles: 2.0
-  time_duration: "18:00"
-  pace_per_mile: "9:00"
-  notes: "Recovery run"
+  distance_miles: 2.1
+  time_duration: "25:55"
+  pace_per_mile: "12:17"
+  notes: "Too hot"
 
 "2025-08-10":
-  distance_miles: 4.2
-  time_duration: "35:00"
-  pace_per_mile: "8:20"
-  notes: "Saturday morning run"
+  distance_miles: 2.0
+  time_duration: "24:08"
+  pace_per_mile: "11:52"
+  notes: ""
 
-"2025-08-09":
-  distance_miles: 2.8
-  time_duration: "25:00"
-  pace_per_mile: "8:56"
-  notes: "Evening run"
-
-"2025-08-08":
-  distance_miles: 3.1
-  time_duration: "27:00"
-  pace_per_mile: "8:43"
-  notes: "Consistent pace"
-
-"2025-08-07":
-  distance_miles: 2.4
-  time_duration: "23:00"
-  pace_per_mile: "9:35"
-  notes: "Easy run"
-
-"2025-08-06":
-  distance_miles: 4.5
-  time_duration: "36:00"
-  pace_per_mile: "8:00"
-  notes: "Great pace today"
-
-"2025-08-05":
-  distance_miles: 2.5
-  time_duration: "24:00"
-  pace_per_mile: "9:36"
-  notes: "Slow recovery"
-
-"2025-08-04":
-  distance_miles: 3.6
-  time_duration: "30:00"
-  pace_per_mile: "8:20"
-  notes: "Strong finish"
-
-"2025-08-03":
-  distance_miles: 2.2
-  time_duration: "21:00"
-  pace_per_mile: "9:33"
-  notes: "Short and easy"
-
-"2025-08-02":
-  distance_miles: 4.0
-  time_duration: "33:00"
-  pace_per_mile: "8:15"
-  notes: "Good rhythm"
-
-"2025-08-01":
-  distance_miles: 2.9
-  time_duration: "26:00"
-  pace_per_mile: "8:58"
-  notes: "Start of month strong"
 
