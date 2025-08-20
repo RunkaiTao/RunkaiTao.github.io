@@ -82,6 +82,24 @@ W_{i,j} = \begin{cases}
     \end{cases} 
 $$
 
-## Order by order in degree $q$
+## Order by order 
 
-### $q^0$ order
+###  $0$-jet scheme $(R^{\left(A_1, A_5\right)})_0$ 
+
+$(R^{\left(A_1, A_5\right)})_0$ is defined by
+
+$$
+\mathbb{C}[X_0, Y_0, Z_0]/\langle\text{$q^0$ constraints}\rangle,
+$$
+
+The relevant groebner leading term is
+
+$$
+\{X_0 Y_0\}
+$$
+
+The Hilbert Series is therefore
+
+$$
+\text{Ser}_{t=0}\frac{1 - t^3}{(1 - t) (1- t^{3/2})^2} =1+t+2 t^{3 / 2}+t^2+2 t^{5 / 2}+3 t^3+2 t^{7 / 2}+3 t^4+4 t^{9 / 2}+3 t^5+4 t^{11 / 2}+ \cdots
+$$
