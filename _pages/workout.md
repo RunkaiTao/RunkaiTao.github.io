@@ -34,10 +34,7 @@ excerpt: "Track workout progress with detailed exercise analytics."
 
   <!-- Category Tabs -->
   <div class="category-tabs">
-    <button class="tab-btn active" data-category="all">
-      <i class="fas fa-chart-line"></i> All
-    </button>
-    <button class="tab-btn" data-category="chest">
+    <button class="tab-btn active" data-category="chest">
       <i class="fas fa-heart"></i> Chest
     </button>
     <button class="tab-btn" data-category="leg">

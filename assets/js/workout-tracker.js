@@ -7,7 +7,7 @@ class WorkoutTracker {
         this.processedData = [];
         this.filteredData = [];
         this.displayedData = [];
-        this.currentCategory = 'all';
+        this.currentCategory = 'chest';
         this.exerciseCharts = {};
         this.entriesPerLoad = 20;
         this.currentOffset = 0;
