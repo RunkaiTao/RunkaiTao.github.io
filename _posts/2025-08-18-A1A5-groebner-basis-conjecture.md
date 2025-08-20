@@ -3,6 +3,7 @@ title: "Groebner Basis Conjecture for Macdonald index A1A5"
 date: 2025-08-19
 categories:
   - Physics
+  - Hide
 tags:
   - macdonald index
   - superconformal index
