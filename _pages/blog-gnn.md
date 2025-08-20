@@ -15,6 +15,7 @@ All blog posts in the **GNN** category, listed in chronological order (newest fi
 {% assign gnn_posts = site.categories.GNN | sort: 'date' | reverse %}
 
 {% for post in gnn_posts %}
+  {% unless post.protected %}
   <article class="post-item">
     <h3><a href="{{ post.url | relative_url }}" rel="permalink">{{ post.title }}</a></h3>
     <p class="post-meta">
@@ -31,6 +32,7 @@ All blog posts in the **GNN** category, listed in chronological order (newest fi
     {% endif %}
     <p><a href="{{ post.url | relative_url }}" class="read-more">Read more &rarr;</a></p>
   </article>
+  {% endunless %}
 {% endfor %}
 
 {% if gnn_posts.size == 0 %}

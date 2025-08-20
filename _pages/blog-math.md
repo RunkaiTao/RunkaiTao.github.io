@@ -15,6 +15,7 @@ All blog posts in the **Math** category, listed in chronological order (newest f
 {% assign math_posts = site.categories.Math | sort: 'date' | reverse %}
 
 {% for post in math_posts %}
+  {% unless post.protected %}
   <article class="post-item">
     <h3><a href="{{ post.url | relative_url }}" rel="permalink">{{ post.title }}</a></h3>
     <p class="post-meta">
@@ -31,6 +32,7 @@ All blog posts in the **Math** category, listed in chronological order (newest f
     {% endif %}
     <p><a href="{{ post.url | relative_url }}" class="read-more">Read more &rarr;</a></p>
   </article>
+  {% endunless %}
 {% endfor %}
 
 {% if math_posts.size == 0 %}

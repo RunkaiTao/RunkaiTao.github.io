@@ -20,6 +20,7 @@ Welcome to my blog! Here I share thoughts on research, tutorials, and insights f
 ### {{ category[0] }}
 
 {% for post in posts_in_category limit:5 %}
+  {% unless post.protected %}
   <article class="post-item">
     <h4>
       <a href="{{ post.url | relative_url }}" rel="permalink">{{ post.title }}</a>
@@ -39,6 +40,7 @@ Welcome to my blog! Here I share thoughts on research, tutorials, and insights f
       </p>
     {% endif %}
   </article>
+  {% endunless %}
 {% endfor %}
 
 {% if posts_in_category.size > 5 %}

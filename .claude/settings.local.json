@@ -10,7 +10,8 @@
       "Bash(node:*)",
       "Bash(ls:*)",
       "Bash(cp:*)",
-      "Bash(open test-formula.html)"
+      "Bash(open test-formula.html)",
+      "Bash(find:*)"
     ],
     "deny": []
   }

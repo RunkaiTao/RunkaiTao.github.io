@@ -1,27 +1,36 @@
 ---
-permalink: /blogs/physics/
-title: "Physics Posts"
+permalink: /blogs/private/
+title: "Private Research Notes"
 layout: single
 author_profile: true
 classes: wide
 ---
 
-All blog posts in the **Physics** category, listed in chronological order (newest first).
+This page contains password-protected research notes and private academic content.
 
 <p style="margin-bottom: 2em;">
   <a href="{{ '/blogs/' | relative_url }}" class="btn btn-outline">&larr; Back to All Blogs</a>
 </p>
 
-{% assign physics_posts = site.categories.Physics | sort: 'date' | reverse %}
+{% assign protected_posts = site.posts | where: "protected", true | sort: 'date' | reverse %}
 
-{% for post in physics_posts %}
-  {% unless post.protected %}
-  <article class="post-item">
+{% for post in protected_posts %}
+  <article class="post-item protected-post">
     <h3>
+      <i class="fas fa-lock protected-icon"></i>
       <a href="{{ post.url | relative_url }}" rel="permalink">{{ post.title }}</a>
+      <span class="protected-badge">Protected</span>
     </h3>
     <p class="post-meta">
       <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %d, %Y" }}</time>
+      {% if post.categories.size > 0 %}
+        • Categories: 
+        {% for category in post.categories %}
+          {% unless category == "Private" %}
+            <span class="category">{{ category }}</span>{% unless forloop.last %}, {% endunless %}
+          {% endunless %}
+        {% endfor %}
+      {% endif %}
       {% if post.tags.size > 0 %}
         • Tags: 
         {% for tag in post.tags %}
@@ -31,20 +40,25 @@ All blog posts in the **Physics** category, listed in chronological order (newes
     </p>
     {% if post.excerpt %}
       <p class="post-excerpt">
-        {{ post.excerpt | strip_html | truncate: 300 }}
+        {{ post.excerpt | strip_html | truncate: 150 }}
+        <span class="protected-notice">This post requires a password to view.</span>
+      </p>
+    {% endif %}
+    {% if post.password_hint %}
+      <p class="password-hint">
+        <i class="fas fa-info-circle"></i> Hint: {{ post.password_hint }}
       </p>
     {% endif %}
     <p>
       <a href="{{ post.url | relative_url }}" class="read-more">
-        Read more &rarr;
+        Enter password to read &rarr;
       </a>
     </p>
   </article>
-  {% endunless %}
 {% endfor %}
 
-{% if physics_posts.size == 0 %}
-  <p class="no-posts">No posts found in the Physics category.</p>
+{% if protected_posts.size == 0 %}
+  <p class="no-posts">No protected posts found.</p>
 {% endif %}
 
 <style>
@@ -74,7 +88,7 @@ All blog posts in the **Physics** category, listed in chronological order (newes
   margin-bottom: 1em;
 }
 
-.tag {
+.tag, .category {
   background-color: #f0f0f0;
   padding: 2px 6px;
   border-radius: 3px;
@@ -85,6 +99,22 @@ All blog posts in the **Physics** category, listed in chronological order (newes
   color: #555;
   line-height: 1.6;
   margin-bottom: 1em;
+}
+
+.password-hint {
+  color: #666;
+  font-size: 0.9em;
+  font-style: italic;
+  margin-bottom: 1em;
+  padding: 0.5em;
+  background-color: #f8f9fa;
+  border-left: 3px solid #007bff;
+  border-radius: 0 4px 4px 0;
+}
+
+.password-hint i {
+  color: #007bff;
+  margin-right: 0.5em;
 }
 
 .read-more {
@@ -128,6 +158,8 @@ All blog posts in the **Physics** category, listed in chronological order (newes
 .protected-post {
   background: linear-gradient(135deg, #fff 0%, #fff8e1 100%);
   border-left: 4px solid #ffb300;
+  padding: 1.5em;
+  border-radius: 0 8px 8px 0;
 }
 
 .protected-icon {
