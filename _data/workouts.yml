@@ -1,0 +1,162 @@
+# Workout Data
+# Format: date -> array of exercises with category, exercise name, weight (lbs), repetitions
+
+"2025-08-2":
+  - category: "chest"
+    exercise: "Barbell Bench Press"
+    weight: 10
+    repetitions: 27
+  - category: "chest"
+    exercise: "Incline Dumbbell Press"
+    weight: 30
+    repetitions: 40
+  - category: "chest"
+    exercise: "Dips"
+    weight: 0
+    repetitions: 15
+  - category: "shoulder"
+    exercise: "Overhead Press"
+    weight: 135
+    repetitions: 6
+
+"2025-08-18":
+  - category: "leg"
+    exercise: "Squats"
+    weight: 225
+    repetitions: 12
+  - category: "leg"
+    exercise: "Romanian Deadlift"
+    weight: 185
+    repetitions: 10
+  - category: "leg"
+    exercise: "Leg Press"
+    weight: 315
+    repetitions: 15
+  - category: "leg"
+    exercise: "Calf Raises"
+    weight: 45
+    repetitions: 20
+
+"2025-08-16":
+  - category: "back"
+    exercise: "Pull-ups"
+    weight: 0
+    repetitions: 12
+  - category: "back"
+    exercise: "Barbell Rows"
+    weight: 155
+    repetitions: 8
+  - category: "back"
+    exercise: "Lat Pulldowns"
+    weight: 120
+    repetitions: 12
+  - category: "shoulder"
+    exercise: "Lateral Raises"
+    weight: 25
+    repetitions: 15
+
+"2025-08-14":
+  - category: "chest"
+    exercise: "Bench Press"
+    weight: 180
+    repetitions: 10
+  - category: "chest"
+    exercise: "Incline Dumbbell Press"
+    weight: 65
+    repetitions: 12
+  - category: "chest"
+    exercise: "Chest Flyes"
+    weight: 30
+    repetitions: 12
+
+"2025-08-12":
+  - category: "leg"
+    exercise: "Squats"
+    weight: 215
+    repetitions: 15
+  - category: "leg"
+    exercise: "Romanian Deadlift"
+    weight: 175
+    repetitions: 12
+  - category: "leg"
+    exercise: "Lunges"
+    weight: 40
+    repetitions: 16
+
+"2025-08-10":
+  - category: "shoulder"
+    exercise: "Overhead Press"
+    weight: 130
+    repetitions: 8
+  - category: "shoulder"
+    exercise: "Lateral Raises"
+    weight: 20
+    repetitions: 12
+  - category: "shoulder"
+    exercise: "Rear Delt Flyes"
+    weight: 15
+    repetitions: 15
+  - category: "back"
+    exercise: "Pull-ups"
+    weight: 0
+    repetitions: 10
+
+"2025-08-08":
+  - category: "back"
+    exercise: "Deadlifts"
+    weight: 275
+    repetitions: 5
+  - category: "back"
+    exercise: "Barbell Rows"
+    weight: 145
+    repetitions: 10
+  - category: "back"
+    exercise: "Cable Rows"
+    weight: 100
+    repetitions: 12
+
+"2025-08-06":
+  - category: "chest"
+    exercise: "Bench Press"
+    weight: 175
+    repetitions: 12
+  - category: "chest"
+    exercise: "Dumbbell Press"
+    weight: 60
+    repetitions: 10
+  - category: "chest"
+    exercise: "Dips"
+    weight: 0
+    repetitions: 12
+
+"2025-08-04":
+  - category: "leg"
+    exercise: "Squats"
+    weight: 205
+    repetitions: 15
+  - category: "leg"
+    exercise: "Leg Curls"
+    weight: 80
+    repetitions: 12
+  - category: "leg"
+    exercise: "Calf Raises"
+    weight: 40
+    repetitions: 25
+
+"2025-08-02":
+  - category: "shoulder"
+    exercise: "Overhead Press"
+    weight: 125
+    repetitions: 10
+  - category: "shoulder"
+    exercise: "Arnold Press"
+    weight: 35
+    repetitions: 12
+  - category: "back"
+    exercise: "Pull-ups"
+    weight: 0
+    repetitions: 8
+  - category: "back"
+    exercise: "Lat Pulldowns"
+    weight: 110
+    repetitions: 15
