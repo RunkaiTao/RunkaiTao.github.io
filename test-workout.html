@@ -202,6 +202,279 @@
             max-height: 300px;
         }
 
+        /* Data Table Styles */
+        .data-table-section {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .table-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .table-header h3 {
+            margin: 0;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .table-controls {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .quick-filters {
+            display: flex;
+            gap: 0.4rem;
+            flex-wrap: wrap;
+            margin-bottom: 0.5rem;
+        }
+
+        .quick-filter-btn {
+            background: #f8f9fa;
+            border: 1px solid #e1e5e9;
+            border-radius: 6px;
+            padding: 0.4rem 0.8rem;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: #555;
+            font-weight: 500;
+        }
+
+        .quick-filter-btn:hover {
+            background: #e9ecef;
+            border-color: #ced4da;
+        }
+
+        .quick-filter-btn.active {
+            background: #667eea;
+            border-color: #667eea;
+            color: white;
+        }
+
+        .search-sort-controls {
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .search-input, .category-filter, .sort-select {
+            padding: 0.5rem;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+
+        .search-input {
+            min-width: 200px;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+            max-height: 400px;
+            overflow-y: auto;
+            border: 1px solid #e1e5e9;
+            border-radius: 6px;
+            background: white;
+        }
+
+        .workout-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        .workout-table th,
+        .workout-table td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        .workout-table th {
+            background: #f8f9fa;
+            font-weight: bold;
+            color: #555;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            border-bottom: 2px solid #e1e5e9;
+        }
+
+        .workout-table tbody tr:hover {
+            background: #f8f9fa;
+        }
+
+        .category-badge {
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .category-badge.chest {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .category-badge.leg {
+            background: #3498db;
+            color: white;
+        }
+
+        .category-badge.shoulder {
+            background: #f39c12;
+            color: white;
+        }
+
+        .category-badge.back {
+            background: #27ae60;
+            color: white;
+        }
+
+        .category-badge.other {
+            background: #8e44ad;
+            color: white;
+        }
+
+        .table-pagination {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+            padding: 1rem 0;
+        }
+
+        .pagination-info {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .load-more-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 0.6rem 1.2rem;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-weight: 500;
+            box-shadow: 0 2px 4px rgba(102, 126, 234, 0.2);
+        }
+
+        .load-more-btn:hover {
+            background: #5a67d8;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(102, 126, 234, 0.3);
+        }
+
+        .recent-workouts {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .recent-workouts h3 {
+            margin: 0 0 1rem 0;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .workout-timeline {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .workout-entry {
+            border-left: 4px solid #667eea;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background: #f8f9fa;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .workout-date {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .workout-exercises {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .exercise-tag {
+            background: rgba(102, 126, 234, 0.1);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            color: #667eea;
+        }
+
+        .exercise-tag.chest {
+            background: rgba(231, 76, 60, 0.1);
+            color: #e74c3c;
+        }
+
+        .exercise-tag.leg {
+            background: rgba(52, 152, 219, 0.1);
+            color: #3498db;
+        }
+
+        .exercise-tag.shoulder {
+            background: rgba(243, 156, 18, 0.1);
+            color: #f39c12;
+        }
+
+        .exercise-tag.back {
+            background: rgba(39, 174, 96, 0.1);
+            color: #27ae60;
+        }
+
+        .exercise-tag.other {
+            background: rgba(142, 68, 173, 0.1);
+            color: #8e44ad;
+        }
+
+        .no-data {
+            text-align: center;
+            padding: 3rem 2rem;
+            color: #666;
+        }
+
+        .no-data i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #ccc;
+        }
+
+        .help-text {
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+
         @media (max-width: 768px) {
             .charts-grid {
                 grid-template-columns: 1fr;
@@ -211,6 +484,21 @@
                 grid-template-columns: 1fr;
                 gap: 1rem;
                 max-width: 400px;
+            }
+
+            .table-header {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: stretch;
+            }
+
+            .table-controls {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+
+            .search-input, .category-filter, .sort-select {
+                width: 100%;
             }
         }
     </style>
@@ -270,6 +558,72 @@
     <div class="workout-timeline" id="workout-timeline">
       <!-- Recent workout entries will be populated here -->
     </div>
+  </div>
+
+  <!-- Detailed Data Table -->
+  <div class="data-table-section">
+    <div class="table-header">
+      <h3><i class="fas fa-table"></i> Workout Log</h3>
+      <div class="table-controls">
+        <div class="quick-filters">
+          <button class="quick-filter-btn active" data-filter="recent">Recent</button>
+          <button class="quick-filter-btn" data-filter="week">This Week</button>
+          <button class="quick-filter-btn" data-filter="month">This Month</button>
+          <button class="quick-filter-btn" data-filter="all">All Time</button>
+        </div>
+        <div class="search-sort-controls">
+          <input type="text" id="search-input" placeholder="Search exercises..." class="search-input">
+          <select id="category-filter" class="category-filter">
+            <option value="">All Categories</option>
+            <option value="chest">Chest</option>
+            <option value="leg">Legs</option>
+            <option value="shoulder">Shoulders</option>
+            <option value="back">Back</option>
+            <option value="other">Other</option>
+          </select>
+          <select id="sort-select" class="sort-select">
+            <option value="date-desc">Date (Newest)</option>
+            <option value="date-asc">Date (Oldest)</option>
+            <option value="weight-desc">Weight (High to Low)</option>
+            <option value="volume-desc">Volume (High to Low)</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    
+    <div class="table-wrapper">
+      <table id="workout-table" class="workout-table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Category</th>
+            <th>Exercise</th>
+            <th>Weight (lbs)</th>
+            <th>Reps</th>
+            <th>Volume</th>
+          </tr>
+        </thead>
+        <tbody id="workout-tbody">
+          <!-- Table rows will be populated by JavaScript -->
+        </tbody>
+      </table>
+    </div>
+    
+    <div class="table-pagination">
+      <div class="pagination-info">
+        <span id="entries-info">Showing <strong id="entries-shown">0</strong> of <strong id="entries-total">0</strong> entries</span>
+      </div>
+      <button id="load-more-btn" class="load-more-btn" style="display: none;">
+        <i class="fas fa-chevron-down"></i> Load More Entries
+      </button>
+    </div>
+  </div>
+
+  <!-- No Data State -->
+  <div id="no-data" class="no-data" style="display: none;">
+    <i class="fas fa-dumbbell"></i>
+    <p>No workout data found.</p>
+    <p class="help-text">Add data in <code>_data/workouts.yml</code> to get started.</p>
   </div>
 </div>
 

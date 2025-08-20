@@ -74,21 +74,29 @@ excerpt: "Track workout progress with detailed exercise analytics."
     <div class="table-header">
       <h3><i class="fas fa-table"></i> Workout Log</h3>
       <div class="table-controls">
-        <input type="text" id="search-input" placeholder="Search exercises..." class="search-input">
-        <select id="category-filter" class="category-filter">
-          <option value="">All Categories</option>
-          <option value="chest">Chest</option>
-          <option value="leg">Legs</option>
-          <option value="shoulder">Shoulders</option>
-          <option value="back">Back</option>
-          <option value="other">Other</option>
-        </select>
-        <select id="sort-select" class="sort-select">
-          <option value="date-desc">Date (Newest)</option>
-          <option value="date-asc">Date (Oldest)</option>
-          <option value="weight-desc">Weight (High to Low)</option>
-          <option value="volume-desc">Volume (High to Low)</option>
-        </select>
+        <div class="quick-filters">
+          <button class="quick-filter-btn active" data-filter="recent">Recent</button>
+          <button class="quick-filter-btn" data-filter="week">This Week</button>
+          <button class="quick-filter-btn" data-filter="month">This Month</button>
+          <button class="quick-filter-btn" data-filter="all">All Time</button>
+        </div>
+        <div class="search-sort-controls">
+          <input type="text" id="search-input" placeholder="Search exercises..." class="search-input">
+          <select id="category-filter" class="category-filter">
+            <option value="">All Categories</option>
+            <option value="chest">Chest</option>
+            <option value="leg">Legs</option>
+            <option value="shoulder">Shoulders</option>
+            <option value="back">Back</option>
+            <option value="other">Other</option>
+          </select>
+          <select id="sort-select" class="sort-select">
+            <option value="date-desc">Date (Newest)</option>
+            <option value="date-asc">Date (Oldest)</option>
+            <option value="weight-desc">Weight (High to Low)</option>
+            <option value="volume-desc">Volume (High to Low)</option>
+          </select>
+        </div>
       </div>
     </div>
     
@@ -108,6 +116,15 @@ excerpt: "Track workout progress with detailed exercise analytics."
           <!-- Table rows will be populated by JavaScript -->
         </tbody>
       </table>
+    </div>
+    
+    <div class="table-pagination">
+      <div class="pagination-info">
+        <span id="entries-info">Showing <strong id="entries-shown">0</strong> of <strong id="entries-total">0</strong> entries</span>
+      </div>
+      <button id="load-more-btn" class="load-more-btn" style="display: none;">
+        <i class="fas fa-chevron-down"></i> Load More Entries
+      </button>
     </div>
   </div>
 
@@ -435,8 +452,45 @@ excerpt: "Track workout progress with detailed exercise analytics."
 
 .table-controls {
   display: flex;
+  flex-direction: column;
   gap: 1rem;
+}
+
+.quick-filters {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.5rem;
+}
+
+.quick-filter-btn {
+  background: #f8f9fa;
+  border: 1px solid #e1e5e9;
+  border-radius: 6px;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #555;
+  font-weight: 500;
+}
+
+.quick-filter-btn:hover {
+  background: #e9ecef;
+  border-color: #ced4da;
+}
+
+.quick-filter-btn.active {
+  background: #667eea;
+  border-color: #667eea;
+  color: white;
+}
+
+.search-sort-controls {
+  display: flex;
+  gap: 0.75rem;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .search-input, .category-filter, .sort-select {
@@ -452,6 +506,11 @@ excerpt: "Track workout progress with detailed exercise analytics."
 
 .table-wrapper {
   overflow-x: auto;
+  max-height: 400px;
+  overflow-y: auto;
+  border: 1px solid #e1e5e9;
+  border-radius: 6px;
+  background: white;
 }
 
 .workout-table {
@@ -473,6 +532,8 @@ excerpt: "Track workout progress with detailed exercise analytics."
   color: #555;
   position: sticky;
   top: 0;
+  z-index: 10;
+  border-bottom: 2px solid #e1e5e9;
 }
 
 .workout-table tbody tr:hover {
@@ -510,6 +571,52 @@ excerpt: "Track workout progress with detailed exercise analytics."
 .category-badge.other {
   background: #8e44ad;
   color: white;
+}
+
+/* Table Pagination */
+.table-pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+  padding: 1rem 0;
+}
+
+.pagination-info {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.load-more-btn {
+  background: #667eea;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.6rem 1.2rem;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 500;
+  box-shadow: 0 2px 4px rgba(102, 126, 234, 0.2);
+}
+
+.load-more-btn:hover {
+  background: #5a67d8;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(102, 126, 234, 0.3);
+}
+
+.load-more-btn:disabled {
+  background: #cbd5e0;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.load-more-btn i {
+  font-size: 0.8rem;
 }
 
 /* No Data State */
@@ -550,7 +657,7 @@ excerpt: "Track workout progress with detailed exercise analytics."
   
   .table-controls {
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.75rem;
   }
   
   .search-input, .category-filter, .sort-select {

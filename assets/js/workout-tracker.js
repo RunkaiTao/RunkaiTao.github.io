@@ -6,8 +6,12 @@ class WorkoutTracker {
         this.workoutData = window.workoutData || {};
         this.processedData = [];
         this.filteredData = [];
+        this.displayedData = [];
         this.currentCategory = 'all';
         this.exerciseCharts = {};
+        this.entriesPerLoad = 20;
+        this.currentOffset = 0;
+        this.currentTimeFilter = 'recent';
         
         // Debug data loading
         console.log('Workout data loaded:', this.workoutData);
@@ -20,9 +24,10 @@ class WorkoutTracker {
         this.processData();
         this.updateSummaryStats();
         this.setupEventListeners();
+        this.setupPagination();
         this.displayCharts();
         this.populateRecentWorkouts();
-        this.populateTable();
+        this.setTimeFilter('recent'); // Default to recent filter
         
         // Show no data message if no data exists
         if (Object.keys(this.workoutData).length === 0) {
@@ -94,6 +99,62 @@ class WorkoutTracker {
         sortSelect.addEventListener('change', (e) => {
             this.sortData(e.target.value);
         });
+
+        // Quick filter functionality
+        document.querySelectorAll('.quick-filter-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const filter = e.currentTarget.dataset.filter;
+                this.setTimeFilter(filter);
+            });
+        });
+    }
+
+    setupPagination() {
+        // Load More button event listener
+        const loadMoreBtn = document.getElementById('load-more-btn');
+        if (loadMoreBtn) {
+            loadMoreBtn.addEventListener('click', () => {
+                this.loadMoreEntries();
+            });
+        }
+    }
+
+    resetPagination() {
+        this.currentOffset = 0;
+        this.displayedData = [];
+        this.updatePaginationInfo();
+    }
+
+    loadMoreEntries() {
+        const endIndex = Math.min(this.currentOffset + this.entriesPerLoad, this.filteredData.length);
+        const newEntries = this.filteredData.slice(this.currentOffset, endIndex);
+        
+        this.displayedData = [...this.displayedData, ...newEntries];
+        this.currentOffset = endIndex;
+        
+        this.populateTable();
+        this.updatePaginationInfo();
+    }
+
+    updatePaginationInfo() {
+        const entriesShown = document.getElementById('entries-shown');
+        const entriesTotal = document.getElementById('entries-total');
+        const loadMoreBtn = document.getElementById('load-more-btn');
+        
+        if (entriesShown) entriesShown.textContent = this.displayedData.length;
+        if (entriesTotal) entriesTotal.textContent = this.filteredData.length;
+        
+        // Show/hide load more button
+        if (loadMoreBtn) {
+            const hasMore = this.currentOffset < this.filteredData.length;
+            loadMoreBtn.style.display = hasMore ? 'flex' : 'none';
+            
+            if (hasMore) {
+                const remaining = this.filteredData.length - this.currentOffset;
+                const nextLoad = Math.min(this.entriesPerLoad, remaining);
+                loadMoreBtn.innerHTML = `<i class="fas fa-chevron-down"></i> Load ${nextLoad} More Entries`;
+            }
+        }
     }
 
     setActiveCategory(category) {
@@ -330,9 +391,14 @@ class WorkoutTracker {
 
     populateTable() {
         const tbody = document.getElementById('workout-tbody');
-        tbody.innerHTML = '';
+        
+        // Only clear table if we're starting fresh (offset = 0)
+        if (this.currentOffset === this.displayedData.length) {
+            tbody.innerHTML = '';
+        }
 
-        if (this.filteredData.length === 0) {
+        if (this.displayedData.length === 0) {
+            tbody.innerHTML = '';
             const row = tbody.insertRow();
             const cell = row.insertCell(0);
             cell.colSpan = 6;
@@ -340,10 +406,19 @@ class WorkoutTracker {
             cell.style.textAlign = 'center';
             cell.style.padding = '2rem';
             cell.style.color = '#666';
+            this.updatePaginationInfo();
             return;
         }
 
-        this.filteredData.forEach(exercise => {
+        // Load initial entries if displayedData is empty
+        if (this.displayedData.length === 0 && this.filteredData.length > 0) {
+            this.loadMoreEntries();
+            return;
+        }
+
+        // Clear and repopulate table with displayed data
+        tbody.innerHTML = '';
+        this.displayedData.forEach(exercise => {
             const row = tbody.insertRow();
             
             // Date
@@ -374,6 +449,8 @@ class WorkoutTracker {
                 row.style.backgroundColor = '';
             });
         });
+        
+        this.updatePaginationInfo();
     }
 
     filterData(searchTerm, categoryFilter) {
@@ -390,6 +467,48 @@ class WorkoutTracker {
             return matchesSearch && matchesCategory;
         });
         
+        this.resetPagination();
+        this.populateTable();
+    }
+
+    setTimeFilter(timeFilter) {
+        this.currentTimeFilter = timeFilter;
+        
+        // Update active button
+        document.querySelectorAll('.quick-filter-btn').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.filter === timeFilter);
+        });
+        
+        // Apply time filter
+        const now = new Date();
+        let filteredByTime = this.processedData;
+        
+        switch (timeFilter) {
+            case 'recent':
+                // Last 10 workouts
+                const recentDates = Object.keys(this.workoutData)
+                    .sort((a, b) => new Date(b) - new Date(a))
+                    .slice(0, 10);
+                filteredByTime = this.processedData.filter(ex => recentDates.includes(ex.date));
+                break;
+            case 'week':
+                // Last 7 days
+                const weekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+                filteredByTime = this.processedData.filter(ex => ex.dateObj >= weekAgo);
+                break;
+            case 'month':
+                // Last 30 days
+                const monthAgo = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
+                filteredByTime = this.processedData.filter(ex => ex.dateObj >= monthAgo);
+                break;
+            case 'all':
+                // All data
+                filteredByTime = this.processedData;
+                break;
+        }
+        
+        this.filteredData = filteredByTime;
+        this.resetPagination();
         this.populateTable();
     }
 
@@ -409,6 +528,7 @@ class WorkoutTracker {
                 break;
         }
         
+        this.resetPagination();
         this.populateTable();
     }
 
