@@ -7,7 +7,11 @@ class ExerciseTracker {
         this.sortedData = [];
         this.filteredData = [];
         this.distanceChart = null;
-        this.timeChart = null;
+        this.paceChart = null;
+        
+        // Debug data loading
+        console.log('Running data loaded:', this.runningData);
+        console.log('Number of entries:', Object.keys(this.runningData).length);
         
         this.init();
     }
@@ -46,18 +50,22 @@ class ExerciseTracker {
     processData() {
         // Convert object to array and sort by date
         this.sortedData = Object.entries(this.runningData)
-            .map(([date, data]) => ({
-                date: date,
-                dateObj: new Date(date),
-                distance: parseFloat(data.distance_miles),
-                time: this.parseTimeToSeconds(data.time_duration),
-                timeDisplay: data.time_duration,
-                pace: this.parseTimeToSeconds(data.pace_per_mile),
-                paceDisplay: data.pace_per_mile,
-                notes: data.notes || ''
-            }))
+            .map(([date, data]) => {
+                console.log('Processing entry:', date, data);
+                return {
+                    date: date,
+                    dateObj: new Date(date),
+                    distance: parseFloat(data.distance_miles),
+                    time: this.parseTimeToSeconds(data.time_duration),
+                    timeDisplay: data.time_duration,
+                    pace: this.parseTimeToSeconds(data.pace_per_mile),
+                    paceDisplay: data.pace_per_mile,
+                    notes: data.notes || ''
+                };
+            })
             .sort((a, b) => b.dateObj - a.dateObj); // Newest first
         
+        console.log('Processed data:', this.sortedData);
         this.filteredData = [...this.sortedData];
     }
 
@@ -77,7 +85,12 @@ class ExerciseTracker {
     }
 
     initializeCharts() {
-        if (this.sortedData.length === 0) return;
+        if (this.sortedData.length === 0) {
+            console.log('No data available for charts');
+            return;
+        }
+        
+        console.log('Initializing charts with data:', this.sortedData.length, 'entries');
 
         // Prepare data for charts (chronological order)
         const chartData = [...this.sortedData].reverse();
@@ -86,8 +99,9 @@ class ExerciseTracker {
         const paces = chartData.map(run => run.pace / 60); // Convert to minutes for chart display
 
         // Distance Chart
-        const distanceCtx = document.getElementById('distanceChart').getContext('2d');
-        this.distanceChart = new Chart(distanceCtx, {
+        try {
+            const distanceCtx = document.getElementById('distanceChart').getContext('2d');
+            this.distanceChart = new Chart(distanceCtx, {
             type: 'line',
             data: {
                 labels: dates,
@@ -138,10 +152,14 @@ class ExerciseTracker {
                 }
             }
         });
+        } catch (error) {
+            console.error('Error creating distance chart:', error);
+        }
 
         // Pace Chart
-        const paceCtx = document.getElementById('paceChart').getContext('2d');
-        this.paceChart = new Chart(paceCtx, {
+        try {
+            const paceCtx = document.getElementById('paceChart').getContext('2d');
+            this.paceChart = new Chart(paceCtx, {
             type: 'line',
             data: {
                 labels: dates,
@@ -201,6 +219,9 @@ class ExerciseTracker {
                 }
             }
         });
+        } catch (error) {
+            console.error('Error creating pace chart:', error);
+        }
     }
 
     populateTable() {
