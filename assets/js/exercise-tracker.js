@@ -25,6 +25,24 @@ class ExerciseTracker {
         }
     }
 
+    // Parse time string "MM:SS" to total seconds
+    parseTimeToSeconds(timeString) {
+        if (!timeString || typeof timeString !== 'string') return 0;
+        const parts = timeString.split(':');
+        if (parts.length !== 2) return 0;
+        const minutes = parseInt(parts[0]) || 0;
+        const seconds = parseInt(parts[1]) || 0;
+        return minutes * 60 + seconds;
+    }
+
+    // Format seconds to "MM:SS" string
+    formatSecondsToTime(totalSeconds) {
+        if (isNaN(totalSeconds) || totalSeconds < 0) return '0:00';
+        const minutes = Math.floor(totalSeconds / 60);
+        const seconds = Math.round(totalSeconds % 60);
+        return `${minutes}:${seconds.toString().padStart(2, '0')}`;
+    }
+
     processData() {
         // Convert object to array and sort by date
         this.sortedData = Object.entries(this.runningData)
@@ -32,8 +50,10 @@ class ExerciseTracker {
                 date: date,
                 dateObj: new Date(date),
                 distance: parseFloat(data.distance_miles),
-                time: parseInt(data.time_minutes),
-                pace: parseFloat(data.pace_per_mile),
+                time: this.parseTimeToSeconds(data.time_duration),
+                timeDisplay: data.time_duration,
+                pace: this.parseTimeToSeconds(data.pace_per_mile),
+                paceDisplay: data.pace_per_mile,
                 notes: data.notes || ''
             }))
             .sort((a, b) => b.dateObj - a.dateObj); // Newest first
@@ -47,13 +67,13 @@ class ExerciseTracker {
         const totalDistance = this.sortedData.reduce((sum, run) => sum + run.distance, 0);
         const totalRuns = this.sortedData.length;
         const avgDistance = totalDistance / totalRuns;
-        const avgPace = this.sortedData.reduce((sum, run) => sum + run.pace, 0) / totalRuns;
+        const avgPaceSeconds = this.sortedData.reduce((sum, run) => sum + run.pace, 0) / totalRuns;
 
         // Update DOM elements
         document.getElementById('total-distance').textContent = totalDistance.toFixed(1);
         document.getElementById('total-runs').textContent = totalRuns;
         document.getElementById('avg-distance').textContent = avgDistance.toFixed(1);
-        document.getElementById('avg-pace').textContent = avgPace.toFixed(2);
+        document.getElementById('avg-pace').textContent = this.formatSecondsToTime(avgPaceSeconds);
     }
 
     initializeCharts() {
@@ -63,7 +83,7 @@ class ExerciseTracker {
         const chartData = [...this.sortedData].reverse();
         const dates = chartData.map(run => this.formatDate(run.date));
         const distances = chartData.map(run => run.distance);
-        const times = chartData.map(run => run.time);
+        const paces = chartData.map(run => run.pace / 60); // Convert to minutes for chart display
 
         // Distance Chart
         const distanceCtx = document.getElementById('distanceChart').getContext('2d');
@@ -119,15 +139,15 @@ class ExerciseTracker {
             }
         });
 
-        // Time Chart
-        const timeCtx = document.getElementById('timeChart').getContext('2d');
-        this.timeChart = new Chart(timeCtx, {
+        // Pace Chart
+        const paceCtx = document.getElementById('paceChart').getContext('2d');
+        this.paceChart = new Chart(paceCtx, {
             type: 'line',
             data: {
                 labels: dates,
                 datasets: [{
-                    label: 'Time (minutes)',
-                    data: times,
+                    label: 'Pace (min/mile)',
+                    data: paces,
                     borderColor: '#4ECDC4',
                     backgroundColor: 'rgba(78, 205, 196, 0.1)',
                     borderWidth: 2,
@@ -145,10 +165,17 @@ class ExerciseTracker {
                 maintainAspectRatio: false,
                 scales: {
                     y: {
-                        beginAtZero: true,
+                        beginAtZero: false,
                         title: {
                             display: true,
-                            text: 'Time (minutes)'
+                            text: 'Pace (min/mile)'
+                        },
+                        ticks: {
+                            callback: function(value) {
+                                const minutes = Math.floor(value);
+                                const seconds = Math.round((value - minutes) * 60);
+                                return `${minutes}:${seconds.toString().padStart(2, '0')}`;
+                            }
                         }
                     },
                     x: {
@@ -165,7 +192,9 @@ class ExerciseTracker {
                     tooltip: {
                         callbacks: {
                             label: function(context) {
-                                return `Time: ${context.parsed.y} minutes`;
+                                const minutes = Math.floor(context.parsed.y);
+                                const seconds = Math.round((context.parsed.y - minutes) * 60);
+                                return `Pace: ${minutes}:${seconds.toString().padStart(2, '0')}/mile`;
                             }
                         }
                     }
@@ -202,11 +231,11 @@ class ExerciseTracker {
             
             // Time
             const timeCell = row.insertCell(2);
-            timeCell.textContent = run.time;
+            timeCell.textContent = run.timeDisplay;
             
             // Pace
             const paceCell = row.insertCell(3);
-            paceCell.textContent = run.pace.toFixed(2);
+            paceCell.textContent = run.paceDisplay;
             
             // Notes
             const notesCell = row.insertCell(4);
@@ -310,8 +339,8 @@ window.addEventListener('resize', function() {
     if (window.exerciseTracker && window.exerciseTracker.distanceChart) {
         window.exerciseTracker.distanceChart.resize();
     }
-    if (window.exerciseTracker && window.exerciseTracker.timeChart) {
-        window.exerciseTracker.timeChart.resize();
+    if (window.exerciseTracker && window.exerciseTracker.paceChart) {
+        window.exerciseTracker.paceChart.resize();
     }
 });
 

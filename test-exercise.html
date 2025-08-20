@@ -30,7 +30,7 @@
     </div>
     <div class="stat-card">
       <div class="stat-value" id="avg-pace">0</div>
-      <div class="stat-label">Avg Pace (min/mile)</div>
+      <div class="stat-label">Avg Pace (min:sec/mile)</div>
     </div>
   </div>
 
@@ -42,8 +42,8 @@
     </div>
     
     <div class="chart-container">
-      <h3><i class="fas fa-clock"></i> Time Over Time</h3>
-      <canvas id="timeChart" width="400" height="200"></canvas>
+      <h3><i class="fas fa-tachometer-alt"></i> Pace Over Time</h3>
+      <canvas id="paceChart" width="400" height="200"></canvas>
     </div>
   </div>
 
@@ -70,8 +70,8 @@
           <tr>
             <th>Date</th>
             <th>Distance (miles)</th>
-            <th>Time (min)</th>
-            <th>Pace (min/mile)</th>
+            <th>Time (min:sec)</th>
+            <th>Pace (min:sec/mile)</th>
             <th>Notes</th>
           </tr>
         </thead>
@@ -88,20 +88,20 @@
 window.runningData = {
   "2025-08-20": {
     distance_miles: 3.2,
-    time_minutes: 28,
-    pace_per_mile: 8.75,
+    time_duration: "28:00",
+    pace_per_mile: "8:45",
     notes: "Morning run, good weather"
   },
   "2025-08-19": {
     distance_miles: 2.4,
-    time_minutes: 22,
-    pace_per_mile: 9.17,
+    time_duration: "22:00",
+    pace_per_mile: "9:10",
     notes: "Easy recovery run"
   },
   "2025-08-18": {
     distance_miles: 4.7,
-    time_minutes: 38,
-    pace_per_mile: 8.09,
+    time_duration: "38:00",
+    pace_per_mile: "8:05",
     notes: "Long run Sunday"
   }
 };

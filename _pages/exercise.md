@@ -36,7 +36,7 @@ excerpt: "Track running progress with data visualization."
     </div>
     <div class="stat-card">
       <div class="stat-value" id="avg-pace">0</div>
-      <div class="stat-label">Avg Pace (min/mile)</div>
+      <div class="stat-label">Avg Pace (min:sec/mile)</div>
     </div>
   </div>
 
@@ -48,8 +48,8 @@ excerpt: "Track running progress with data visualization."
     </div>
     
     <div class="chart-container">
-      <h3><i class="fas fa-clock"></i> Time Over Time</h3>
-      <canvas id="timeChart" width="400" height="200"></canvas>
+      <h3><i class="fas fa-tachometer-alt"></i> Pace Over Time</h3>
+      <canvas id="paceChart" width="400" height="200"></canvas>
     </div>
   </div>
 
@@ -76,8 +76,8 @@ excerpt: "Track running progress with data visualization."
           <tr>
             <th>Date</th>
             <th>Distance (miles)</th>
-            <th>Time (min)</th>
-            <th>Pace (min/mile)</th>
+            <th>Time (min:sec)</th>
+            <th>Pace (min:sec/mile)</th>
             <th>Notes</th>
           </tr>
         </thead>
