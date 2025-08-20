@@ -31,9 +31,9 @@ class ExerciseTracker {
             .map(([date, data]) => ({
                 date: date,
                 dateObj: new Date(date),
-                distance: parseFloat(data.distance_km),
+                distance: parseFloat(data.distance_miles),
                 time: parseInt(data.time_minutes),
-                pace: parseFloat(data.pace_per_km),
+                pace: parseFloat(data.pace_per_mile),
                 notes: data.notes || ''
             }))
             .sort((a, b) => b.dateObj - a.dateObj); // Newest first
@@ -72,7 +72,7 @@ class ExerciseTracker {
             data: {
                 labels: dates,
                 datasets: [{
-                    label: 'Distance (km)',
+                    label: 'Distance (miles)',
                     data: distances,
                     borderColor: '#FF6B6B',
                     backgroundColor: 'rgba(255, 107, 107, 0.1)',
@@ -94,7 +94,7 @@ class ExerciseTracker {
                         beginAtZero: true,
                         title: {
                             display: true,
-                            text: 'Distance (km)'
+                            text: 'Distance (miles)'
                         }
                     },
                     x: {
@@ -111,7 +111,7 @@ class ExerciseTracker {
                     tooltip: {
                         callbacks: {
                             label: function(context) {
-                                return `Distance: ${context.parsed.y} km`;
+                                return `Distance: ${context.parsed.y} miles`;
                             }
                         }
                     }

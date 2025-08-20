@@ -24,7 +24,7 @@ excerpt: "Track running progress with data visualization."
   <div class="stats-summary">
     <div class="stat-card">
       <div class="stat-value" id="total-distance">0</div>
-      <div class="stat-label">Total Distance (km)</div>
+      <div class="stat-label">Total Distance (miles)</div>
     </div>
     <div class="stat-card">
       <div class="stat-value" id="total-runs">0</div>
@@ -32,11 +32,11 @@ excerpt: "Track running progress with data visualization."
     </div>
     <div class="stat-card">
       <div class="stat-value" id="avg-distance">0</div>
-      <div class="stat-label">Avg Distance (km)</div>
+      <div class="stat-label">Avg Distance (miles)</div>
     </div>
     <div class="stat-card">
       <div class="stat-value" id="avg-pace">0</div>
-      <div class="stat-label">Avg Pace (min/km)</div>
+      <div class="stat-label">Avg Pace (min/mile)</div>
     </div>
   </div>
 
@@ -75,9 +75,9 @@ excerpt: "Track running progress with data visualization."
         <thead>
           <tr>
             <th>Date</th>
-            <th>Distance (km)</th>
+            <th>Distance (miles)</th>
             <th>Time (min)</th>
-            <th>Pace (min/km)</th>
+            <th>Pace (min/mile)</th>
             <th>Notes</th>
           </tr>
         </thead>
