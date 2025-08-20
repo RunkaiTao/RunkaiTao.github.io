@@ -11,7 +11,8 @@
       "Bash(ls:*)",
       "Bash(cp:*)",
       "Bash(open test-formula.html)",
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "Bash(open:*)"
     ],
     "deny": []
   }

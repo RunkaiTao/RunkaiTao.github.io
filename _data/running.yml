@@ -1,0 +1,122 @@
+# Daily Running Data
+# Format: distance in kilometers, time in minutes, notes optional
+
+"2025-08-20":
+  distance_km: 5.2
+  time_minutes: 28
+  pace_per_km: 5.38
+  notes: "Morning run, good weather"
+
+"2025-08-19":
+  distance_km: 3.8
+  time_minutes: 22
+  pace_per_km: 5.79
+  notes: "Easy recovery run"
+
+"2025-08-18":
+  distance_km: 7.5
+  time_minutes: 38
+  pace_per_km: 5.07
+  notes: "Long run Sunday"
+
+"2025-08-17":
+  distance_km: 4.2
+  time_minutes: 24
+  pace_per_km: 5.71
+  notes: "Interval training"
+
+"2025-08-16":
+  distance_km: 6.1
+  time_minutes: 32
+  pace_per_km: 5.25
+  notes: "Tempo run"
+
+"2025-08-15":
+  distance_km: 3.5
+  time_minutes: 20
+  pace_per_km: 5.71
+  notes: "Short run after work"
+
+"2025-08-14":
+  distance_km: 8.2
+  time_minutes: 42
+  pace_per_km: 5.12
+  notes: "Weekend long run"
+
+"2025-08-13":
+  distance_km: 4.8
+  time_minutes: 26
+  pace_per_km: 5.42
+  notes: "Steady pace"
+
+"2025-08-12":
+  distance_km: 5.5
+  time_minutes: 29
+  pace_per_km: 5.27
+  notes: "Hill training"
+
+"2025-08-11":
+  distance_km: 3.2
+  time_minutes: 18
+  pace_per_km: 5.63
+  notes: "Recovery run"
+
+"2025-08-10":
+  distance_km: 6.8
+  time_minutes: 35
+  pace_per_km: 5.15
+  notes: "Saturday morning run"
+
+"2025-08-09":
+  distance_km: 4.5
+  time_minutes: 25
+  pace_per_km: 5.56
+  notes: "Evening run"
+
+"2025-08-08":
+  distance_km: 5.0
+  time_minutes: 27
+  pace_per_km: 5.40
+  notes: "Consistent pace"
+
+"2025-08-07":
+  distance_km: 3.9
+  time_minutes: 23
+  pace_per_km: 5.90
+  notes: "Easy run"
+
+"2025-08-06":
+  distance_km: 7.2
+  time_minutes: 36
+  pace_per_km: 5.00
+  notes: "Great pace today"
+
+"2025-08-05":
+  distance_km: 4.1
+  time_minutes: 24
+  pace_per_km: 5.85
+  notes: "Slow recovery"
+
+"2025-08-04":
+  distance_km: 5.8
+  time_minutes: 30
+  pace_per_km: 5.17
+  notes: "Strong finish"
+
+"2025-08-03":
+  distance_km: 3.6
+  time_minutes: 21
+  pace_per_km: 5.83
+  notes: "Short and easy"
+
+"2025-08-02":
+  distance_km: 6.5
+  time_minutes: 33
+  pace_per_km: 5.08
+  notes: "Good rhythm"
+
+"2025-08-01":
+  distance_km: 4.7
+  time_minutes: 26
+  pace_per_km: 5.53
+  notes: "Start of month strong"
