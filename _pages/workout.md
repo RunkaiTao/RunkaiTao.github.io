@@ -30,14 +30,6 @@ excerpt: "Track workout progress with detailed exercise analytics."
       <div class="stat-value" id="total-volume">0</div>
       <div class="stat-label">Total Volume (lbs)</div>
     </div>
-    <div class="stat-card">
-      <div class="stat-value" id="avg-volume">0</div>
-      <div class="stat-label">Avg Volume/Workout</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-value" id="recent-pr">-</div>
-      <div class="stat-label">Recent PR</div>
-    </div>
   </div>
 
   <!-- Category Tabs -->
@@ -166,9 +158,12 @@ excerpt: "Track workout progress with detailed exercise analytics."
 /* Summary Statistics */
 .stats-summary {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
   margin-bottom: 2rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .stat-card {
@@ -188,14 +183,6 @@ excerpt: "Track workout progress with detailed exercise analytics."
 
 .stat-card:nth-child(2) {
   border-left-color: #f093fb;
-}
-
-.stat-card:nth-child(3) {
-  border-left-color: #4facfe;
-}
-
-.stat-card:nth-child(4) {
-  border-left-color: #43e97b;
 }
 
 .stat-value {
@@ -550,7 +537,9 @@ excerpt: "Track workout progress with detailed exercise analytics."
   }
   
   .stats-summary {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    max-width: 400px;
   }
   
   .table-header {

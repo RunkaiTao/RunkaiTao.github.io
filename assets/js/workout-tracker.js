@@ -62,22 +62,10 @@ class WorkoutTracker {
         // Calculate total statistics
         const totalWorkouts = Object.keys(this.workoutData).length;
         const totalVolume = this.processedData.reduce((sum, exercise) => sum + exercise.volume, 0);
-        const avgVolume = totalVolume / totalWorkouts;
-        
-        // Find recent PR (highest weight in last 30 days)
-        const thirtyDaysAgo = new Date();
-        thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
-        
-        const recentExercises = this.processedData.filter(ex => ex.dateObj >= thirtyDaysAgo);
-        const recentPR = recentExercises.length > 0 ? 
-            recentExercises.reduce((max, ex) => ex.weight > max.weight ? ex : max) : null;
 
         // Update DOM elements
         document.getElementById('total-workouts').textContent = totalWorkouts;
         document.getElementById('total-volume').textContent = totalVolume.toLocaleString();
-        document.getElementById('avg-volume').textContent = Math.round(avgVolume).toLocaleString();
-        document.getElementById('recent-pr').textContent = recentPR ? 
-            `${recentPR.exercise}: ${recentPR.weight} lbs` : 'No recent PRs';
     }
 
     setupEventListeners() {
