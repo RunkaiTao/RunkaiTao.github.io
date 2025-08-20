@@ -39,6 +39,12 @@ Welcome to my blog! Here I share thoughts on research, tutorials, and insights f
         {{ post.excerpt | strip_html | truncate: 200 }}
       </p>
     {% endif %}
+    <p class="license-info">
+      <i class="fab fa-creative-commons"></i>
+      <i class="fab fa-creative-commons-by"></i>
+      <i class="fab fa-creative-commons-sa"></i>
+      Licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>
+    </p>
   </article>
   {% endunless %}
 {% endfor %}
@@ -111,6 +117,30 @@ Welcome to my blog! Here I share thoughts on research, tutorials, and insights f
   text-decoration: none;
   transform: translateY(-1px);
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.license-info {
+  color: #888;
+  font-size: 0.8em;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+  padding-top: 0.5em;
+  border-top: 1px solid #f0f0f0;
+}
+
+.license-info i {
+  margin-right: 0.25em;
+  color: #666;
+}
+
+.license-info a {
+  color: #666;
+  text-decoration: none;
+}
+
+.license-info a:hover {
+  color: #007bff;
+  text-decoration: underline;
 }
 
 </style>

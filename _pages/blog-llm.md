@@ -31,6 +31,12 @@ All blog posts in the **LLM** category, listed in chronological order (newest fi
       <p class="post-excerpt">{{ post.excerpt | strip_html | truncate: 300 }}</p>
     {% endif %}
     <p><a href="{{ post.url | relative_url }}" class="read-more">Read more &rarr;</a></p>
+    <p class="license-info">
+      <i class="fab fa-creative-commons"></i>
+      <i class="fab fa-creative-commons-by"></i>
+      <i class="fab fa-creative-commons-sa"></i>
+      Licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>
+    </p>
   </article>
   {% endunless %}
 {% endfor %}
@@ -114,5 +120,29 @@ All blog posts in the **LLM** category, listed in chronological order (newest fi
   color: #666;
   font-style: italic;
   margin: 2em 0;
+}
+
+.license-info {
+  color: #888;
+  font-size: 0.8em;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+  padding-top: 0.5em;
+  border-top: 1px solid #f0f0f0;
+}
+
+.license-info i {
+  margin-right: 0.25em;
+  color: #666;
+}
+
+.license-info a {
+  color: #666;
+  text-decoration: none;
+}
+
+.license-info a:hover {
+  color: #007bff;
+  text-decoration: underline;
 }
 </style>

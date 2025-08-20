@@ -54,6 +54,12 @@ This page contains password-protected research notes and private academic conten
         Enter password to read &rarr;
       </a>
     </p>
+    <p class="license-info">
+      <i class="fab fa-creative-commons"></i>
+      <i class="fab fa-creative-commons-by"></i>
+      <i class="fab fa-creative-commons-sa"></i>
+      Licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>
+    </p>
   </article>
 {% endfor %}
 
@@ -193,5 +199,29 @@ This page contains password-protected research notes and private academic conten
 
 .protected-post h3 a:hover {
   color: #3e2723;
+}
+
+.license-info {
+  color: #888;
+  font-size: 0.8em;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+  padding-top: 0.5em;
+  border-top: 1px solid #f0f0f0;
+}
+
+.license-info i {
+  margin-right: 0.25em;
+  color: #666;
+}
+
+.license-info a {
+  color: #666;
+  text-decoration: none;
+}
+
+.license-info a:hover {
+  color: #007bff;
+  text-decoration: underline;
 }
 </style>
