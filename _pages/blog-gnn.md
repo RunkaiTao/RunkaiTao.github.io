@@ -34,8 +34,9 @@ All blog posts in the **GNN** category, listed in chronological order (newest fi
     <p class="license-info">
       <i class="fab fa-creative-commons"></i>
       <i class="fab fa-creative-commons-by"></i>
-      <i class="fab fa-creative-commons-sa"></i>
-      Licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>
+      <i class="fab fa-creative-commons-nc"></i>
+      <i class="fab fa-creative-commons-nd"></i>
+      Licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener">CC BY-NC-ND 4.0</a>
     </p>
   </article>
   {% endunless %}

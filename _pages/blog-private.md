@@ -58,9 +58,10 @@ This page contains password-protected research notes and private academic conten
       <span class="cc-icons">
         <i class="fab fa-creative-commons" aria-hidden="true"></i>
         <i class="fab fa-creative-commons-by" aria-hidden="true"></i>
-        <i class="fab fa-creative-commons-sa" aria-hidden="true"></i>
+        <i class="fab fa-creative-commons-nc" aria-hidden="true"></i>
+        <i class="fab fa-creative-commons-nd" aria-hidden="true"></i>
       </span>
-      Licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>
+      Licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener">CC BY-NC-ND 4.0</a>
     </p>
   </article>
 {% endfor %}
@@ -218,7 +219,7 @@ This page contains password-protected research notes and private academic conten
 
 /* Fallback for when Font Awesome icons don't load */
 .cc-icons:empty::before {
-  content: "🅭🅯🄎 ";
+  content: "🅭🅯🚫💰🚫🔄 ";
   font-size: 1em;
 }
 </style>
