@@ -1,6 +1,24 @@
 # Daily Tasks Data
 # Format: used_pomodoros/expected_pomodoros (finished auto-calculated when used >= expected)
 
+"2025-08-21":
+  - task: |
+      research note: Cordova Shao's paper
+    used_pomodoros: 0
+    expected_pomodoros: 4
+  - task: |
+      K-theoretic 
+      1. JK-residue proof
+      2. full perturbative partition function
+      3. SQM calculation revisit
+    used_pomodoros: 0
+    expected_pomodoros: 4
+  - task: |
+      group-meeting 
+    used_pomodoros: 0
+    expected_pomodoros: 3
+    
+
 "2025-08-20":
   - task: |
       Groebner basis conjecture for A1A5 macdonald index:
