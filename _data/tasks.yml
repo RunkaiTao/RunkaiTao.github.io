@@ -4,7 +4,7 @@
 "2025-08-20":
   - task: |
       Groebner basis conjecture for A1A5 macdonald index:
-    used_pomodoros: 0
+    used_pomodoros: 4
     expected_pomodoros: 4
   - task: |
       research note: Cordova Shao's paper
@@ -15,6 +15,10 @@
       1. full perturbative partition function
       2. SQM calculation revisit
     used_pomodoros: 0
+    expected_pomodoros: 4
+  - task: |
+      pre-boarding 
+    used_pomodoros: 4
     expected_pomodoros: 4
 
 
