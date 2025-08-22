@@ -1,6 +1,6 @@
 ---
-title: "Research Note: Groebner Basis Conjecture for Macdonald index A1A5"
-date: 2025-08-19
+title: "Research Note: Macdonald index A1A5"
+date: 2025-08-18
 categories:
   - Physics
 tags:

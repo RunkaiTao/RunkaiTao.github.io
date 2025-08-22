@@ -4,18 +4,17 @@
 "2025-08-21":
   - task: |
       research note: Cordova Shao's paper
-    used_pomodoros: 0
-    expected_pomodoros: 4
+    used_pomodoros: 2
+    expected_pomodoros: 2
   - task: |
       K-theoretic 
       1. JK-residue proof
-      2. full perturbative partition function
-      3. SQM calculation revisit
-    used_pomodoros: 0
+      2. instanton partition function definition
+    used_pomodoros: 4
     expected_pomodoros: 4
   - task: |
       group-meeting 
-    used_pomodoros: 0
+    used_pomodoros: 3
     expected_pomodoros: 3
     
 
