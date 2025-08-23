@@ -156,12 +156,11 @@ $$
 
 (TODO: how to derive this expression?)
 
-```mathematica
+```
 QP[a_, q_, 0] := 1
 QP[a_, q_] := Product[1 - a q^k, {k, 0, 40}]
 QP[a_, q_, n_] := Product[1 - a q^k, {k, 0, n - 1}]
-IZ3[q_, t_] := 1/QP[t^(1/2), q]^2 + 1/(QP[t^(1/2) w, q] QP[t^(1/2) w^2, q]) + 1/(
- QP[t^(1/2) w^2, q] QP[t^(1/2) w, q])
+IZ3[q_, t_] := 1/QP[t^(1/2), q]^2 + 1/(QP[t^(1/2) w, q] QP[t^(1/2) w^2, q]) + 1/(QP[t^(1/2) w^2, q] QP[t^(1/2) w, q])
 ```
 
 where $\omega = e^{2\pi i / 3}$ is a primitive cube root of unity.  
@@ -174,7 +173,7 @@ $$
 
 (TODO: cite where does this formula come from?)
 
-Taking $s=\sqrt{t}, z \in\left\{1, \omega, \omega^2\right\}$, we have
+Taking $s=\sqrt{t}, z \in\{1, \omega, \omega^2\}$, we have
 
 $$
 \mathcal{I}_{\mathrm{M}}^{\mathrm{HM} / \mathbb{Z}_3}(q, t)=\frac{1}{3} \sum_{m, n \geq 0}\left[\frac{t^{\frac{m+n}{2}}\left(1+\omega^{m-n}+\omega^{2(m-n)}\right)}{(q ; q)_m(q ; q)_n}\right]=\sum_{\substack{m, n \geq 0 \\ m \equiv n \bmod 3}} \frac{t^{\frac{m+n}{2}}}{(q ; q)_m(q ; q)_n}
