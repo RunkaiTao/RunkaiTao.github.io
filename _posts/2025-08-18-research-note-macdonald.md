@@ -146,4 +146,69 @@ $$
 \end{aligned}
 $$
 
-### 
+### Relation to $\mathbb{Z}_3$ projective free hypermultiplet
+
+The $\mathbb{Z}_3$ projective free hypermultiplet can be expressed as
+
+$$
+\mathcal{I}_{\mathrm{M}}^{\mathrm{HM} / \mathbb{Z}_3}(q, t)=\frac{1}{3}\left[\frac{1}{(\sqrt{t} ; q)_{\infty}^2}+\frac{1}{(\sqrt{t} \omega ; q)_{\infty}\left(\sqrt{t} \omega^2 ; q\right)_{\infty}}+\frac{1}{\left(\sqrt{t} \omega^2 ; q\right)_{\infty}(\sqrt{t} \omega ; q)_{\infty}}\right]
+$$
+
+(TODO: how to derive this expression?)
+
+```mathematica
+QP[a_, q_, 0] := 1
+QP[a_, q_] := Product[1 - a q^k, {k, 0, 40}]
+QP[a_, q_, n_] := Product[1 - a q^k, {k, 0, n - 1}]
+IZ3[q_, t_] := 1/QP[t^(1/2), q]^2 + 1/(QP[t^(1/2) w, q] QP[t^(1/2) w^2, q]) + 1/(
+ QP[t^(1/2) w^2, q] QP[t^(1/2) w, q])
+```
+
+where $\omega = e^{2\pi i / 3}$ is a primitive cube root of unity.  
+
+We simplify the $\mathbb{Z}_3$-FH Macdonald index using the formula
+
+$$
+\frac{1}{(s z ; q)_{\infty}\left(s z^{-1} ; q\right)_{\infty}}=\sum_{m, n \geq 0} \frac{s^{m+n} z^{m-n}}{(q ; q)_m(q ; q)_n} .
+$$
+
+(TODO: cite where does this formula come from?)
+
+Taking $s=\sqrt{t}, z \in\left\{1, \omega, \omega^2\right\}$, we have
+
+$$
+\mathcal{I}_{\mathrm{M}}^{\mathrm{HM} / \mathbb{Z}_3}(q, t)=\frac{1}{3} \sum_{m, n \geq 0}\left[\frac{t^{\frac{m+n}{2}}\left(1+\omega^{m-n}+\omega^{2(m-n)}\right)}{(q ; q)_m(q ; q)_n}\right]=\sum_{\substack{m, n \geq 0 \\ m \equiv n \bmod 3}} \frac{t^{\frac{m+n}{2}}}{(q ; q)_m(q ; q)_n}
+$$
+
+Putting $m+n=r$, we get
+
+$$
+\mathcal{I}_{\mathrm{M}}^{\mathrm{HM} / \mathbb{Z}_3}(q, t)=\sum_{r \geq 0} \frac{t^{\frac{r}{2}}}{(q ; q)_r} \sum_{\substack{\ell=0 \\ 2 \ell \equiv r \bmod 3}}^r\binom{r}{\ell}_q
+$$
+
+using the definition for $q$-binomial in terms of the $q$-Pochhammer symbol, we have
+
+$$
+\binom{n}{k}_q = \frac{(q;q)_n}{(q;q)_k(q;q)_{n-k}},
+$$
+
+we get
+
+$$
+\mathcal{I}_{\mathrm{M}}^{\mathrm{HM} / \mathbb{Z}_3}(q, t)=
+\sum_{\substack{m, n \geq 0 \\ m \equiv n \bmod 3}} 
+\frac{t^{\frac{m+n}{2}}}{(q ; q)_{m+n}} 
+\binom{m+n}{m}_q,
+$$
+
+Changing the variable $r = \frac{m + n}{2}$, we get
+
+$$
+\mathcal{I}_{\mathrm{M}}^{\mathrm{HM} / \mathbb{Z}_3}(q, t)=\sum_{r \in \frac{1}{2} \mathbb{Z}_{\geq 0}} \frac{t^{r}}{(q ; q)_{2r}} \sum_{\substack{m=0 \\ 2 m \equiv 2r \bmod 3}}^{2r}\binom{2r}{m}_q .
+$$
+
+We adopt the following definition
+
+$$
+\mathcal{I}_{\mathrm{M}}^{\mathrm{HM} / \mathbb{Z}_3}(q, t)=:\sum_{r \in \frac{1}{2} \mathbb{Z}_{\geq 0}}t^{r}  \mathcal{I}^{\mathrm{HM} / \mathbb{Z}_3}_{r}(q).
+$$

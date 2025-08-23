@@ -1,6 +1,13 @@
 # Daily Tasks Data
 # Format: used_pomodoros/expected_pomodoros (finished auto-calculated when used >= expected)
 
+"2025-08-23":
+  - task: |
+      Macdonald Index A1A5 
+      1. Z3 HP multiplet
+    used_pomodoros: 1
+    expected_pomodoros: 2
+
 "2025-08-22":
   - task: |
       K-theoretic 
