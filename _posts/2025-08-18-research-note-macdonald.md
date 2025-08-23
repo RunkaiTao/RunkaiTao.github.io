@@ -156,11 +156,11 @@ $$
 
 (TODO: how to derive this expression?)
 
-```
+```mathematica
 QP[a_, q_, 0] := 1
 QP[a_, q_] := Product[1 - a q^k, {k, 0, 40}]
 QP[a_, q_, n_] := Product[1 - a q^k, {k, 0, n - 1}]
-IZ3[q_, t_] := 1/QP[t^(1/2), q]^2 + 1/(QP[t^(1/2) w, q] QP[t^(1/2) w^2, q]) + 1/(QP[t^(1/2) w^2, q] QP[t^(1/2) w, q])
+IZ3 = 1/QP[t^(1/2), q]^2 + 1/(QP[t^(1/2) w, q] QP[t^(1/2) w^2, q]) + 1/(QP[t^(1/2) w^2, q] QP[t^(1/2) w, q])
 ```
 
 where $\omega = e^{2\pi i / 3}$ is a primitive cube root of unity.  
@@ -179,19 +179,13 @@ $$
 \mathcal{I}_{\mathrm{M}}^{\mathrm{HM} / \mathbb{Z}_3}(q, t)=\frac{1}{3} \sum_{m, n \geq 0}\left[\frac{t^{\frac{m+n}{2}}\left(1+\omega^{m-n}+\omega^{2(m-n)}\right)}{(q ; q)_m(q ; q)_n}\right]=\sum_{\substack{m, n \geq 0 \\ m \equiv n \bmod 3}} \frac{t^{\frac{m+n}{2}}}{(q ; q)_m(q ; q)_n}
 $$
 
-Putting $m+n=r$, we get
-
-$$
-\mathcal{I}_{\mathrm{M}}^{\mathrm{HM} / \mathbb{Z}_3}(q, t)=\sum_{r \geq 0} \frac{t^{\frac{r}{2}}}{(q ; q)_r} \sum_{\substack{\ell=0 \\ 2 \ell \equiv r \bmod 3}}^r\binom{r}{\ell}_q
-$$
-
-using the definition for $q$-binomial in terms of the $q$-Pochhammer symbol, we have
+The definition for $q$-binomial in terms of the $q$-Pochhammer symbol reads
 
 $$
 \binom{n}{k}_q = \frac{(q;q)_n}{(q;q)_k(q;q)_{n-k}},
 $$
 
-we get
+we then get
 
 $$
 \mathcal{I}_{\mathrm{M}}^{\mathrm{HM} / \mathbb{Z}_3}(q, t)=
@@ -211,3 +205,34 @@ We adopt the following definition
 $$
 \mathcal{I}_{\mathrm{M}}^{\mathrm{HM} / \mathbb{Z}_3}(q, t)=:\sum_{r \in \frac{1}{2} \mathbb{Z}_{\geq 0}}t^{r}  \mathcal{I}^{\mathrm{HM} / \mathbb{Z}_3}_{r}(q).
 $$
+
+```mathematica
+IZ3[r_] := Sum[1/(QP[q, q, m] QP[q, q, 2 r - m])* Boole[Mod[2 m, 3] == Mod[2 r, 3]], {m, 0, 2 r}]
+```
+
+The relation between $\mathcal{I}_{\mathrm{M}}^{\mathrm{HM} / \mathbb{Z}_3}(q, t)$ and the $\mathcal{I}_{\mathrm{M}}^{(A_1, A_5)}(q, t)$ for fixed $t$- order is given by
+
+$$
+\mathcal{I}^{(A_1, A_5)}_0 (q) = \mathcal{I}^{\mathrm{HM} / \mathbb{Z}_3}_{0}(q)
+$$
+
+$$
+\mathcal{I}^{(A_1, A_5)}_{1/2} (q) =c \mathcal{I}^{\mathrm{HM} / \mathbb{Z}_3}_{1/2}(q)
+$$
+
+$$
+\mathcal{I}^{(A_1, A_5)}_{1} (q) =(1-q^2) \mathcal{I}^{\mathrm{HM} / \mathbb{Z}_3}_{1}(q)
+$$
+
+$$
+\mathcal{I}^{(A_1, A_5)}_{3/2} (q) =
+ \mathcal{I}^{\mathrm{HM} / \mathbb{Z}_3}_{0}(q) +
+(1-q^2) \mathcal{I}^{\mathrm{HM} / \mathbb{Z}_3}_{1}(q)
+$$
+
+$$
+\mathcal{I}^{(A_1, A_5)}_{2} (q) =
+(1-2q^3 -q^4 + 2q^5) \mathcal{I}^{\mathrm{HM} / \mathbb{Z}_3}_{2}(q)
+$$
+
+The relations above are not unique.
