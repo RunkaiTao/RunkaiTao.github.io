@@ -1,6 +1,18 @@
 # Daily Tasks Data
 # Format: used_pomodoros/expected_pomodoros (finished auto-calculated when used >= expected)
 
+"2025-08-22":
+  - task: |
+      K-theoretic 
+      1. fix some issues
+      2. redraw the diagram
+    used_pomodoros: 2
+    expected_pomodoros: 2
+  - task: |
+      group-meeting 
+    used_pomodoros: 5
+    expected_pomodoros: 5
+
 "2025-08-21":
   - task: |
       research note: Cordova Shao's paper

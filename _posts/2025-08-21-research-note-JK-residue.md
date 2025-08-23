@@ -1,5 +1,5 @@
 ---
-title: "Research Note: JK residue"
+title: "Research Note: K-theoretic"
 date: 2025-08-18
 categories:
   - Physics
@@ -8,9 +8,10 @@ tags:
 layout: protected
 protected: true
 password_hash: "af7a3cc6b7617d07cb2d436c53b8398ba0a97cd19b183bea37d4cbedb2c066d1"
-excerpt: "Proof for JK residue formula."
+excerpt: "Supporting detail on K-theoretic"
 ---
 
+# Path integral Contour
 
 ### Proof of JK prescription for rank one case
 We are working on the proof for the JK residue formula in the rank one case. 
@@ -48,5 +49,4 @@ For the second term, we take the limit $\epsilon\to 0$ first for a non-zero $e$ 
 $$
 Z_{T^2}=\lim _{\mathrm{e}, \varepsilon \rightarrow 0} \int_{\mathfrak{M} \backslash \Delta_{\varepsilon}} \mathrm{d}^2 u F_{\mathrm{e}}(u, \bar{u})
 $$
-
 
