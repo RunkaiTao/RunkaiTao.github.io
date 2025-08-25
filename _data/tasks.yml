@@ -1,11 +1,23 @@
 # Daily Tasks Data
 # Format: used_pomodoros/expected_pomodoros (finished auto-calculated when used >= expected)
 
+"2025-08-25":
+  - task: |
+      Group meeting 
+    used_pomodoros: 0
+    expected_pomodoros: 4
+
+"2025-08-24":
+  - task: |
+      Macdonald Index A1A5 discussion
+    used_pomodoros: 2
+    expected_pomodoros: 2
+  
 "2025-08-23":
   - task: |
       Macdonald Index A1A5 
       1. Z3 HP multiplet
-    used_pomodoros: 1
+    used_pomodoros: 2
     expected_pomodoros: 2
 
 "2025-08-22":
