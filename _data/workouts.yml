@@ -1,74 +1,78 @@
 # Workout Data
-# Format: date -> array of exercises with category, exercise name, weight (lbs), repetitions, time_duration
+# Format: date -> time_duration and exercises array with category, exercise name, weight (lbs), repetitions
 
 "2025-08-8":
   time_duration: "75:00"
-  - category: "chest"
-    exercise: "Barbell Bench Press"
-    weight: 10
-    repetitions: 28
-  - category: "chest"
-    exercise: "Incline Dumbbell Press"
-    weight: 35
-    repetitions: 32
-  - category: "chest"
-    exercise: "Chest Flyes"
-    weight: 70
-    repetitions: 24
-  - category: "other"
-    exercise: "Triceps Press"
-    weight: 105
-    repetitions: 36
+  exercises:
+    - category: "chest"
+      exercise: "Barbell Bench Press"
+      weight: 10
+      repetitions: 28
+    - category: "chest"
+      exercise: "Incline Dumbbell Press"
+      weight: 35
+      repetitions: 32
+    - category: "chest"
+      exercise: "Chest Flyes"
+      weight: 70
+      repetitions: 24
+    - category: "other"
+      exercise: "Triceps Press"
+      weight: 105
+      repetitions: 36
   
 "2025-08-6":
   time_duration: "60:00"
-  - category: "back"
-    exercise: "Cable Pulldown"
-    weight: 22.5
-    repetitions: 30
-  - category: "back"
-    exercise: "Lat Pulldown Wide"
-    weight: 80
-    repetitions: 30
-  - category: "back"
-    exercise: "Machine Rowing"
-    weight: 85
-    repetitions: 30
-  - category: "other"
-    exercise: "Preacher Curl"
-    weight: 25
-    repetitions: 30
+  exercises:
+    - category: "back"
+      exercise: "Cable Pulldown"
+      weight: 22.5
+      repetitions: 30
+    - category: "back"
+      exercise: "Lat Pulldown Wide"
+      weight: 80
+      repetitions: 30
+    - category: "back"
+      exercise: "Machine Rowing"
+      weight: 85
+      repetitions: 30
+    - category: "other"
+      exercise: "Preacher Curl"
+      weight: 25
+      repetitions: 30
 
 "2025-08-4":
   time_duration: "50:00"
-  - category: "shoulder"
-    exercise: "Lateral Raise"
-    weight: 10
-    repetitions: 60
-  - category: "shoulder"
-    exercise: "Shoulder Press"
-    weight: 25
-    repetitions: 30
-  - category: "other"
-    exercise: "Biceps Curl"
-    weight: 40
-    repetitions: 30
+  exercises:
+    - category: "shoulder"
+      exercise: "Lateral Raise"
+      weight: 10
+      repetitions: 60
+    - category: "shoulder"
+      exercise: "Shoulder Press"
+      weight: 25
+      repetitions: 30
+    - category: "other"
+      exercise: "Biceps Curl"
+      weight: 40
+      repetitions: 30
 
 "2025-08-2":
   time_duration: "65:00"
-  - category: "chest"
-    exercise: "Barbell Bench Press"
-    weight: 10
-    repetitions: 27
-  - category: "chest"
-    exercise: "Incline Dumbbell Press"
-    weight: 30
-    repetitions: 40
-  - category: "chest"
-    exercise: "Chest Flyes"
-    weight: 70
-    repetitions: 30
-  - category: "other"
-    exercise: "Triceps Press"
-    weight: 100
-    repetitions: 30
+  exercises:
+    - category: "chest"
+      exercise: "Barbell Bench Press"
+      weight: 10
+      repetitions: 27
+    - category: "chest"
+      exercise: "Incline Dumbbell Press"
+      weight: 30
+      repetitions: 40
+    - category: "chest"
+      exercise: "Chest Flyes"
+      weight: 70
+      repetitions: 30
+    - category: "other"
+      exercise: "Triceps Press"
+      weight: 100
+      repetitions: 30
