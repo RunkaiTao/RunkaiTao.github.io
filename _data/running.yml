@@ -1,6 +1,12 @@
 # Daily Running Data
 # Format: distance in miles, time in min:sec format, pace in min:sec per mile
 
+"2025-08-27":
+  distance_miles: 2.03
+  time_duration: "22:46"
+  pace_per_mile: "11:12"
+  notes: "looking for a new route around"
+
 "2025-08-23":
   distance_miles: 2.42
   time_duration: "24:41"
