@@ -67,7 +67,52 @@ excerpt: "Central hub for daily tracking and productivity tools."
 
   </div>
 
+  <!-- Time Tracking Charts Section -->
+  <div class="time-charts-section">
+    <div class="charts-header">
+      <h2><i class="fas fa-chart-bar"></i> Time Distribution Charts</h2>
+      <p>Visual breakdown of your time across different activity categories</p>
+    </div>
+
+    <div class="charts-container">
+      <!-- Daily Bar Chart -->
+      <div class="chart-panel">
+        <div class="chart-controls">
+          <button id="prev-week-chart" class="chart-nav-btn">← Previous Week</button>
+          <span id="current-week-display" class="chart-period-display">Loading...</span>
+          <button id="next-week-chart" class="chart-nav-btn">Next Week →</button>
+        </div>
+        <div class="chart-wrapper">
+          <canvas id="dailyChart" width="400" height="300"></canvas>
+        </div>
+      </div>
+
+      <!-- Monthly Donut Chart -->
+      <div class="chart-panel">
+        <div class="chart-controls">
+          <button id="prev-month-chart" class="chart-nav-btn">← Previous Month</button>
+          <span id="current-month-display" class="chart-period-display">Loading...</span>
+          <button id="next-month-chart" class="chart-nav-btn">Next Month →</button>
+        </div>
+        <div class="chart-wrapper">
+          <canvas id="monthlyChart" width="400" height="300"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
+
+<script>
+  // Inject Jekyll data into JavaScript for charts
+  window.tasksData = {{ site.data.tasks | jsonify }};
+  window.runningData = {{ site.data.running | jsonify }};
+  window.workoutsData = {{ site.data.workouts | jsonify }};
+</script>
+
+<!-- Chart.js CDN -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="{{ '/assets/js/time-charts.js' | relative_url }}"></script>
 
 <style>
 /* Daily Dashboard Styles */
@@ -255,6 +300,162 @@ excerpt: "Central hub for daily tracking and productivity tools."
   .card-icon {
     font-size: 1.8rem;
     margin-right: 0.75rem;
+  }
+}
+
+/* Time Charts Section Styles */
+.time-charts-section {
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+}
+
+.charts-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding: 2rem;
+  background: linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%);
+  color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.charts-header h2 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.charts-header p {
+  margin: 0;
+  opacity: 0.95;
+  font-size: 1rem;
+}
+
+.charts-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.chart-panel {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  border: 1px solid #e0e0e0;
+}
+
+.chart-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding: 0.75rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+.chart-nav-btn {
+  background: #4CAF50;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.3s ease;
+  min-width: 120px;
+}
+
+.chart-nav-btn:hover {
+  background: #45a049;
+  transform: translateY(-2px);
+}
+
+.chart-period-display {
+  font-weight: 600;
+  color: #333;
+  font-size: 0.9rem;
+}
+
+.chart-wrapper {
+  position: relative;
+  height: 350px;
+  margin-top: 1rem;
+}
+
+.chart-wrapper canvas {
+  max-width: 100%;
+  height: 100% !important;
+}
+
+/* Responsive Design for Charts */
+@media (max-width: 1024px) {
+  .charts-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .chart-wrapper {
+    height: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .charts-header {
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .charts-header h2 {
+    font-size: 1.5rem;
+  }
+  
+  .chart-panel {
+    padding: 1rem;
+  }
+  
+  .chart-controls {
+    flex-direction: column;
+    gap: 0.75rem;
+    text-align: center;
+  }
+  
+  .chart-nav-btn {
+    width: 100%;
+    max-width: 200px;
+  }
+  
+  .chart-wrapper {
+    height: 250px;
+  }
+}
+
+@media (max-width: 480px) {
+  .time-charts-section {
+    margin-top: 2rem;
+  }
+  
+  .charts-header {
+    padding: 1rem;
+  }
+  
+  .charts-header h2 {
+    font-size: 1.3rem;
+  }
+  
+  .chart-panel {
+    padding: 0.75rem;
+  }
+  
+  .chart-wrapper {
+    height: 200px;
+  }
+  
+  .chart-nav-btn {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.8rem;
   }
 }
 </style>

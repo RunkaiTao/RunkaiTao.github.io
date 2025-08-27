@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Charts Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .charts-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .chart-panel {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border: 1px solid #e0e0e0;
+        }
+        .chart-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding: 0.75rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        .chart-nav-btn {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+        }
+        .chart-wrapper {
+            position: relative;
+            height: 350px;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <h1>Time Charts Test</h1>
+    
+    <div class="charts-container">
+        <!-- Daily Bar Chart -->
+        <div class="chart-panel">
+            <div class="chart-controls">
+                <button id="prev-week-chart" class="chart-nav-btn">← Previous Week</button>
+                <span id="current-week-display" class="chart-period-display">Loading...</span>
+                <button id="next-week-chart" class="chart-nav-btn">Next Week →</button>
+            </div>
+            <div class="chart-wrapper">
+                <canvas id="dailyChart" width="400" height="300"></canvas>
+            </div>
+        </div>
+
+        <!-- Monthly Donut Chart -->
+        <div class="chart-panel">
+            <div class="chart-controls">
+                <button id="prev-month-chart" class="chart-nav-btn">← Previous Month</button>
+                <span id="current-month-display" class="chart-period-display">Loading...</span>
+                <button id="next-month-chart" class="chart-nav-btn">Next Month →</button>
+            </div>
+            <div class="chart-wrapper">
+                <canvas id="monthlyChart" width="400" height="300"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sample test data
+        window.tasksData = {
+            "2025-08-25": [
+                { task: "Group meeting", category: "Physics", used_pomodoros: 0, expected_pomodoros: 4 }
+            ],
+            "2025-08-24": [
+                { task: "Macdonald Index A1A5 discussion", category: "Physics", used_pomodoros: 2, expected_pomodoros: 2 }
+            ],
+            "2025-08-23": [
+                { task: "Macdonald Index A1A5", category: "Physics", used_pomodoros: 2, expected_pomodoros: 2 }
+            ],
+            "2025-08-22": [
+                { task: "K-theoretic", category: "Physics", used_pomodoros: 2, expected_pomodoros: 2 },
+                { task: "group-meeting", category: "Physics", used_pomodoros: 5, expected_pomodoros: 5 }
+            ],
+            "2025-08-21": [
+                { task: "research note: Cordova Shao's paper", category: "Physics", used_pomodoros: 2, expected_pomodoros: 2 },
+                { task: "K-theoretic", category: "Physics", used_pomodoros: 4, expected_pomodoros: 4 },
+                { task: "group-meeting", category: "Physics", used_pomodoros: 3, expected_pomodoros: 3 },
+                { task: "Code review for GNN project", category: "CS", used_pomodoros: 2, expected_pomodoros: 2 }
+            ]
+        };
+        
+        window.runningData = {
+            "2025-08-23": { distance_miles: 2.42, time_duration: "24:41", pace_per_mile: "10:07" },
+            "2025-08-21": { distance_miles: 2.4, time_duration: "25:47", pace_per_mile: "10:42" },
+            "2025-08-19": { distance_miles: 2.3, time_duration: "24:05", pace_per_mile: "10:28" }
+        };
+        
+        window.workoutsData = {
+            "2025-08-08": { time_duration: "75:00" },
+            "2025-08-06": { time_duration: "60:00" },
+            "2025-08-04": { time_duration: "50:00" },
+            "2025-08-02": { time_duration: "65:00" }
+        };
+    </script>
+    
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="assets/js/time-charts.js"></script>
+</body>
+</html>

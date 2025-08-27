@@ -1,7 +1,8 @@
 # Workout Data
-# Format: date -> array of exercises with category, exercise name, weight (lbs), repetitions
+# Format: date -> array of exercises with category, exercise name, weight (lbs), repetitions, time_duration
 
 "2025-08-8":
+  time_duration: "75:00"
   - category: "chest"
     exercise: "Barbell Bench Press"
     weight: 10
@@ -20,6 +21,7 @@
     repetitions: 36
   
 "2025-08-6":
+  time_duration: "60:00"
   - category: "back"
     exercise: "Cable Pulldown"
     weight: 22.5
@@ -38,6 +40,7 @@
     repetitions: 30
 
 "2025-08-4":
+  time_duration: "50:00"
   - category: "shoulder"
     exercise: "Lateral Raise"
     weight: 10
@@ -52,6 +55,7 @@
     repetitions: 30
 
 "2025-08-2":
+  time_duration: "65:00"
   - category: "chest"
     exercise: "Barbell Bench Press"
     weight: 10

@@ -4,12 +4,14 @@
 "2025-08-25":
   - task: |
       Group meeting 
+    category: "Physics"
     used_pomodoros: 0
     expected_pomodoros: 4
 
 "2025-08-24":
   - task: |
       Macdonald Index A1A5 discussion
+    category: "Physics"
     used_pomodoros: 2
     expected_pomodoros: 2
   
@@ -17,6 +19,7 @@
   - task: |
       Macdonald Index A1A5 
       1. Z3 HP multiplet
+    category: "Physics"
     used_pomodoros: 2
     expected_pomodoros: 2
 
@@ -25,26 +28,31 @@
       K-theoretic 
       1. fix some issues
       2. redraw the diagram
+    category: "Physics"
     used_pomodoros: 2
     expected_pomodoros: 2
   - task: |
       group-meeting 
+    category: "Physics"
     used_pomodoros: 5
     expected_pomodoros: 5
 
 "2025-08-21":
   - task: |
       research note: Cordova Shao's paper
+    category: "Physics"
     used_pomodoros: 2
     expected_pomodoros: 2
   - task: |
       K-theoretic 
       1. JK-residue proof
       2. instanton partition function definition
+    category: "Physics"
     used_pomodoros: 4
     expected_pomodoros: 4
   - task: |
       group-meeting 
+    category: "Physics"
     used_pomodoros: 3
     expected_pomodoros: 3
     
@@ -52,20 +60,24 @@
 "2025-08-20":
   - task: |
       Groebner basis conjecture for A1A5 macdonald index:
+    category: "Physics"
     used_pomodoros: 4
     expected_pomodoros: 4
   - task: |
       research note: Cordova Shao's paper
+    category: "Physics"
     used_pomodoros: 0
     expected_pomodoros: 4
   - task: |
       K-theoretic 
       1. full perturbative partition function
       2. SQM calculation revisit
+    category: "CS"
     used_pomodoros: 0
     expected_pomodoros: 4
   - task: |
       pre-boarding 
+    category: "Other"
     used_pomodoros: 4
     expected_pomodoros: 4
 
@@ -73,24 +85,29 @@
 "2025-08-19":
   - task: |
       Groebner basis conjecture for A1A5 macdonald index:
+    category: "Physics"
     used_pomodoros: 1
     expected_pomodoros: 4
   - task: "group meeting"
+    category: "CS"
     used_pomodoros: 3
     expected_pomodoros: 3
   - task: |
       personal website build:
       1. formula display for blogs
+    category: "Other"
     used_pomodoros: 4
     expected_pomodoros: 4
   - task: |
       K-theoretic 
       1. full perturbative partition function
       2. SQM calculation revisit
+    category: "CS"
     used_pomodoros: 0
     expected_pomodoros: 4
   - task: |
       Read: Cordova Shao's paper 
+    category: "Physics"
     used_pomodoros: 2
     expected_pomodoros: 2
 
@@ -100,50 +117,64 @@
       1. include task page
       2. link pomodoros data
       3. change protected style blog
+    category: "Other"
     used_pomodoros: 5
     expected_pomodoros: 4
   - task: "Groebner basis computation for A1A5 macdonald index"
+    category: "CS"
     used_pomodoros: 0
     expected_pomodoros: 4
 
 "2025-08-17":
   - task: "Team meeting with Prof. Moore"
+    category: "CS"
     used_pomodoros: 2
     expected_pomodoros: 2
   - task: "Code review for distributed GNN project"
+    category: "CS"
     used_pomodoros: 4
     expected_pomodoros: 3
   - task: "Read papers on K-theoretic Donaldson invariants"
+    category: "Physics"
     used_pomodoros: 1
     expected_pomodoros: 4
   - task: "Grocery shopping"
+    category: "Other"
     used_pomodoros: 1
     expected_pomodoros: 1
 
 "2025-08-16":
   - task: "Write progress report"
+    category: "CS"
     used_pomodoros: 3
     expected_pomodoros: 3
   - task: "Implement SGLang optimizations"
+    category: "CS"
     used_pomodoros: 2
     expected_pomodoros: 5
   - task: "Attend physics department seminar"
+    category: "Physics"
     used_pomodoros: 3
     expected_pomodoros: 3
   - task: "Exercise at gym"
+    category: "Other"
     used_pomodoros: 2
     expected_pomodoros: 2
   - task: "Plan next week's research activities"
+    category: "CS"
     used_pomodoros: 1
     expected_pomodoros: 2
 
 "2025-08-15":
   - task: "Debug MixGCN performance issues"
+    category: "CS"
     used_pomodoros: 4
     expected_pomodoros: 4
   - task: "Prepare presentation for Amazon internship"
+    category: "CS"
     used_pomodoros: 5
     expected_pomodoros: 4
   - task: "Call family"
+    category: "Other"
     used_pomodoros: 1
     expected_pomodoros: 1
