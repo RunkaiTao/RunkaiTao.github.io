@@ -67,13 +67,15 @@ $$
 
 for charges $\gamma_i$ with $\left\langle\gamma_1, \gamma_2\right\rangle=1$.
 
+(TODO: explain the equation using wall-crossing.)
+
 For each charge $\gamma \in \Gamma$ we build the following element of the quantum torus algebra using the $q$-exponential and the protected spin character 
 
 $$
 U_\gamma=\prod_{n \in \mathbb{Z}} E_q\left((-1)^n q^{n / 2} X_\gamma\right)^{(-1)^n \Omega_n(\gamma)}
 $$
 
-For the hypermultiplet, the only non-trivial protected spin character is$\Omega_0(\gamma) = 1$. Therefore, $U_\gamma$ reduces to $q$-exponentials.
+For the hypermultiplet, the only non-trivial protected spin character is $\Omega_0(\gamma) = 1$. Therefore, $U_\gamma$ reduces to $q$-exponentials.
 Note that $U_\gamma$ will be trivial if $\gamma$ is not BPS.
 
 The Kontsevich-Soibelman (KS) operator is defined by taking a product over all the $U_\gamma$
@@ -87,7 +89,7 @@ Since the quantum torus algebra is non-commutative we must prescribe a specific 
 The important fact of Kontsevich-Soibelman (KS) operator is that, it is 
 independent of the Coulomb branch vacuum.  Any quantity constructed out of $\mathcal{O}(q)$ has a chance to reproduce aspects of the quantum field theory defined at the origin of moduli space. We expect to get Schur index of origin SCFT from $\mathcal{O}(q)$.
 
-One last definition is the monodromy operator $\mathcal{M}(q)$, it is related to the Kontsevich-Soibelman operator by
+One last definition is the monodromy operator $M(q)$, it is related to the Kontsevich-Soibelman operator by
 
 $$
 \mathcal{O}(q)=M(q)^{-1}
@@ -102,6 +104,7 @@ $$
 $$
 
 (TODO: Explain more about flavor charges)
+
 In the language of the quantum torus algebra, if $\gamma$ is a flavor charge then the associated element $X_\gamma$ commutes with all other elements in the algebra, i.e. 
 $X_\gamma$ is central.
 
@@ -112,8 +115,12 @@ $$
 \operatorname{Tr}\left[X_\gamma\right]= \begin{cases}\prod_i \operatorname{Tr}\left[X_{\gamma_{f_i}}\right] f_i(\gamma) & \left\langle\gamma, \gamma^{\prime}\right\rangle=0 \forall \gamma^{\prime} \in \Gamma, \\ 0 & \text { else },\end{cases}
 $$
 
-where $f_i(\gamma)$ are the flavor charges of $\gamma$. The above trace is a
-function of the $n_f$ variables $\operatorname{Tr}\left[X_{\gamma_{f_i}}\right]$.
+where $f_i(\gamma)$ are the flavor charges of $\gamma$. 
+
+The above trace is a
+function of the $n_f$ variables $\operatorname{Tr}\left[X_{\gamma_{f_i}}\right]$. 
+
+$\operatorname{Tr}\left[X_\gamma\right]$ is non-zero iff $\gamma$ is a flavor charge or zero.
 
 In particular, if there is no flavor charge for $\gamma$, we have
 
@@ -192,6 +199,90 @@ $$
 $$
 
 ---
+
+## Physical origin of the $\text{Tr}(M(q))$
+
+### From M5-branes and the topological string
+
+We can compute $\operatorname{Tr} M(q)^k$ from the path-integral 
+
+$$
+Z_{K S}(q, k):=Z_{\mathcal{N}=2}\left[M C_q \times S_{g^k}^1\right]=\operatorname{Tr}\left(M(q)^k\right) .
+$$
+
+Here $M C_q$ is the Melvin cigar defined by 
+
+$$
+M C_q=\left(C \times S^1\right)_q,
+$$
+
+where $C$ is the topologically twisted cigar.
+
+The path-integral intepretation of the monodromy leads 
+to several predictions.
+
+If we have an SCFT where the denominators of the $R$-charges
+of chiral operators all divide $r$, the monodromy operator 
+is periodic with period $r$. i.e.
+
+$$
+M(q)^r=1.
+$$
+
+If $|q| < 1$, we argue that 
+$\text{Tr}(M(q))$ should give a quasi-modular function of $q$.
+
+### From Type IIB superstring
+Consider Type IIB superstring compactification on a Calabi-Yau threefold $X$.
+If $X$ has an isolated singularity, we expect to get a $4d$ $\mathcal{N}=2$ SCFT. The singularities of the type $f(x,y) + uv = 0$ correspond to M5-brane CFTs.
+
+A more general singularities is of the type 
+
+$$
+W_G(x, y)+W_{G^{\prime}}(u, v)=0,
+$$
+
+given a pair $(G, G')$ of A-D-E groups.
+
+The common denominator of the R-charges divides $r=h+h'$, where $h$ and $h'$ are the Coxeter numbers of $G$ and $G'$ respectively.
+
+The BPS spectrum is naturally associated to a certain integral equation TBA and discrete dynamical system $Y$-system, which has been studied in the 
+theory of cluster algebras. From $Y$-system, we get a prediction for the 
+spectrum of BPS states, or equivalently for the BPS monodromy $M$.
+
+(Question: How is BPS monodromy being equivalent to the BPS spectrum?)
+
+The connection between TBA and 2d RCFT can be explained using string dualities.
+
+## R-twisting
+Relating the spectrum of BPS states in certain $4d$ $\mathcal{N}=2$ SCFTs
+to the spectrum of R-charges of relevant operators at the conformal point.
+
+### basic setup
+Consider $M$-theory on flat space 
+
+$$
+\mathbb{C}_{x, y}^2 \times\left(\mathbb{C}_z \times \mathbb{R}_p\right) \times \mathbb{R}^4
+$$
+
+with an M5-brane wrapping on the locus
+
+$$
+\Sigma \times\{z=0, p=0\} \times \mathbb{R}^4,
+$$
+
+where $\Sigma$ is a (non-compact) Riemann surface
+
+$$
+\Sigma=\{f(x, y)=0\} \subset \mathbb{C}_{x, y}^2
+$$
+
+This gives an $\mathcal{N}=2$ theory in the last $\mathbb{R}^4$,
+where $\Sigma$ is the Seiberg-Witten curve, and
+$\lambda = y dx$ is the Seiberg-Witten differential.
+
+(Does $\Sigma$ contain punctures?)
+
 
 **References**
 

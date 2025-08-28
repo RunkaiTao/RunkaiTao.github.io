@@ -15,18 +15,18 @@
   - task: |
       Thesis writing:
     category: "Thesis"
-    used_pomodoros: 0
+    used_pomodoros: 1
     expected_pomodoros: 2
   - task: |
       blogs on Cecotti-Neitzke-Vafa:
     category: "Physics"
-    used_pomodoros: 0
-    expected_pomodoros: 2
+    used_pomodoros: 4
+    expected_pomodoros: 4
   - task: |
       Cuda study:
     category: "CS"
-    used_pomodoros: 0
-    expected_pomodoros: 2
+    used_pomodoros: 3
+    expected_pomodoros: 3
   
   
 
