@@ -6,16 +6,25 @@
 
 class TimeCharts {
     constructor() {
-        this.categories = {
-            'Running': '#FF6B6B',     // Orange-red
-            'Workout': '#4ECDC4',     // Teal/Green
-            'Physics': '#45B7D1',     // Blue
-            'CS': '#96CEB4',          // Light green
-            'Other': '#F39C12'        // Orange
-        };
+        // Color palette for dynamic categories
+        this.colorPalette = [
+            '#45B7D1',  // Blue
+            '#96CEB4',  // Light green
+            '#FF6B6B',  // Orange-red
+            '#4ECDC4',  // Teal
+            '#F39C12',  // Orange
+            '#9B59B6',  // Purple
+            '#E74C3C',  // Red
+            '#F1C40F',  // Yellow
+            '#2ECC71',  // Green
+            '#E67E22',  // Dark orange
+            '#3498DB',  // Light blue
+            '#1ABC9C'   // Turquoise
+        ];
         
         this.currentDate = new Date();
         this.loadData();
+        this.discoverCategories();
     }
 
     loadData() {
@@ -23,6 +32,31 @@ class TimeCharts {
         this.tasksData = window.tasksData || {};
         this.runningData = window.runningData || {};
         this.workoutsData = window.workoutsData || {};
+    }
+
+    // Discover all categories from task data and assign colors
+    discoverCategories() {
+        const categorySet = new Set(['Running', 'Workout']); // Always include these
+        
+        // Scan all task data to find categories
+        Object.values(this.tasksData).forEach(dayTasks => {
+            if (Array.isArray(dayTasks)) {
+                dayTasks.forEach(task => {
+                    if (task.category) {
+                        categorySet.add(task.category);
+                    }
+                });
+            }
+        });
+        
+        // Convert to array and sort for consistent ordering
+        const categories = Array.from(categorySet).sort();
+        
+        // Assign colors to categories
+        this.categories = {};
+        categories.forEach((category, index) => {
+            this.categories[category] = this.colorPalette[index % this.colorPalette.length];
+        });
     }
 
     // Parse time string to minutes (formats: "MM:SS", "HH:MM:SS", "MM")
@@ -59,13 +93,12 @@ class TimeCharts {
     // Get data for a specific date
     getDataForDate(date) {
         const dateKey = this.formatDateKey(date);
-        const data = {
-            'Running': 0,
-            'Workout': 0,
-            'Physics': 0,
-            'CS': 0,
-            'Other': 0
-        };
+        
+        // Initialize data object with all discovered categories
+        const data = {};
+        Object.keys(this.categories).forEach(category => {
+            data[category] = 0;
+        });
 
         // Add running data
         if (this.runningData[dateKey]) {
@@ -82,9 +115,17 @@ class TimeCharts {
             this.tasksData[dateKey].forEach(task => {
                 const category = task.category || 'Other';
                 const minutes = (task.used_pomodoros || 0) * 30;
+                
+                // If category exists in our discovered categories, use it
+                // Otherwise, ensure 'Other' exists as fallback
                 if (data.hasOwnProperty(category)) {
                     data[category] += minutes;
                 } else {
+                    // Add 'Other' category if it doesn't exist
+                    if (!data.hasOwnProperty('Other')) {
+                        data['Other'] = 0;
+                        this.categories['Other'] = '#F39C12'; // Orange
+                    }
                     data['Other'] += minutes;
                 }
             });
@@ -128,13 +169,11 @@ class TimeCharts {
         const firstDay = new Date(year, month, 1);
         const lastDay = new Date(year, month + 1, 0);
         
-        const monthData = {
-            'Running': 0,
-            'Workout': 0,
-            'Physics': 0,
-            'CS': 0,
-            'Other': 0
-        };
+        // Initialize month data with all discovered categories
+        const monthData = {};
+        Object.keys(this.categories).forEach(category => {
+            monthData[category] = 0;
+        });
 
         for (let day = 1; day <= lastDay.getDate(); day++) {
             const currentDate = new Date(year, month, day);
