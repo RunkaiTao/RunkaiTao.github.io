@@ -1,6 +1,26 @@
 # Workout Data
 # Format: date -> time_duration and exercises array with category, exercise name, weight (lbs), repetitions
 
+"2025-08-28":
+  time_duration: "75:00"
+  exercises:
+    - category: "chest"
+      exercise: "Barbell Bench Press"
+      weight: 10
+      repetitions: 32
+    - category: "chest"
+      exercise: "Incline Dumbbell Press"
+      weight: 30
+      repetitions: 36
+    - category: "chest"
+      exercise: "Mid Pulley Cable Fly"
+      weight: 20
+      repetitions: 40
+    - category: "other"
+      exercise: "Triceps Extension"
+      weight: 40
+      repetitions: 32
+  
 "2025-08-8":
   time_duration: "75:00"
   exercises:

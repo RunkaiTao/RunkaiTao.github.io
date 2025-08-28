@@ -1,6 +1,13 @@
 # Daily Tasks Data
 # Format: used_pomodoros/expected_pomodoros (finished auto-calculated when used >= expected)
 
+"2025-08-28":
+  - task: |
+      K-theoretic Code:  
+    category: "Physics"
+    used_pomodoros: 0
+    expected_pomodoros: 2
+
 "2025-08-27":
   - task: |
       Discussion on Cecotti-Neitzke-Vafa  
