@@ -5,7 +5,17 @@
   - task: |
       K-theoretic Code:  
     category: "Physics"
-    used_pomodoros: 0
+    used_pomodoros: 1
+    expected_pomodoros: 1
+    - task: |
+      Blog on monodromy operator:  
+    category: "Physics"
+    used_pomodoros: 2
+    expected_pomodoros: 2
+    - task: |
+      Cuda profile:  
+    category: "CS"
+    used_pomodoros: 2
     expected_pomodoros: 2
 
 "2025-08-27":

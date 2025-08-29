@@ -281,8 +281,58 @@ This gives an $\mathcal{N}=2$ theory in the last $\mathbb{R}^4$,
 where $\Sigma$ is the Seiberg-Witten curve, and
 $\lambda = y dx$ is the Seiberg-Witten differential.
 
-(Does $\Sigma$ contain punctures?)
+- This is the same as the setup in Pedestrian (6.2.3) and (6.2.4).
+- Why this M5-brane can be wrapped on the above subspace?
+- How is this equivalent to another class S theory setup? (N M5-brane wrapping on a
+punctured Riemann surface.)
 
+We are going to use the topological string as a way of getting information about this class S theory.
+
+Replacing $\mathbb{R}^4$ by  
+
+$$
+\mathbb{R}^4 \rightsquigarrow S^1 \times S^1 \times \mathbb{R}^2
+$$
+
+We further modify the geometry as follows. 
+
+Let $g$ be some symmetry of $\mathbb{C}_{x, y}^2$ preserving $\Sigma$.
+
+- gives a symmetry of the $\mathcal{N}=2$ theory in $\mathbb{R}^4$.
+
+As we go around the first circle, we make a twist of $\mathbb{C}_{x, y}^2$ by $g$. We write the resulting space as
+
+$$
+\mathbb{C}_{x, y}^2 \times\left(\mathbb{C}_z \times \mathbb{R}_p\right) \times S_g^1 \times S^1 \times \mathbb{R}^2
+$$
+
+-a slight abuse of notation since strictly speaking it is not a product. We still have an M5-brane on
+
+$$
+\Sigma \times\{z=0, p=0\} \times S_g^1 \times S^1 \times \mathbb{R}^2
+$$
+
+Let us view the last $S^1$ as the small "M-theory circle." Then reducing to Type IIA we get 
+
+$$
+\mathbb{C}_{x, y}^2 \times\left(\mathbb{C}_z \times \mathbb{R}_p\right) \times S_g^1 \times \mathbb{R}^2
+$$
+, with a D4-brane wrapping 
+
+$$
+\Sigma \times\{z=0, p= 0\} \times S_g^1 \times \mathbb{R}^2
+$$ 
+
+Now write 
+
+$$
+K=\mathbb{C}_{x, y}^2 \times \mathbb{R}_p \times S_g^1,
+$$
+leaving $\mathbb{C}_z \times \mathbb{R}^2$ as the remaining 4 dimensions. 
+Our D4-brane now wraps the product of 
+
+- $L=\Sigma \times S_g^1 \subset K$ ($p = 0?$)
+- $\{z=0\} \times \mathbb{R}^2$. 
 
 **References**
 
