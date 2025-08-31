@@ -1,6 +1,52 @@
 # Daily Tasks Data
 # Format: used_pomodoros/expected_pomodoros (finished auto-calculated when used >= expected)
 
+"2025-08-30":
+  - task: |
+      Path integral and Localization:  
+    category: "Thesis"
+    used_pomodoros: 2
+    expected_pomodoros: 2
+  - task: |
+      Blog on Hilbert scheme:  
+    category: "Physics"
+    used_pomodoros: 4
+    expected_pomodoros: 4
+  - task: |
+      Cuda Profile:  
+    category: "CS"
+    used_pomodoros: 0
+    expected_pomodoros: 4
+  - task: |
+      Discussion with Ranveer:  
+    category: "Physics"
+    used_pomodoros: 3
+    expected_pomodoros: 3
+  - task: |
+      Note on Cecotti-Neitzke-Vafa:  
+    category: "Physics"
+    used_pomodoros: 0
+    expected_pomodoros: 2
+  - task: |
+      SGLang:  
+    category: "CS"
+    used_pomodoros: 0
+    expected_pomodoros: 4
+
+"2025-08-29":
+  - task: |
+      Path integral and Localization:  
+    category: "Thesis"
+    used_pomodoros: 4
+    expected_pomodoros: 4
+    - task: |
+      Cuda Profile:  
+    category: "CS"
+    used_pomodoros: 0
+    expected_pomodoros: 4
+    
+
+
 "2025-08-28":
   - task: |
       K-theoretic Code:  

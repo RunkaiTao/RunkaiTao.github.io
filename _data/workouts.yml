@@ -1,6 +1,22 @@
 # Workout Data
 # Format: date -> time_duration and exercises array with category, exercise name, weight (lbs), repetitions
 
+"2025-08-29":
+  time_duration: "60:00"
+  exercises:
+    - category: "back"
+      exercise: "Lat Pulldown"
+      weight: 60
+      repetitions: 43
+    - category: "back"
+      exercise: "Machine Rowing"
+      weight: 60
+      repetitions: 40
+    - category: "other"
+      exercise: "Concentration Curl"
+      weight: 10
+      repetitions: 60
+
 "2025-08-28":
   time_duration: "75:00"
   exercises:
